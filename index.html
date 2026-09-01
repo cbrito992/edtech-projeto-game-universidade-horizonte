@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- CONTÊINER MESTRE (Prende tudo no formato 16:9) -->
+    <div id="game-container">
+
+        <!-- Menu Sanduíche Persistente -->
+        <div id="menu-persistente" class="escondido">
+            <button id="btn-sanduiche">☰</button>
+            <div id="painel-opcoes" class="escondido">
+                <button id="btn-reiniciar-fase" class="btn-opcao">Reiniciar fase</button>
+                <button id="btn-voltar-menu" class="btn-opcao">Voltar ao Menu Inicial</button>
+                <button id="btn-toggle-som-jogo" class="btn-opcao">Som: Ligado</button>
+            </div>
+        </div>
+
+        <!-- Tela Menu -->
+        <div id="tela-menu" class="tela cena-ativa">
+            <div class="menu-container">
+                <button id="btn-jogar" class="btn-menu">Jogar</button>
+                <button id="btn-instrucoes" class="btn-menu">Instruções</button>
+                <button id="btn-config" class="btn-menu">Som: Ligado</button>
+            </div>
+
+            <!-- Modal de Instruções -->
+            <div id="modal-instrucoes" class="escondido">
+                <div class="caixa-texto">
+                    <h2>COMO JOGAR</h2><br>
+                    <p>Ao longo da história, você encontrará personagens, pistas e diferentes pontos de vista.</p><br>
+                    <p>Explore os conteúdos disponíveis e participe das interações antes de tomar suas decisões.</p><br>
+                    <p>Suas escolhas influenciam o rumo da história. Algumas consequências serão imediatas. Outras, você só descobrirá mais adiante.</p><br>
+                    <p>Observe, investigue e escolha com atenção.</p><br>
+                    <p>Nem toda jornada termina da mesma forma.</p><br>
+                    <button id="btn-fechar-instrucoes" class="btn-menu btn-fechar">Fechar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela 1: Apresentação -->
+        <div id="tela1" class="tela escondido">
+            <!-- NPCs -->
+            <img id="npc-livia" class="npc escondido" src="assets/images/npc_livia_stand.png" alt="Lívia">
+            <img id="npc-augusto" class="npc escondido" src="assets/images/npc_professor_augusto_tela1.png" alt="Professor Augusto">
+
+            <!-- Caixa de Diálogo -->
+            <div id="caixa-dialogo">
+                <h3 id="nome-falante" class="escondido"></h3>
+                <p id="texto-narrativa"></p>
+                <button id="btn-avancar" class="btn-menu">Avançar</button>
+            </div>
+        </div> <!-- FECHAMENTO CORRETO DA TELA 1 -->
+
+        <!-- Tela 2: Sala da Reitora e Perfil -->
+        <div id="tela2" class="tela escondido">
+            <img id="npc-reitora" class="npc escondido" src="assets/images/npc_reitora.png" alt="Reitora Helena">
+            <img id="npc-player" class="npc escondido" src="" alt="Jogador">
+
+            <div id="painel-criacao" class="escondido">
+
+                <div id="etapa-dados">
+                    <h2 class="titulo-painel">Seu Perfil</h2>
+                    <input type="text" id="input-nome" placeholder="Digite seu nome..." autocomplete="off">
+                    <select id="select-genero">
+                        <option value="" disabled selected>Selecione seu gênero...</option>
+                        <option value="male">Masculino</option>
+                        <option value="female">Feminino</option>
+                    </select>
+                    <button id="btn-confirmar-dados" class="btn-menu escondido">Continuar</button>
+                </div>
+
+                <div id="etapa-classe" class="escondido">
+                    <h2 class="titulo-painel">Sua Função</h2>
+                    <div class="grid-classes">
+                        <div class="card-classe" data-id="aluno" data-titulo="Aluno de Intercâmbio">
+                            <h3>Aluno de Intercâmbio</h3>
+                            <p>Um olhar novo sobre a instituição. Explore os desafios pela perspectiva de quem aprende, questiona e experimenta novas formas de estudar.</p>
+                        </div>
+                        <div class="card-classe" data-id="professor" data-titulo="Professor Visitante">
+                            <h3>Professor Visitante</h3>
+                            <p>Experiência docente com um olhar externo. Analise os desafios considerando a aprendizagem, a prática pedagógica e o papel do professor.</p>
+                        </div>
+                        <div class="card-classe" data-id="estagiario" data-titulo="Estagiário">
+                            <h3>Estagiário</h3>
+                            <p>Em início de carreira e pronto para aprender. Observe diferentes perspectivas, investigue os problemas e descubra seu próprio posicionamento.</p>
+                        </div>
+                    </div>
+                    <button id="btn-confirmar-classe" class="btn-menu escondido">Confirmar</button>
+                </div>
+            </div>
+
+            <div id="caixa-dialogo-tela2">
+                <h3 id="nome-falante-tela2">REITORA HELENA</h3>
+                <p id="texto-narrativa-tela2"></p>
+                <button id="btn-avancar-tela2" class="btn-menu">Avançar</button>
+            </div>
+        </div> <!-- FECHAMENTO CORRETO DA TELA 2 -->
+
+        <!-- Tela 3: Caminho do Aluno de Intercâmbio -->
+        <div id="tela3-aluno" class="tela escondido">
+            <img id="npc-livia-aluno" class="npc escondido" src="assets/images/npc_livia_stand.png" alt="Lívia">
+            <img id="npc-player-aluno" class="npc escondido" src="" alt="Jogador">
+
+            <!-- Painel de Múltipla Escolha -->
+            <div id="painel-escolhas-aluno" class="escondido">
+                <button class="btn-escolha" data-opcao="A">"Porque aprender não é apenas receber uma explicação."</button>
+                <button class="btn-escolha" data-opcao="B">"Talvez você não devesse depender."</button>
+                <button class="btn-escolha" data-opcao="C">"Depende de como você usa a ferramenta."</button>
+            </div>
+
+            <!-- Contêiner do Vídeo -->
+            <div id="painel-video" class="escondido">
+                <iframe id="iframe-video" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+                <button id="btn-fechar-video" class="btn-menu">Continuar Narrativa</button>
+            </div>
+
+            <div id="caixa-dialogo-aluno">
+                <h3 id="nome-falante-aluno"></h3>
+                <p id="texto-narrativa-aluno"></p>
+                <button id="btn-avancar-aluno" class="btn-menu">Avançar</button>
+            </div>
+        </div> <!-- FECHAMENTO CORRETO DA TELA 3 -->
+
+    </div> <!-- Fim do game-container -->
+
+    <script src="js/roteiro.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/tela1.js"></script>
+    <script src="js/tela2.js"></script>
+    <script src="js/tela3_aluno.js"></script> <!-- SCRIPT DA TELA 3 ADICIONADO -->
+</body>
+</html>
