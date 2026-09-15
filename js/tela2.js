@@ -3,6 +3,10 @@ let maquinaTela2;
 function typeWriterTela2(textoHtml, elemento) {
     clearInterval(maquinaTela2);
     elemento.innerHTML = "";
+    if (deveExibirTextoInstantaneamente()) {
+        elemento.innerHTML = textoHtml;
+        return;
+    }
     let i = 0;
 
     maquinaTela2 = setInterval(() => {

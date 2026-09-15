@@ -4,6 +4,10 @@ let maquinaIntervalo;
 function typeWriter(textoHtml, elemento) {
     clearInterval(maquinaIntervalo);
     elemento.innerHTML = "";
+    if (deveExibirTextoInstantaneamente()) {
+        elemento.innerHTML = textoHtml;
+        return;
+    }
     let i = 0;
 
     maquinaIntervalo = setInterval(() => {
