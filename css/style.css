@@ -456,15 +456,21 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .btn-secundario { background: linear-gradient(135deg, #173f67, #142544); border-color: var(--ui-ciano); box-shadow: 0 5px 0 #07182b; }
 
 .menu-container {
-    width: min(94%, 780px);
-    padding: 24px;
-    gap: 14px;
-    align-items: center;
+    width: min(88%, 360px);
+    padding: 22px;
+    gap: 12px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
     background: linear-gradient(135deg, rgba(8,14,34,.9), rgba(25,12,42,.9));
     border: 1px solid rgba(54,217,255,.55);
     border-top: 4px solid var(--ui-ciano);
     border-radius: 8px 22px 8px 22px;
     box-shadow: 0 18px 55px rgba(0,0,0,.6);
+}
+
+.menu-container .btn-menu {
+    width: 100%;
 }
 
 #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
@@ -572,7 +578,12 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 }
 .controle-volume span { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; font-weight: 700; }
 .controle-volume input { width: 100%; accent-color: var(--ui-ciano); cursor: pointer; }
-.controle-volume-menu { align-self: stretch; justify-content: center; }
+.controle-volume-menu {
+    width: 100%;
+    min-width: 0;
+    align-self: stretch;
+    justify-content: center;
+}
 
 #modal-instrucoes, #modal-acessibilidade {
     position: absolute;
@@ -630,7 +641,7 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
 }
 
 @media (max-width: 760px), (max-height: 540px) {
-    .menu-container { padding: 14px; gap: 9px; }
+    .menu-container { width: min(86%, 320px); padding: 14px; gap: 9px; }
     .btn-menu { min-height: 42px; padding: 9px 16px; font-size: 13px; }
     .controle-volume-menu { min-width: 160px; }
     #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
