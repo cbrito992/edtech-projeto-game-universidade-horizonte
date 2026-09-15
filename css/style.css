@@ -131,7 +131,7 @@ body {
     z-index: 10;
 }
 
-#tela3-aluno {
+#tela3-aluno, #tela4-aluno {
     background-image: url('../assets/images/background_biblioteca.png');
     background-color: #000;
     z-index: 10;
@@ -202,8 +202,10 @@ body {
 #npc-augusto, #npc-player { right: 5%; }
 #npc-livia-aluno { left: 5%; transform: scaleX(-1); }
 #npc-player-aluno { right: 5%; }
+#npc-livia-aluno2 { left: 5%; transform: scaleX(-1); }
+#npc-player-aluno2 { right: 5%; }
 
-#caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno {
+#caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno, #caixa-dialogo-aluno2 {
     position: absolute;
     bottom: 3%;
     left: 50%;
@@ -226,19 +228,19 @@ body {
     justify-content: center;
 }
 
-#nome-falante, #nome-falante-tela2, #nome-falante-aluno {
+#nome-falante, #nome-falante-tela2, #nome-falante-aluno, #nome-falante-aluno2 {
     color: #ff0081;
     margin-bottom: 8px;
     text-transform: uppercase;
     font-size: clamp(14px, 1.8vw, 18px);
 }
 
-#texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno {
+#texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno, #texto-narrativa-aluno2 {
     padding-right: 130px;
     min-height: 50px;
 }
 
-#btn-avancar, #btn-avancar-tela2, #btn-avancar-aluno {
+#btn-avancar, #btn-avancar-tela2, #btn-avancar-aluno, #btn-avancar-aluno2 {
     position: absolute;
     bottom: 15px;
     right: 15px;
@@ -317,7 +319,7 @@ body {
 .card-classe.selecionado h3, .card-classe.selecionado p { color: white; }
 
 /* Painel de Escolhas Narrativas */
-#painel-escolhas-aluno {
+#painel-escolhas-aluno, .painel-escolhas {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -330,7 +332,7 @@ body {
     z-index: 50;
 }
 
-.btn-escolha {
+.btn-escolha, .btn-escolha-final {
     background: rgba(0, 0, 0, 0.9);
     border: 2px solid #ff0081;
     color: white;
@@ -342,13 +344,13 @@ body {
     text-align: center;
 }
 
-.btn-escolha:hover {
+.btn-escolha:hover, .btn-escolha-final:hover {
     background: #ff0081;
     transform: scale(1.02);
 }
 
 /* Painel de Vídeo (Iframe) */
-#painel-video {
+#painel-video, .painel-midia {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -366,10 +368,29 @@ body {
     padding-bottom: 60px; /* Espaço para o botão */
 }
 
-#btn-fechar-video {
+#btn-fechar-video, #btn-fechar-video-aluno2 {
     position: absolute;
     bottom: -80px;
 }
+
+.painel-final {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 650px;
+    padding: 40px;
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 4px solid #ff0081;
+    border-radius: 12px;
+    z-index: 70;
+}
+
+.painel-final h2 { color: #ff0081; margin-bottom: 20px; }
+.painel-final p { line-height: 1.6; margin-bottom: 25px; }
 
 /* Força o carregamento dos backgrounds em segundo plano sem exibir na tela */
 .tela.escondido {

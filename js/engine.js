@@ -4,8 +4,31 @@ let jogador = {
     genero: "",
     classeID: "",
     classeTitulo: "",
-    escolhas: {} // Memória permanente para os finais
+    escolhas: {}, // Memória permanente para os finais
+    pontuacaoFinais: { A: 0, B: 0, C: 0 },
+    finalLiberado: ""
 };
+
+function registrarTendenciaFinal(interacao, finalEscolhido) {
+    const escolhaAnterior = jogador.escolhas[interacao];
+
+    if (escolhaAnterior && jogador.pontuacaoFinais[escolhaAnterior] > 0) {
+        jogador.pontuacaoFinais[escolhaAnterior]--;
+    }
+
+    jogador.escolhas[interacao] = finalEscolhido;
+    jogador.pontuacaoFinais[finalEscolhido]++;
+}
+
+function calcularFinalLiberado() {
+    const segundaEscolha = jogador.escolhas.interacaoAluno2;
+    const maiorPontuacao = Math.max(...Object.values(jogador.pontuacaoFinais));
+    const empatados = Object.keys(jogador.pontuacaoFinais)
+        .filter(final => jogador.pontuacaoFinais[final] === maiorPontuacao);
+
+    jogador.finalLiberado = empatados.length === 1 ? empatados[0] : segundaEscolha;
+    return jogador.finalLiberado;
+}
 
 // VARIÁVEIS GLOBAIS DE ÁUDIO
 const somMenu = new Audio('assets/sounds/digital-clique.mp3');
@@ -49,7 +72,8 @@ function toggleSomGlobal() {
         if (document.getElementById('tela1').classList.contains('cena-ativa') ||
             document.getElementById('tela2').classList.contains('cena-ativa')) {
             bgmTela1.play().catch(e => console.log(e));
-        } else if (document.getElementById('tela3-aluno') && document.getElementById('tela3-aluno').classList.contains('cena-ativa')) {
+        } else if ((document.getElementById('tela3-aluno') && document.getElementById('tela3-aluno').classList.contains('cena-ativa')) ||
+                   (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa'))) {
             somBiblioteca.play().catch(e => console.log(e));
         }
     }
@@ -131,8 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (document.getElementById('tela2').classList.contains('cena-ativa')) {
             document.dispatchEvent(new Event('reiniciarTela2'));
         } else if (document.getElementById('tela3-aluno') && document.getElementById('tela3-aluno').classList.contains('cena-ativa')) {
-            // Em breve criaremos este gatilho dentro do tela3_aluno.js
             document.dispatchEvent(new Event('reiniciarTelaAluno'));
+        } else if (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa')) {
+            document.dispatchEvent(new Event('reiniciarTelaAluno2'));
         }
     });
 });

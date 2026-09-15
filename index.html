@@ -109,9 +109,9 @@
 
             <!-- Painel de Múltipla Escolha -->
             <div id="painel-escolhas-aluno" class="escondido">
-                <button class="btn-escolha" data-opcao="A">"Porque aprender não é apenas receber uma explicação."</button>
-                <button class="btn-escolha" data-opcao="B">"Talvez você não devesse depender."</button>
-                <button class="btn-escolha" data-opcao="C">"Depende de como você usa a ferramenta."</button>
+                <button class="btn-escolha" data-opcao="A" data-final="B">"Porque aprender não é apenas receber uma explicação."</button>
+                <button class="btn-escolha" data-opcao="B" data-final="A">"Talvez você não devesse depender."</button>
+                <button class="btn-escolha" data-opcao="C" data-final="C">"Depende de como você usa a ferramenta."</button>
             </div>
 
             <!-- Contêiner do Vídeo -->
@@ -127,6 +127,35 @@
             </div>
         </div> <!-- FECHAMENTO CORRETO DA TELA 3 -->
 
+        <!-- Tela 4: Segunda interação do Aluno de Intercâmbio -->
+        <div id="tela4-aluno" class="tela escondido">
+            <img id="npc-livia-aluno2" class="npc escondido" src="assets/images/npc_livia_instruction.png" alt="Lívia">
+            <img id="npc-player-aluno2" class="npc escondido" src="" alt="Jogador">
+
+            <div id="painel-video-aluno2" class="painel-midia escondido">
+                <iframe id="iframe-video-aluno2" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+                <button id="btn-fechar-video-aluno2" class="btn-menu">Continuar narrativa</button>
+            </div>
+
+            <div id="painel-escolhas-aluno2" class="painel-escolhas escondido">
+                <button class="btn-escolha-final" data-final="A">A instituição deveria ampliar o uso da IA para tornar a aprendizagem mais acessível, personalizada e autônoma.</button>
+                <button class="btn-escolha-final" data-final="B">A instituição deveria limitar seu uso, preservando a mediação humana e reduzindo riscos para a aprendizagem.</button>
+                <button class="btn-escolha-final" data-final="C">A instituição deveria permitir seu uso com transparência, verificação das informações e responsabilidade de quem produz o trabalho.</button>
+            </div>
+
+            <div id="painel-final-aluno" class="painel-final escondido">
+                <h2 id="titulo-final-aluno"></h2>
+                <p id="texto-final-aluno"></p>
+                <button id="btn-recomecar-aluno" class="btn-menu">Jogar novamente</button>
+            </div>
+
+            <div id="caixa-dialogo-aluno2">
+                <h3 id="nome-falante-aluno2"></h3>
+                <p id="texto-narrativa-aluno2"></p>
+                <button id="btn-avancar-aluno2" class="btn-menu">Avançar</button>
+            </div>
+        </div>
+
     </div> <!-- Fim do game-container -->
 
     <script src="js/roteiro.js"></script>
@@ -134,5 +163,6 @@
     <script src="js/tela1.js"></script>
     <script src="js/tela2.js"></script>
     <script src="js/tela3_aluno.js"></script> <!-- SCRIPT DA TELA 3 ADICIONADO -->
+    <script src="js/tela4_aluno.js"></script>
 </body>
 </html>

@@ -65,6 +65,18 @@ const bancoDeDialogos = {
         { nome: "{nome}", texto: "Eu já tenho alguns dados o suficiente para a minha pesquisa. Acredito que na próxima reunião do conselho, terei muito o que acrescentar ao projeto.", player: true },
         { nome: "LÍVIA", texto: "Sabe, {nome}, gostei da nossa conversa. Espero nos encontrarmos em breve...", player: false },
         { nome: "{nome}", texto: "Até mais, Livia. Vou para o laboratório...", player: true },
-        { nome: "LÍVIA", texto: "E eu vou aproveitar para estudar...", player: false }
+        { nome: "LÍVIA", texto: "E eu vou aproveitar para estudar...", player: false, btnTexto: "Continuar" }
+    ],
+
+    trilhaAluno2: [
+        { nome: "", texto: "Antes de seguir para o laboratório, uma nova notificação chega ao seu celular.<br><br>Lívia também recebeu o material.", bg: "url('assets/images/background_biblioteca.png')" },
+        { nome: "LÍVIA", texto: "Parece que a reitoria quer que a gente analise mais uma perspectiva antes da reunião do conselho." },
+        { nome: "{nome}", texto: "Então vamos investigar. Talvez isso nos ajude a entender qual deve ser o papel da IA na universidade." },
+        { tipo: "video", url: "https://www.youtube.com/embed/P1H_pmdCWWU?si=A4U5pW-rYBe5Hy5c" },
+        { nome: "LÍVIA", texto: "O vídeo levanta uma questão importante: ampliar o acesso à tecnologia não elimina a responsabilidade sobre a aprendizagem." },
+        { nome: "{nome}", texto: "Também recebi um artigo da equipe de pesquisa. Vamos conferir os argumentos antes de decidir." },
+        { tipo: "link", url: "https://observatoriodeeducacao.institutounibanco.org.br/em-debate/inteligencia-artificial-na-educacao" },
+        { nome: "LÍVIA", texto: "Depois de tudo o que vimos, qual princípio você acredita que deveria orientar o uso da Inteligência Artificial na Universidade Horizonte?" },
+        { tipo: "escolha-final" }
     ]
 };

@@ -40,12 +40,9 @@ function carregarDialogoAluno() {
     npcPlayer.classList.add('escondido');
     npcLivia.classList.add('escondido');
 
-    // Remove botão avançar se for a última linha
-    if (indiceDialogoAluno === bancoDeDialogos.trilhaAluno.length - 1) {
-        btnAvancar.classList.add('escondido');
-    } else {
-        btnAvancar.classList.remove('escondido');
-    }
+    // A última fala também avança para a segunda interação.
+    btnAvancar.classList.remove('escondido');
+    btnAvancar.innerText = linha.btnTexto || "Avançar";
 
     if (linha.tipo === "escolha") {
         caixaDialogo.classList.add('escondido');
@@ -110,7 +107,8 @@ function carregarDialogoAluno() {
 document.querySelectorAll('.btn-escolha').forEach(botao => {
     botao.addEventListener('click', (e) => {
         tocarSom(somMenu);
-        jogador.escolhas.perguntaLivia1 = e.target.getAttribute('data-opcao');
+        jogador.escolhas.perguntaLivia1 = e.currentTarget.getAttribute('data-opcao');
+        registrarTendenciaFinal('interacaoAluno1', e.currentTarget.getAttribute('data-final'));
         document.getElementById('painel-escolhas-aluno').classList.add('escondido');
         indiceDialogoAluno++;
         carregarDialogoAluno();
@@ -145,6 +143,14 @@ document.addEventListener('iniciarTelaAluno', () => {
 document.addEventListener('reiniciarTelaAluno', () => {
     indiceDialogoAluno = 0;
     jogador.escolhas.perguntaLivia1 = "";
+    const escolhaAnterior = jogador.escolhas.interacaoAluno1;
+    if (escolhaAnterior && jogador.pontuacaoFinais[escolhaAnterior] > 0) {
+        jogador.pontuacaoFinais[escolhaAnterior]--;
+    }
+    delete jogador.escolhas.interacaoAluno1;
+    delete jogador.escolhas.interacaoAluno2;
+    jogador.pontuacaoFinais = { A: 0, B: 0, C: 0 };
+    jogador.finalLiberado = "";
 
     document.getElementById('painel-escolhas-aluno').classList.add('escondido');
     document.getElementById('painel-video').classList.add('escondido');
@@ -166,5 +172,18 @@ document.getElementById('btn-avancar-aluno').addEventListener('click', () => {
 
     if (indiceDialogoAluno < bancoDeDialogos.trilhaAluno.length) {
         carregarDialogoAluno();
+    } else {
+        const tela3 = document.getElementById('tela3-aluno');
+        const tela4 = document.getElementById('tela4-aluno');
+
+        tela3.classList.add('fade-out');
+        setTimeout(() => {
+            tela3.classList.remove('cena-ativa', 'fade-out');
+            tela3.classList.add('escondido');
+            tela4.classList.remove('escondido');
+            tela4.classList.add('cena-ativa', 'fade-in');
+            document.getElementById('npc-player-aluno2').src = `assets/images/player_${jogador.genero}.png`;
+            document.dispatchEvent(new Event('iniciarTelaAluno2'));
+        }, 1000);
     }
 });
