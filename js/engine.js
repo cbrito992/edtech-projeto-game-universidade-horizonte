@@ -241,8 +241,7 @@ function configurarAcessibilidade() {
         modal.classList.add('escondido');
     };
 
-    document.getElementById('btn-acessibilidade-menu').addEventListener('click', abrir);
-    document.getElementById('btn-acessibilidade-jogo').addEventListener('click', abrir);
+    document.getElementById('btn-acessibilidade-flutuante').addEventListener('click', abrir);
     document.getElementById('btn-fechar-acessibilidade').addEventListener('click', fechar);
 
     const controles = {

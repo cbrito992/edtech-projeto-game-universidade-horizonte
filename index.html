@@ -11,6 +11,13 @@
     <!-- CONTÊINER MESTRE (Prende tudo no formato 16:9) -->
     <div id="game-container">
 
+        <button id="btn-acessibilidade-flutuante" aria-label="Abrir recursos de acessibilidade" aria-haspopup="dialog">
+            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <circle cx="24" cy="8" r="4"></circle>
+                <path d="M10 15h28M24 13v13M24 26l-9 16M24 26l9 16M16 16l8 10 8-10"></path>
+            </svg>
+        </button>
+
         <!-- Menu Sanduíche Persistente -->
         <div id="menu-persistente" class="escondido">
             <button id="btn-sanduiche" aria-label="Abrir opções do jogo" aria-expanded="false" aria-controls="painel-opcoes">☰</button>
@@ -23,7 +30,6 @@
                     <span>Volume <output id="valor-volume-jogo">50%</output></span>
                     <input id="volume-jogo" class="volume-global" type="range" min="0" max="100" value="50" aria-label="Volume do jogo">
                 </label>
-                <button id="btn-acessibilidade-jogo" class="btn-opcao">Acessibilidade</button>
             </div>
         </div>
 
@@ -37,7 +43,6 @@
                     <span>Volume <output id="valor-volume-menu">50%</output></span>
                     <input id="volume-menu" class="volume-global" type="range" min="0" max="100" value="50" aria-label="Volume do menu">
                 </label>
-                <button id="btn-acessibilidade-menu" class="btn-menu btn-secundario">Acessibilidade</button>
             </div>
 
             <!-- Modal de Instruções -->
@@ -62,7 +67,7 @@
             <div class="caixa-texto caixa-acessibilidade">
                 <p class="rotulo-modal">CONFIGURAÇÕES</p>
                 <h2 id="titulo-acessibilidade">ACESSIBILIDADE</h2>
-                <p>Ajuste a apresentação sem alterar suas escolhas ou seu progresso.</p>
+                <p>Ajuste a apresentação sem alterar suas escolhas ou seu progresso. Este painel pode ser aberto a qualquer momento pelo símbolo de acessibilidade na lateral da tela.</p>
                 <div class="grade-acessibilidade">
                     <button id="btn-texto-maior" class="btn-alternancia" aria-pressed="false">Texto ampliado: não</button>
                     <button id="btn-alto-contraste" class="btn-alternancia" aria-pressed="false">Alto contraste: não</button>
