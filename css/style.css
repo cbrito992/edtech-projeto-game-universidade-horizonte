@@ -137,6 +137,12 @@ body {
     z-index: 10;
 }
 
+#tela5-conselho {
+    background-image: url('../assets/images/background_sala_reitoria.png');
+    background-color: #000;
+    z-index: 10;
+}
+
 /* Menu Sanduíche */
 #menu-persistente {
     position: absolute;
@@ -205,7 +211,25 @@ body {
 #npc-livia-aluno2 { left: 5%; transform: scaleX(-1); }
 #npc-player-aluno2 { right: 5%; }
 
-#caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno, #caixa-dialogo-aluno2 {
+.npc-conselho {
+    position: absolute;
+    bottom: 0;
+    height: clamp(50%, 75vh, 85%);
+    z-index: 5;
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.npc-conselho.escondido {
+    display: block !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#npc-helena-conselho, #npc-livia-conselho { left: 5%; transform: scaleX(-1); }
+#npc-augusto-conselho, #npc-player-conselho { right: 5%; }
+
+#caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno, #caixa-dialogo-aluno2, #caixa-dialogo-conselho {
     position: absolute;
     bottom: 3%;
     left: 50%;
@@ -228,19 +252,19 @@ body {
     justify-content: center;
 }
 
-#nome-falante, #nome-falante-tela2, #nome-falante-aluno, #nome-falante-aluno2 {
+#nome-falante, #nome-falante-tela2, #nome-falante-aluno, #nome-falante-aluno2, #nome-falante-conselho {
     color: #ff0081;
     margin-bottom: 8px;
     text-transform: uppercase;
     font-size: clamp(14px, 1.8vw, 18px);
 }
 
-#texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno, #texto-narrativa-aluno2 {
+#texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno, #texto-narrativa-aluno2, #texto-narrativa-conselho {
     padding-right: 130px;
     min-height: 50px;
 }
 
-#btn-avancar, #btn-avancar-tela2, #btn-avancar-aluno, #btn-avancar-aluno2 {
+#btn-avancar, #btn-avancar-tela2, #btn-avancar-aluno, #btn-avancar-aluno2, #btn-avancar-conselho {
     position: absolute;
     bottom: 15px;
     right: 15px;
@@ -391,6 +415,12 @@ body {
 
 .painel-final h2 { color: #ff0081; margin-bottom: 20px; }
 .painel-final p { line-height: 1.6; margin-bottom: 25px; }
+.painel-final .mensagem-outros-finais {
+    color: #f7b6d7;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 0, 129, 0.35);
+    padding-top: 18px;
+}
 
 /* Força o carregamento dos backgrounds em segundo plano sem exibir na tela */
 .tela.escondido {

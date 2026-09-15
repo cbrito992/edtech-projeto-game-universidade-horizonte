@@ -178,7 +178,7 @@ document.getElementById('btn-avancar-aluno').addEventListener('click', () => {
 
         tela3.classList.add('fade-out');
         setTimeout(() => {
-            tela3.classList.remove('cena-ativa', 'fade-out');
+            tela3.classList.remove('cena-ativa', 'fade-in', 'fade-out');
             tela3.classList.add('escondido');
             tela4.classList.remove('escondido');
             tela4.classList.add('cena-ativa', 'fade-in');

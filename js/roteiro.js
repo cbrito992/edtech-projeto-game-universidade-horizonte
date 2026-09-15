@@ -78,5 +78,17 @@ const bancoDeDialogos = {
         { tipo: "link", url: "https://observatoriodeeducacao.institutounibanco.org.br/em-debate/inteligencia-artificial-na-educacao" },
         { nome: "LÍVIA", texto: "Depois de tudo o que vimos, qual princípio você acredita que deveria orientar o uso da Inteligência Artificial na Universidade Horizonte?" },
         { tipo: "escolha-final" }
+    ],
+
+    conselhoAluno: [
+        { nome: "", texto: "Sala do Conselho da Universidade Horizonte.<br><br>As perspectivas reunidas ao longo da jornada agora fazem parte da decisão institucional." },
+        { nome: "REITORA HELENA", texto: "Obrigada pela presença. Não estamos aqui apenas para decidir se a Inteligência Artificial deve ou não fazer parte da universidade." },
+        { nome: "REITORA HELENA", texto: "Precisamos decidir que tipo de relação queremos construir entre tecnologia, aprendizagem e responsabilidade." },
+        { nome: "LÍVIA", texto: "Como estudante, vejo na IA uma possibilidade de aprender no meu ritmo, perguntar sem constrangimento e encontrar novas explicações." },
+        { nome: "LÍVIA", texto: "Mas autonomia não pode significar enfrentar sozinha todas as dúvidas e consequências." },
+        { nome: "PROFESSOR AUGUSTO", texto: "A tecnologia pode ampliar caminhos, mas uma resposta pronta não substitui o diálogo, a experiência e o julgamento crítico." },
+        { nome: "PROFESSOR AUGUSTO", texto: "O papel do professor também muda: menos controle sobre respostas e mais orientação sobre como investigar." },
+        { nome: "{nome}", texto: "Depois de ouvir essas perspectivas, acredito que nossa decisão precisa refletir não apenas o que a IA consegue fazer, mas como queremos utilizá-la." },
+        { nome: "REITORA HELENA", texto: "Então apresentarei ao conselho a direção construída a partir das escolhas feitas durante esta jornada." }
     ]
 };

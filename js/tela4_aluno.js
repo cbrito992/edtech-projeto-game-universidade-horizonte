@@ -1,21 +1,6 @@
 let indiceDialogoAluno2 = 0;
 let maquinaAluno2;
 
-const finaisAluno = {
-    A: {
-        titulo: "FINAL A — UNIVERSIDADE AUTOMATIZADA",
-        texto: "A Universidade Horizonte amplia a integração da Inteligência Artificial, priorizando acesso, personalização e autonomia. A tecnologia assume um papel central na experiência de aprendizagem."
-    },
-    B: {
-        titulo: "FINAL B — UNIVERSIDADE PROTEGIDA",
-        texto: "A Universidade Horizonte estabelece limites mais rigorosos para a Inteligência Artificial, preservando a mediação humana e priorizando a segurança do processo educativo."
-    },
-    C: {
-        titulo: "FINAL C — UNIVERSIDADE INVESTIGATIVA",
-        texto: "A Universidade Horizonte adota a Inteligência Artificial com transparência, verificação e responsabilidade. A comunidade aprende a investigar tanto as possibilidades quanto os riscos da tecnologia."
-    }
-};
-
 function typeWriterAluno2(textoHtml, elemento) {
     clearInterval(maquinaAluno2);
     elemento.innerHTML = "";
@@ -40,7 +25,6 @@ function typeWriterAluno2(textoHtml, elemento) {
 function ocultarPaineisAluno2() {
     document.getElementById('painel-video-aluno2').classList.add('escondido');
     document.getElementById('painel-escolhas-aluno2').classList.add('escondido');
-    document.getElementById('painel-final-aluno').classList.add('escondido');
 }
 
 function carregarDialogoAluno2() {
@@ -100,17 +84,23 @@ function carregarDialogoAluno2() {
     typeWriterAluno2(textoFormatado, texto);
 }
 
-function exibirFinalAluno() {
-    const final = calcularFinalLiberado();
-    const conteudo = finaisAluno[final];
-
+function irParaConselho() {
+    calcularFinalLiberado();
     ocultarPaineisAluno2();
-    document.getElementById('caixa-dialogo-aluno2').classList.add('escondido');
-    document.getElementById('npc-player-aluno2').classList.add('escondido');
-    document.getElementById('npc-livia-aluno2').classList.add('escondido');
-    document.getElementById('titulo-final-aluno').innerText = conteudo.titulo;
-    document.getElementById('texto-final-aluno').innerText = conteudo.texto;
-    document.getElementById('painel-final-aluno').classList.remove('escondido');
+    const tela4 = document.getElementById('tela4-aluno');
+    const tela5 = document.getElementById('tela5-conselho');
+
+    tela4.classList.add('fade-out');
+    setTimeout(() => {
+        somBiblioteca.pause();
+        somBiblioteca.currentTime = 0;
+        tela4.classList.remove('cena-ativa', 'fade-in', 'fade-out');
+        tela4.classList.add('escondido');
+        tela5.classList.remove('escondido');
+        tela5.classList.add('cena-ativa', 'fade-in');
+        document.getElementById('npc-player-conselho').src = `assets/images/player_${jogador.genero}.png`;
+        document.dispatchEvent(new Event('iniciarTelaConselho'));
+    }, 1000);
 }
 
 document.getElementById('btn-avancar-aluno2').addEventListener('click', () => {
@@ -131,11 +121,9 @@ document.querySelectorAll('.btn-escolha-final').forEach(botao => {
     botao.addEventListener('click', e => {
         tocarSom(somMenu);
         registrarTendenciaFinal('interacaoAluno2', e.currentTarget.getAttribute('data-final'));
-        exibirFinalAluno();
+        irParaConselho();
     });
 });
-
-document.getElementById('btn-recomecar-aluno').addEventListener('click', () => location.reload());
 
 document.addEventListener('iniciarTelaAluno2', () => {
     indiceDialogoAluno2 = 0;

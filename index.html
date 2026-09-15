@@ -143,16 +143,31 @@
                 <button class="btn-escolha-final" data-final="C">A instituição deveria permitir seu uso com transparência, verificação das informações e responsabilidade de quem produz o trabalho.</button>
             </div>
 
-            <div id="painel-final-aluno" class="painel-final escondido">
-                <h2 id="titulo-final-aluno"></h2>
-                <p id="texto-final-aluno"></p>
-                <button id="btn-recomecar-aluno" class="btn-menu">Jogar novamente</button>
-            </div>
-
             <div id="caixa-dialogo-aluno2">
                 <h3 id="nome-falante-aluno2"></h3>
                 <p id="texto-narrativa-aluno2"></p>
                 <button id="btn-avancar-aluno2" class="btn-menu">Avançar</button>
+            </div>
+        </div>
+
+        <!-- Tela 5: Reunião do Conselho e revelação do final -->
+        <div id="tela5-conselho" class="tela escondido">
+            <img id="npc-helena-conselho" class="npc-conselho escondido" src="assets/images/npc_reitora.png" alt="Reitora Helena">
+            <img id="npc-livia-conselho" class="npc-conselho escondido" src="assets/images/npc_livia_stand.png" alt="Lívia">
+            <img id="npc-augusto-conselho" class="npc-conselho escondido" src="assets/images/npc_professor_augusto_tela1.png" alt="Professor Augusto">
+            <img id="npc-player-conselho" class="npc-conselho escondido" src="" alt="Jogador">
+
+            <div id="caixa-dialogo-conselho">
+                <h3 id="nome-falante-conselho"></h3>
+                <p id="texto-narrativa-conselho"></p>
+                <button id="btn-avancar-conselho" class="btn-menu">Avançar</button>
+            </div>
+
+            <div id="painel-final-aluno" class="painel-final escondido">
+                <h2 id="titulo-final-aluno"></h2>
+                <p id="texto-final-aluno"></p>
+                <p class="mensagem-outros-finais">Este é apenas um dos caminhos possíveis. Outras escolhas podem revelar novos futuros para a Universidade Horizonte.</p>
+                <button id="btn-recomecar-aluno" class="btn-menu">Descobrir outro final</button>
             </div>
         </div>
 
@@ -164,5 +179,6 @@
     <script src="js/tela2.js"></script>
     <script src="js/tela3_aluno.js"></script> <!-- SCRIPT DA TELA 3 ADICIONADO -->
     <script src="js/tela4_aluno.js"></script>
+    <script src="js/tela5_conselho.js"></script>
 </body>
 </html>

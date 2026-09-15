@@ -70,7 +70,8 @@ function toggleSomGlobal() {
         somBiblioteca.pause();
     } else {
         if (document.getElementById('tela1').classList.contains('cena-ativa') ||
-            document.getElementById('tela2').classList.contains('cena-ativa')) {
+            document.getElementById('tela2').classList.contains('cena-ativa') ||
+            (document.getElementById('tela5-conselho') && document.getElementById('tela5-conselho').classList.contains('cena-ativa'))) {
             bgmTela1.play().catch(e => console.log(e));
         } else if ((document.getElementById('tela3-aluno') && document.getElementById('tela3-aluno').classList.contains('cena-ativa')) ||
                    (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa'))) {
@@ -158,6 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.dispatchEvent(new Event('reiniciarTelaAluno'));
         } else if (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa')) {
             document.dispatchEvent(new Event('reiniciarTelaAluno2'));
+        } else if (document.getElementById('tela5-conselho') && document.getElementById('tela5-conselho').classList.contains('cena-ativa')) {
+            document.dispatchEvent(new Event('reiniciarTelaConselho'));
         }
     });
 });
