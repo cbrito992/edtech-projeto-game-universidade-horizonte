@@ -4,6 +4,10 @@ let maquinaAluno;
 function typeWriterAluno(textoHtml, elemento) {
     clearInterval(maquinaAluno);
     elemento.innerHTML = "";
+    if (deveExibirTextoInstantaneamente()) {
+        elemento.innerHTML = textoHtml;
+        return;
+    }
     let i = 0;
 
     maquinaAluno = setInterval(() => {
@@ -35,6 +39,10 @@ function carregarDialogoAluno() {
     const btnAvancar = document.getElementById('btn-avancar-aluno');
 
     if (!linha) return;
+
+    if (linha.tipo === "resposta-escolha1") {
+        linha = bancoDeDialogos.respostasAluno1[jogador.escolhas.interacaoAluno1];
+    }
 
     // Remove os NPCs por padrão para telas de input/sistemas
     npcPlayer.classList.add('escondido');
@@ -131,7 +139,7 @@ document.getElementById('btn-fechar-video').addEventListener('click', () => {
 document.addEventListener('iniciarTelaAluno', () => {
     indiceDialogoAluno = 0;
     somBiblioteca.loop = true;
-    somBiblioteca.volume = 0.3;
+    aplicarVolumeGlobal();
     if (somLigado) somBiblioteca.play().catch(e => console.log(e));
 
     document.getElementById('npc-player-aluno').classList.add('escondido');

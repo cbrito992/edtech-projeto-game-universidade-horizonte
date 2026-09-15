@@ -4,6 +4,10 @@ let maquinaAluno2;
 function typeWriterAluno2(textoHtml, elemento) {
     clearInterval(maquinaAluno2);
     elemento.innerHTML = "";
+    if (deveExibirTextoInstantaneamente()) {
+        elemento.innerHTML = textoHtml;
+        return;
+    }
     let i = 0;
 
     maquinaAluno2 = setInterval(() => {
@@ -94,6 +98,7 @@ function irParaConselho() {
     setTimeout(() => {
         somBiblioteca.pause();
         somBiblioteca.currentTime = 0;
+        somConselho.currentTime = 0;
         tela4.classList.remove('cena-ativa', 'fade-in', 'fade-out');
         tela4.classList.add('escondido');
         tela5.classList.remove('escondido');
@@ -128,7 +133,7 @@ document.querySelectorAll('.btn-escolha-final').forEach(botao => {
 document.addEventListener('iniciarTelaAluno2', () => {
     indiceDialogoAluno2 = 0;
     somBiblioteca.loop = true;
-    somBiblioteca.volume = 0.3;
+    aplicarVolumeGlobal();
     if (somLigado) somBiblioteca.play().catch(e => console.log(e));
     carregarDialogoAluno2();
 });

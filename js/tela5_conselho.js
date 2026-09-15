@@ -1,24 +1,29 @@
 let indiceConselhoAluno = 0;
 let maquinaConselho;
+let roteiroConselhoAtual = [];
 
 const finaisAluno = {
     A: {
-        titulo: "FINAL A — UNIVERSIDADE AUTOMATIZADA",
-        texto: "A Universidade Horizonte amplia a integração da Inteligência Artificial, priorizando acesso, personalização e autonomia. A tecnologia assume um papel central na experiência de aprendizagem."
+        titulo: "HORIZONTE EXPANDIDO",
+        texto: "A universidade decide ampliar o Programa Horizonte IA para oferecer apoio personalizado e acesso contínuo à aprendizagem. A expansão vem acompanhada de tutoria humana, alternativas equivalentes e avaliação periódica, porque autonomia só é inclusiva quando ninguém é deixado sozinho ou para trás."
     },
     B: {
-        titulo: "FINAL B — UNIVERSIDADE PROTEGIDA",
-        texto: "A Universidade Horizonte estabelece limites mais rigorosos para a Inteligência Artificial, preservando a mediação humana e priorizando a segurança do processo educativo."
+        titulo: "PRESENÇA QUE ORIENTA",
+        texto: "A universidade mantém a Inteligência Artificial em atividades delimitadas e supervisionadas. A mediação docente, o vínculo e o julgamento pedagógico permanecem no centro, enquanto a comunidade constrói formação e critérios para avançar com segurança — sem transformar cuidado em medo da mudança."
     },
     C: {
-        titulo: "FINAL C — UNIVERSIDADE INVESTIGATIVA",
-        texto: "A Universidade Horizonte adota a Inteligência Artificial com transparência, verificação e responsabilidade. A comunidade aprende a investigar tanto as possibilidades quanto os riscos da tecnologia."
+        titulo: "INOVAÇÃO RESPONSÁVEL",
+        texto: "A universidade transforma o uso da Inteligência Artificial em prática de investigação. Estudantes declaram como utilizaram as ferramentas, verificam fontes e preservam sua contribuição intelectual; professores orientam processos e a instituição revisa continuamente impactos, desigualdades e riscos."
     }
 };
 
 function typeWriterConselho(textoHtml, elemento) {
     clearInterval(maquinaConselho);
     elemento.innerHTML = "";
+    if (deveExibirTextoInstantaneamente()) {
+        elemento.innerHTML = textoHtml;
+        return;
+    }
     let i = 0;
 
     maquinaConselho = setInterval(() => {
@@ -50,7 +55,7 @@ function mostrarAvatarConselho(nome) {
 }
 
 function carregarDialogoConselho() {
-    const linha = bancoDeDialogos.conselhoAluno[indiceConselhoAluno];
+    const linha = roteiroConselhoAtual[indiceConselhoAluno];
     if (!linha) {
         revelarFinalAluno();
         return;
@@ -70,7 +75,23 @@ function carregarDialogoConselho() {
     mostrarAvatarConselho(nomeFormatado);
     typeWriterConselho(textoFormatado, document.getElementById('texto-narrativa-conselho'));
     document.getElementById('btn-avancar-conselho').innerText =
-        indiceConselhoAluno === bancoDeDialogos.conselhoAluno.length - 1 ? 'Revelar resultado' : 'Avançar';
+        indiceConselhoAluno === roteiroConselhoAtual.length - 1 ? 'Conhecer o futuro' : 'Avançar';
+}
+
+function montarRoteiroConselho() {
+    const primeiroPosicionamento = jogador.escolhas.interacaoAluno1;
+    const segundoPosicionamento = jogador.escolhas.interacaoAluno2;
+    const escolhasMudaram = primeiroPosicionamento !== segundoPosicionamento;
+    const reflexaoHistorico = escolhasMudaram
+        ? { nome: "REITORA HELENA", texto: "Seu posicionamento mudou durante a investigação. Isso não é incoerência: revisar uma ideia diante de novos argumentos também faz parte de uma decisão responsável." }
+        : { nome: "REITORA HELENA", texto: "Suas duas decisões apontaram para a mesma prioridade. Agora precisamos examinar também os limites e as responsabilidades que acompanham essa direção." };
+
+    return [
+        ...bancoDeDialogos.conselhoAluno.abertura,
+        reflexaoHistorico,
+        ...bancoDeDialogos.conselhoAluno[jogador.finalLiberado],
+        ...bancoDeDialogos.conselhoAluno.encerramento
+    ];
 }
 
 function revelarFinalAluno() {
@@ -93,19 +114,23 @@ document.getElementById('btn-recomecar-aluno').addEventListener('click', () => l
 
 document.addEventListener('iniciarTelaConselho', () => {
     indiceConselhoAluno = 0;
+    roteiroConselhoAtual = montarRoteiroConselho();
     document.getElementById('caixa-dialogo-conselho').classList.remove('escondido');
     document.getElementById('painel-final-aluno').classList.add('escondido');
-    bgmTela1.currentTime = 0;
-    bgmTela1.volume = 0.2;
-    if (somLigado) bgmTela1.play().catch(e => console.log(e));
+    bgmTela1.pause();
+    somConselho.loop = true;
+    somConselho.currentTime = 0;
+    aplicarVolumeGlobal();
+    if (somLigado) somConselho.play().catch(e => console.log(e));
     carregarDialogoConselho();
 });
 
 document.addEventListener('reiniciarTelaConselho', () => {
     indiceConselhoAluno = 0;
+    roteiroConselhoAtual = montarRoteiroConselho();
     document.getElementById('caixa-dialogo-conselho').classList.remove('escondido');
     document.getElementById('painel-final-aluno').classList.add('escondido');
-    bgmTela1.currentTime = 0;
-    if (somLigado) bgmTela1.play().catch(e => console.log(e));
+    somConselho.currentTime = 0;
+    if (somLigado) somConselho.play().catch(e => console.log(e));
     carregarDialogoConselho();
 });

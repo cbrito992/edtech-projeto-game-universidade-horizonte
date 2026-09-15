@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Game</title>
+    <title>Universidade Horizonte</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,11 +13,17 @@
 
         <!-- Menu Sanduíche Persistente -->
         <div id="menu-persistente" class="escondido">
-            <button id="btn-sanduiche">☰</button>
-            <div id="painel-opcoes" class="escondido">
+            <button id="btn-sanduiche" aria-label="Abrir opções do jogo" aria-expanded="false" aria-controls="painel-opcoes">☰</button>
+            <div id="painel-opcoes" class="escondido" role="dialog" aria-label="Opções do jogo">
+                <p class="titulo-menu-jogo">PAUSA</p>
                 <button id="btn-reiniciar-fase" class="btn-opcao">Reiniciar fase</button>
                 <button id="btn-voltar-menu" class="btn-opcao">Voltar ao Menu Inicial</button>
                 <button id="btn-toggle-som-jogo" class="btn-opcao">Som: Ligado</button>
+                <label class="controle-volume" for="volume-jogo">
+                    <span>Volume <output id="valor-volume-jogo">50%</output></span>
+                    <input id="volume-jogo" class="volume-global" type="range" min="0" max="100" value="50" aria-label="Volume do jogo">
+                </label>
+                <button id="btn-acessibilidade-jogo" class="btn-opcao">Acessibilidade</button>
             </div>
         </div>
 
@@ -27,19 +33,43 @@
                 <button id="btn-jogar" class="btn-menu">Jogar</button>
                 <button id="btn-instrucoes" class="btn-menu">Instruções</button>
                 <button id="btn-config" class="btn-menu">Som: Ligado</button>
+                <label class="controle-volume controle-volume-menu" for="volume-menu">
+                    <span>Volume <output id="valor-volume-menu">50%</output></span>
+                    <input id="volume-menu" class="volume-global" type="range" min="0" max="100" value="50" aria-label="Volume do menu">
+                </label>
+                <button id="btn-acessibilidade-menu" class="btn-menu btn-secundario">Acessibilidade</button>
             </div>
 
             <!-- Modal de Instruções -->
             <div id="modal-instrucoes" class="escondido">
-                <div class="caixa-texto">
-                    <h2>COMO JOGAR</h2><br>
-                    <p>Ao longo da história, você encontrará personagens, pistas e diferentes pontos de vista.</p><br>
-                    <p>Explore os conteúdos disponíveis e participe das interações antes de tomar suas decisões.</p><br>
-                    <p>Suas escolhas influenciam o rumo da história. Algumas consequências serão imediatas. Outras, você só descobrirá mais adiante.</p><br>
-                    <p>Observe, investigue e escolha com atenção.</p><br>
-                    <p>Nem toda jornada termina da mesma forma.</p><br>
+                <div class="caixa-texto" role="dialog" aria-modal="true" aria-labelledby="titulo-instrucoes">
+                    <p class="rotulo-modal">GUIA DE MISSÃO</p>
+                    <h2 id="titulo-instrucoes">COMO JOGAR</h2>
+                    <div class="lista-instrucoes">
+                        <p><strong>1. Escolha seu papel.</strong> Cada função observa o mesmo desafio por uma perspectiva diferente.</p>
+                        <p><strong>2. Investigue antes de decidir.</strong> Leia os diálogos e explore vídeos e materiais externos. Eles fazem parte da experiência.</p>
+                        <p><strong>3. Assuma uma posição.</strong> Não há respostas simplesmente certas ou erradas. Suas escolhas representam prioridades e alteram os diálogos e o futuro da instituição.</p>
+                        <p><strong>4. Use o menu de pausa.</strong> O botão ☰ permite reiniciar a fase, controlar o volume, abrir a acessibilidade ou voltar ao início.</p>
+                        <p><strong>5. Explore novamente.</strong> Uma jornada revela apenas uma das possibilidades.</p>
+                    </div>
+                    <p class="dica-teclado">Teclado: use <kbd>Tab</kbd> para navegar, <kbd>Enter</kbd> para selecionar e <kbd>Esc</kbd> para fechar janelas.</p>
                     <button id="btn-fechar-instrucoes" class="btn-menu btn-fechar">Fechar</button>
                 </div>
+            </div>
+        </div>
+
+        <div id="modal-acessibilidade" class="escondido" role="dialog" aria-modal="true" aria-labelledby="titulo-acessibilidade">
+            <div class="caixa-texto caixa-acessibilidade">
+                <p class="rotulo-modal">CONFIGURAÇÕES</p>
+                <h2 id="titulo-acessibilidade">ACESSIBILIDADE</h2>
+                <p>Ajuste a apresentação sem alterar suas escolhas ou seu progresso.</p>
+                <div class="grade-acessibilidade">
+                    <button id="btn-texto-maior" class="btn-alternancia" aria-pressed="false">Texto ampliado: não</button>
+                    <button id="btn-alto-contraste" class="btn-alternancia" aria-pressed="false">Alto contraste: não</button>
+                    <button id="btn-reduzir-movimento" class="btn-alternancia" aria-pressed="false">Reduzir movimento: não</button>
+                    <button id="btn-texto-instantaneo" class="btn-alternancia" aria-pressed="false">Texto instantâneo: não</button>
+                </div>
+                <button id="btn-fechar-acessibilidade" class="btn-menu btn-fechar">Concluir</button>
             </div>
         </div>
 
@@ -52,7 +82,7 @@
             <!-- Caixa de Diálogo -->
             <div id="caixa-dialogo">
                 <h3 id="nome-falante" class="escondido"></h3>
-                <p id="texto-narrativa"></p>
+                <p id="texto-narrativa" aria-live="polite"></p>
                 <button id="btn-avancar" class="btn-menu">Avançar</button>
             </div>
         </div> <!-- FECHAMENTO CORRETO DA TELA 1 -->
@@ -97,7 +127,7 @@
 
             <div id="caixa-dialogo-tela2">
                 <h3 id="nome-falante-tela2">REITORA HELENA</h3>
-                <p id="texto-narrativa-tela2"></p>
+                <p id="texto-narrativa-tela2" aria-live="polite"></p>
                 <button id="btn-avancar-tela2" class="btn-menu">Avançar</button>
             </div>
         </div> <!-- FECHAMENTO CORRETO DA TELA 2 -->
@@ -122,7 +152,7 @@
 
             <div id="caixa-dialogo-aluno">
                 <h3 id="nome-falante-aluno"></h3>
-                <p id="texto-narrativa-aluno"></p>
+                <p id="texto-narrativa-aluno" aria-live="polite"></p>
                 <button id="btn-avancar-aluno" class="btn-menu">Avançar</button>
             </div>
         </div> <!-- FECHAMENTO CORRETO DA TELA 3 -->
@@ -145,7 +175,7 @@
 
             <div id="caixa-dialogo-aluno2">
                 <h3 id="nome-falante-aluno2"></h3>
-                <p id="texto-narrativa-aluno2"></p>
+                <p id="texto-narrativa-aluno2" aria-live="polite"></p>
                 <button id="btn-avancar-aluno2" class="btn-menu">Avançar</button>
             </div>
         </div>
@@ -159,14 +189,14 @@
 
             <div id="caixa-dialogo-conselho">
                 <h3 id="nome-falante-conselho"></h3>
-                <p id="texto-narrativa-conselho"></p>
+                <p id="texto-narrativa-conselho" aria-live="polite"></p>
                 <button id="btn-avancar-conselho" class="btn-menu">Avançar</button>
             </div>
 
             <div id="painel-final-aluno" class="painel-final escondido">
                 <h2 id="titulo-final-aluno"></h2>
                 <p id="texto-final-aluno"></p>
-                <p class="mensagem-outros-finais">Este é apenas um dos caminhos possíveis. Outras escolhas podem revelar novos futuros para a Universidade Horizonte.</p>
+                <p class="mensagem-outros-finais">Sua jornada revelou uma possibilidade, não uma resposta definitiva. Retorne às decisões para descobrir como outras prioridades transformam o futuro da Universidade Horizonte.</p>
                 <button id="btn-recomecar-aluno" class="btn-menu">Descobrir outro final</button>
             </div>
         </div>
