@@ -131,7 +131,7 @@ body {
     z-index: 10;
 }
 
-#tela3-aluno, #tela4-aluno {
+#tela3-aluno, #tela4-aluno, #tela-caminho-adicional {
     background-image: url('../assets/images/background_biblioteca.png');
     background-color: #000;
     z-index: 10;
@@ -210,6 +210,8 @@ body {
 #npc-player-aluno { right: 5%; }
 #npc-livia-aluno2 { left: 5%; transform: scaleX(-1); }
 #npc-player-aluno2 { right: 5%; }
+#npc-companheiro { left: 5%; transform: scaleX(-1); }
+#npc-player-adicional { right: 5%; }
 
 .npc-conselho {
     position: absolute;
@@ -226,10 +228,10 @@ body {
     pointer-events: none;
 }
 
-#npc-helena-conselho, #npc-livia-conselho { left: 5%; transform: scaleX(-1); }
+#npc-helena-conselho, #npc-livia-conselho, #npc-nicodemos-conselho { left: 5%; transform: scaleX(-1); }
 #npc-augusto-conselho, #npc-player-conselho { right: 5%; }
 
-#caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno, #caixa-dialogo-aluno2, #caixa-dialogo-conselho {
+#caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno, #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
     position: absolute;
     bottom: 3%;
     left: 50%;
@@ -252,19 +254,19 @@ body {
     justify-content: center;
 }
 
-#nome-falante, #nome-falante-tela2, #nome-falante-aluno, #nome-falante-aluno2, #nome-falante-conselho {
+#nome-falante, #nome-falante-tela2, #nome-falante-aluno, #nome-falante-aluno2, #nome-falante-conselho, #nome-falante-adicional {
     color: #ff0081;
     margin-bottom: 8px;
     text-transform: uppercase;
     font-size: clamp(14px, 1.8vw, 18px);
 }
 
-#texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno, #texto-narrativa-aluno2, #texto-narrativa-conselho {
+#texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno, #texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional {
     padding-right: 130px;
     min-height: 50px;
 }
 
-#btn-avancar, #btn-avancar-tela2, #btn-avancar-aluno, #btn-avancar-aluno2, #btn-avancar-conselho {
+#btn-avancar, #btn-avancar-tela2, #btn-avancar-aluno, #btn-avancar-aluno2, #btn-avancar-conselho, #btn-avancar-adicional {
     position: absolute;
     bottom: 15px;
     right: 15px;
@@ -372,6 +374,21 @@ body {
     background: #ff0081;
     transform: scale(1.02);
 }
+
+.pergunta-escolha {
+    color: var(--ui-ciano);
+    font-size: clamp(18px, 2.2vw, 25px);
+    line-height: 1.35;
+    text-align: center;
+}
+
+#opcoes-escolha-adicional {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.btn-escolha-adicional { width: 100%; }
 
 /* Painel de Vídeo (Iframe) */
 #painel-video, .painel-midia {
@@ -508,7 +525,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 }
 
 #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
-#caixa-dialogo-aluno2, #caixa-dialogo-conselho {
+#caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
     width: min(92%, 940px);
     min-height: 145px;
     padding: 34px 170px 30px 42px;
@@ -521,7 +538,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 }
 
 #nome-falante, #nome-falante-tela2, #nome-falante-aluno,
-#nome-falante-aluno2, #nome-falante-conselho {
+#nome-falante-aluno2, #nome-falante-conselho, #nome-falante-adicional {
     align-self: flex-start;
     margin: -48px 0 14px -18px;
     padding: 8px 20px;
@@ -533,7 +550,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 }
 
 #texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno,
-#texto-narrativa-aluno2, #texto-narrativa-conselho {
+#texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional {
     padding-right: 0;
     color: var(--ui-texto);
     font-size: clamp(16px, 1.55vw, 20px);
@@ -767,13 +784,13 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
 body.texto-maior #game-container { font-size: 118%; }
 body.texto-maior #texto-narrativa, body.texto-maior #texto-narrativa-tela2,
 body.texto-maior #texto-narrativa-aluno, body.texto-maior #texto-narrativa-aluno2,
-body.texto-maior #texto-narrativa-conselho { font-size: clamp(19px, 1.8vw, 24px); }
+body.texto-maior #texto-narrativa-conselho, body.texto-maior #texto-narrativa-adicional { font-size: clamp(19px, 1.8vw, 24px); }
 
 body.alto-contraste { --ui-ciano: #00ffff; --ui-rosa: #ff4db8; --ui-texto: #fff; --ui-foco: #ffff00; }
 body.alto-contraste .caixa-texto, body.alto-contraste #painel-opcoes,
 body.alto-contraste #caixa-dialogo, body.alto-contraste #caixa-dialogo-tela2,
 body.alto-contraste #caixa-dialogo-aluno, body.alto-contraste #caixa-dialogo-aluno2,
-body.alto-contraste #caixa-dialogo-conselho { background: #000; border-color: #fff; }
+body.alto-contraste #caixa-dialogo-conselho, body.alto-contraste #caixa-dialogo-adicional { background: #000; border-color: #fff; }
 
 body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimento *::after {
     animation-duration: .01ms !important;
@@ -788,11 +805,11 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     .btn-menu { min-height: 42px; padding: 9px 16px; font-size: 13px; }
     .controle-volume-menu { min-width: 160px; }
     #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
-    #caixa-dialogo-aluno2, #caixa-dialogo-conselho { min-height: 125px; padding: 27px 115px 18px 24px; }
+    #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional { min-height: 125px; padding: 27px 115px 18px 24px; }
     #nome-falante, #nome-falante-tela2, #nome-falante-aluno,
-    #nome-falante-aluno2, #nome-falante-conselho { margin: -38px 0 8px -10px; padding: 5px 12px; }
+    #nome-falante-aluno2, #nome-falante-conselho, #nome-falante-adicional { margin: -38px 0 8px -10px; padding: 5px 12px; }
     #texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno,
-    #texto-narrativa-aluno2, #texto-narrativa-conselho { font-size: 14px; line-height: 1.45; }
+    #texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional { font-size: 14px; line-height: 1.45; }
     .btn-escolha, .btn-escolha-final { min-height: 48px; padding: 10px 14px 10px 40px; font-size: 13px; }
     .grade-acessibilidade { grid-template-columns: 1fr; }
     #painel-criacao { width: min(90%, 580px); padding: 16px 20px; }

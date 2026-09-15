@@ -159,6 +159,7 @@ document.addEventListener('reiniciarTelaAluno', () => {
     delete jogador.escolhas.interacaoAluno2;
     jogador.pontuacaoFinais = { A: 0, B: 0, C: 0 };
     jogador.finalLiberado = "";
+    jogador.ultimaEscolhaFinal = "";
 
     document.getElementById('painel-escolhas-aluno').classList.add('escondido');
     document.getElementById('painel-video').classList.add('escondido');

@@ -195,11 +195,34 @@
             </div>
         </div>
 
+        <!-- Caminhos do Professor Visitante e do Estagiário -->
+        <div id="tela-caminho-adicional" class="tela escondido">
+            <img id="npc-companheiro" class="npc escondido" src="" alt="">
+            <img id="npc-player-adicional" class="npc escondido" src="" alt="Jogador">
+
+            <div id="painel-video-adicional" class="painel-midia escondido">
+                <iframe id="iframe-video-adicional" title="Recurso em vídeo" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+                <button id="btn-fechar-video-adicional" class="btn-menu">Continuar investigação</button>
+            </div>
+
+            <div id="painel-escolhas-adicional" class="painel-escolhas escondido" role="group" aria-labelledby="pergunta-escolha-adicional">
+                <h2 id="pergunta-escolha-adicional" class="pergunta-escolha"></h2>
+                <div id="opcoes-escolha-adicional"></div>
+            </div>
+
+            <div id="caixa-dialogo-adicional">
+                <h3 id="nome-falante-adicional"></h3>
+                <p id="texto-narrativa-adicional" aria-live="polite"></p>
+                <button id="btn-avancar-adicional" class="btn-menu">Avançar</button>
+            </div>
+        </div>
+
         <!-- Tela 5: Reunião do Conselho e revelação do final -->
         <div id="tela5-conselho" class="tela escondido">
             <img id="npc-helena-conselho" class="npc-conselho escondido" src="assets/images/npc_reitora.png" alt="Reitora Helena">
             <img id="npc-livia-conselho" class="npc-conselho escondido" src="assets/images/npc_livia_stand.png" alt="Lívia">
             <img id="npc-augusto-conselho" class="npc-conselho escondido" src="assets/images/npc_professor_augusto_tela1.png" alt="Professor Augusto">
+            <img id="npc-nicodemos-conselho" class="npc-conselho escondido" src="assets/images/npc_nicodemos.png" alt="Nicodemos">
             <img id="npc-player-conselho" class="npc-conselho escondido" src="" alt="Jogador">
 
             <div id="caixa-dialogo-conselho">
@@ -219,11 +242,13 @@
     </div> <!-- Fim do game-container -->
 
     <script src="js/roteiro.js"></script>
+    <script src="js/roteiro_caminhos.js"></script>
     <script src="js/engine.js"></script>
     <script src="js/tela1.js"></script>
     <script src="js/tela2.js"></script>
     <script src="js/tela3_aluno.js"></script> <!-- SCRIPT DA TELA 3 ADICIONADO -->
     <script src="js/tela4_aluno.js"></script>
     <script src="js/tela5_conselho.js"></script>
+    <script src="js/tela_caminhos_adicionais.js"></script>
 </body>
 </html>

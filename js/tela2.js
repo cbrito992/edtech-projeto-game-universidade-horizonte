@@ -135,6 +135,11 @@ btnConfClasse.addEventListener('click', (e) => {
                 document.getElementById('npc-player-aluno').src = `assets/images/player_${jogador.genero}.png`;
 
                 document.dispatchEvent(new Event('iniciarTelaAluno'));
+            } else if (jogador.classeID === 'professor' || jogador.classeID === 'estagiario') {
+                const telaAdicional = document.getElementById('tela-caminho-adicional');
+                telaAdicional.classList.remove('escondido');
+                telaAdicional.classList.add('cena-ativa', 'fade-in');
+                document.dispatchEvent(new Event('iniciarCaminhoAdicional'));
             }
         }, 1000);
     });

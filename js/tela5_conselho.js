@@ -51,6 +51,7 @@ function mostrarAvatarConselho(nome) {
     if (nome === 'REITORA HELENA') document.getElementById('npc-helena-conselho').classList.remove('escondido');
     if (nome === 'LÍVIA') document.getElementById('npc-livia-conselho').classList.remove('escondido');
     if (nome === 'PROFESSOR AUGUSTO') document.getElementById('npc-augusto-conselho').classList.remove('escondido');
+    if (nome === 'NICODEMOS') document.getElementById('npc-nicodemos-conselho').classList.remove('escondido');
     if (nome === (jogador.nome || 'Visitante')) document.getElementById('npc-player-conselho').classList.remove('escondido');
 }
 
@@ -79,18 +80,37 @@ function carregarDialogoConselho() {
 }
 
 function montarRoteiroConselho() {
-    const primeiroPosicionamento = jogador.escolhas.interacaoAluno1;
-    const segundoPosicionamento = jogador.escolhas.interacaoAluno2;
+    const configuracoes = {
+        aluno: {
+            roteiro: bancoDeDialogos.conselhoAluno,
+            primeira: 'interacaoAluno1',
+            segunda: 'interacaoAluno2'
+        },
+        professor: {
+            roteiro: conselhosAdicionais.professor,
+            primeira: 'interacaoProfessor1',
+            segunda: 'interacaoProfessor2'
+        },
+        estagiario: {
+            roteiro: conselhosAdicionais.estagiario,
+            primeira: 'interacaoEstagiario1',
+            segunda: 'interacaoEstagiario2'
+        }
+    };
+    const configuracao = configuracoes[jogador.classeID];
+    const roteiro = configuracao.roteiro;
+    const primeiroPosicionamento = jogador.escolhas[configuracao.primeira];
+    const segundoPosicionamento = jogador.escolhas[configuracao.segunda];
     const escolhasMudaram = primeiroPosicionamento !== segundoPosicionamento;
     const reflexaoHistorico = escolhasMudaram
         ? { nome: "REITORA HELENA", texto: "Seu posicionamento mudou durante a investigação. Isso não é incoerência: revisar uma ideia diante de novos argumentos também faz parte de uma decisão responsável." }
         : { nome: "REITORA HELENA", texto: "Suas duas decisões apontaram para a mesma prioridade. Agora precisamos examinar também os limites e as responsabilidades que acompanham essa direção." };
 
     return [
-        ...bancoDeDialogos.conselhoAluno.abertura,
+        ...roteiro.abertura,
         reflexaoHistorico,
-        ...bancoDeDialogos.conselhoAluno[jogador.finalLiberado],
-        ...bancoDeDialogos.conselhoAluno.encerramento
+        ...roteiro[jogador.finalLiberado],
+        ...roteiro.encerramento
     ];
 }
 

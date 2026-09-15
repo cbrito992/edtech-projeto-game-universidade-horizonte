@@ -6,7 +6,8 @@ let jogador = {
     classeTitulo: "",
     escolhas: {}, // Memória permanente para os finais
     pontuacaoFinais: { A: 0, B: 0, C: 0 },
-    finalLiberado: ""
+    finalLiberado: "",
+    ultimaEscolhaFinal: ""
 };
 
 function registrarTendenciaFinal(interacao, finalEscolhido) {
@@ -18,15 +19,15 @@ function registrarTendenciaFinal(interacao, finalEscolhido) {
 
     jogador.escolhas[interacao] = finalEscolhido;
     jogador.pontuacaoFinais[finalEscolhido]++;
+    jogador.ultimaEscolhaFinal = finalEscolhido;
 }
 
 function calcularFinalLiberado() {
-    const segundaEscolha = jogador.escolhas.interacaoAluno2;
     const maiorPontuacao = Math.max(...Object.values(jogador.pontuacaoFinais));
     const empatados = Object.keys(jogador.pontuacaoFinais)
         .filter(final => jogador.pontuacaoFinais[final] === maiorPontuacao);
 
-    jogador.finalLiberado = empatados.length === 1 ? empatados[0] : segundaEscolha;
+    jogador.finalLiberado = empatados.length === 1 ? empatados[0] : jogador.ultimaEscolhaFinal;
     return jogador.finalLiberado;
 }
 
@@ -82,7 +83,8 @@ function retomarMusicaAtiva() {
     } else if (document.getElementById('tela5-conselho') && document.getElementById('tela5-conselho').classList.contains('cena-ativa')) {
         somConselho.play().catch(e => console.log(e));
     } else if ((document.getElementById('tela3-aluno') && document.getElementById('tela3-aluno').classList.contains('cena-ativa')) ||
-               (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa'))) {
+               (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa')) ||
+               (document.getElementById('tela-caminho-adicional') && document.getElementById('tela-caminho-adicional').classList.contains('cena-ativa'))) {
         somBiblioteca.play().catch(e => console.log(e));
     }
 }
@@ -225,6 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.dispatchEvent(new Event('reiniciarTelaAluno2'));
         } else if (document.getElementById('tela5-conselho') && document.getElementById('tela5-conselho').classList.contains('cena-ativa')) {
             document.dispatchEvent(new Event('reiniciarTelaConselho'));
+        } else if (document.getElementById('tela-caminho-adicional') && document.getElementById('tela-caminho-adicional').classList.contains('cena-ativa')) {
+            document.dispatchEvent(new Event('reiniciarCaminhoAdicional'));
         }
     });
 });
