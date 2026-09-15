@@ -100,18 +100,28 @@
             <div id="painel-criacao" class="escondido">
 
                 <div id="etapa-dados">
+                    <p class="etapa-indicador">CONFIGURAÇÃO DO PERSONAGEM</p>
                     <h2 class="titulo-painel">Seu Perfil</h2>
-                    <input type="text" id="input-nome" placeholder="Digite seu nome..." autocomplete="off">
-                    <select id="select-genero">
-                        <option value="" disabled selected>Selecione seu gênero...</option>
-                        <option value="male">Masculino</option>
-                        <option value="female">Feminino</option>
-                    </select>
+                    <p class="descricao-painel">Essas informações personalizam os diálogos da sua jornada.</p>
+                    <div class="campo-perfil">
+                        <label for="input-nome">Como devemos chamar você?</label>
+                        <input type="text" id="input-nome" placeholder="Digite seu nome" autocomplete="name" maxlength="30">
+                    </div>
+                    <div class="campo-perfil">
+                        <label for="select-genero">Escolha o avatar</label>
+                        <select id="select-genero">
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Feminino</option>
+                        </select>
+                    </div>
                     <button id="btn-confirmar-dados" class="btn-menu escondido">Continuar</button>
                 </div>
 
                 <div id="etapa-classe" class="escondido">
+                    <p class="etapa-indicador">ESCOLHA DE PERSPECTIVA</p>
                     <h2 class="titulo-painel">Sua Função</h2>
+                    <p class="descricao-painel">Cada função investiga o desafio por um ponto de vista diferente.</p>
                     <div class="grid-classes">
                         <div class="card-classe" data-id="aluno" data-titulo="Aluno de Intercâmbio">
                             <h3>Aluno de Intercâmbio</h3>
