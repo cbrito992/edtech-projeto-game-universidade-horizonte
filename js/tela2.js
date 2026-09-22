@@ -27,7 +27,7 @@ function typeWriterTela2(textoHtml, elemento) {
 
 // ETAPA 0: Inicialização
 document.addEventListener('iniciarTela2', () => {
-    document.getElementById('npc-reitora').classList.remove('escondido');
+    document.getElementById('npc-giovana').classList.remove('escondido');
     typeWriterTela2(bancoDeDialogos.tela2.fala1, document.getElementById('texto-narrativa-tela2'));
 });
 
@@ -106,7 +106,7 @@ btnConfClasse.addEventListener('click', (e) => {
     let novoBtn = btnAvancar.cloneNode(true);
     btnAvancar.parentNode.replaceChild(novoBtn, btnAvancar);
 
-    // Novo evento: Direciona para a Tela 3 com FADE SUAVE
+    // Exibe o título do ato entre a escolha de função e o primeiro caminho.
     novoBtn.addEventListener('click', () => {
         tocarSom(somMenu);
 
@@ -116,33 +116,40 @@ btnConfClasse.addEventListener('click', (e) => {
             bgmTela1.currentTime = 0;
         }
 
-        // 1. Inicia o esmaecimento da Tela 2
         const tela2 = document.getElementById('tela2');
         tela2.classList.add('fade-out');
 
-        // 2. Aguarda 1 segundo (tempo do CSS) antes de trocar as classes
         setTimeout(() => {
             tela2.classList.remove('cena-ativa', 'fade-out');
             tela2.classList.add('escondido');
-            tela2.style.display = ''; // Limpa o display inline
-
-            // 3. Direcionamento e fade de entrada
-            if (jogador.classeID === 'aluno') {
-                const tela3 = document.getElementById('tela3-aluno');
-                tela3.classList.remove('escondido');
-                tela3.classList.add('cena-ativa', 'fade-in');
-
-                document.getElementById('npc-player-aluno').src = `assets/images/player_${jogador.genero}.png`;
-
-                document.dispatchEvent(new Event('iniciarTelaAluno'));
-            } else if (jogador.classeID === 'professor' || jogador.classeID === 'estagiario') {
-                const telaAdicional = document.getElementById('tela-caminho-adicional');
-                telaAdicional.classList.remove('escondido');
-                telaAdicional.classList.add('cena-ativa', 'fade-in');
-                document.dispatchEvent(new Event('iniciarCaminhoAdicional'));
-            }
-        }, 1000);
+            const transicao = document.getElementById('tela-transicao-ato1');
+            transicao.classList.remove('escondido');
+            transicao.classList.add('cena-ativa', 'fade-in');
+            document.getElementById('menu-persistente').classList.add('escondido');
+            document.getElementById('btn-iniciar-ato1').focus();
+        }, preferenciasAcessibilidade.reduzirMovimento ? 0 : 1000);
     });
+});
+
+document.getElementById('btn-iniciar-ato1').addEventListener('click', () => {
+    tocarSom(somMenu);
+    const transicao = document.getElementById('tela-transicao-ato1');
+    transicao.classList.remove('cena-ativa', 'fade-in');
+    transicao.classList.add('escondido');
+    document.getElementById('menu-persistente').classList.remove('escondido');
+
+    if (jogador.classeID === 'aluno') {
+        const tela3 = document.getElementById('tela3-aluno');
+        tela3.classList.remove('escondido');
+        tela3.classList.add('cena-ativa', 'fade-in');
+        document.getElementById('npc-player-aluno').src = `assets/images/player_${jogador.genero}.png`;
+        document.dispatchEvent(new Event('iniciarTelaAluno'));
+    } else if (jogador.classeID === 'professor' || jogador.classeID === 'estagiario') {
+        const telaAdicional = document.getElementById('tela-caminho-adicional');
+        telaAdicional.classList.remove('escondido');
+        telaAdicional.classList.add('cena-ativa', 'fade-in');
+        document.dispatchEvent(new Event('iniciarCaminhoAdicional'));
+    }
 });
 
 // Ação de Reiniciar (Menu Sanduíche)

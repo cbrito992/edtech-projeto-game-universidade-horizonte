@@ -35,8 +35,8 @@ const bancoDeDialogos = {
     ],
 
     tela2: {
-        fala1: "Antes de começarmos, me diga um pouco sobre você...",
-        fala2: "Muito bem, {nome}. Eu sabia que fizemos uma boa escolha ao convocar você como {classe}.<br><br>Tenho certeza que você irá fazer um bom trabalho.<br><br>Até mais!"
+        fala1: "Olá! Sou Giovana, gerente de TI da Universidade Horizonte. Antes de começarmos, me diga um pouco sobre você...",
+        fala2: "Muito bem, {nome}. Você participará do Programa Horizonte IA como {classe}.<br><br>Sua perspectiva vai ajudar a universidade a entender os efeitos de cada decisão.<br><br>Vamos começar!"
     },
 
     trilhaAluno: [

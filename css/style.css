@@ -126,9 +126,43 @@ body {
 }
 
 #tela2 {
-    background-image: url('../assets/images/background_sala_reitoria.png');
+    background-image: url('../assets/images/background_hall.png');
     background-color: #000;
     z-index: 10;
+}
+
+#tela-transicao-ato1 {
+    background-color: #080b12;
+    background-image: url('../assets/images/background_transicao_atos.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+    align-items: center;
+    padding: 5%;
+}
+
+.conteudo-transicao-ato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(28px, 6vw, 72px);
+    width: 100%;
+    text-align: center;
+}
+
+#titulo-ato1 {
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(76px, 15vw, 190px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-shadow: 0 5px 2px #05070d, 0 12px 36px #000;
+}
+
+#btn-iniciar-ato1 {
+    min-width: 190px;
 }
 
 #tela3-aluno, #tela4-aluno, #tela-caminho-adicional {
@@ -204,7 +238,7 @@ body {
 }
 
 #npc-livia { left: 5%; transform: scaleX(-1); }
-#npc-reitora { left: 0%; transform: scaleX(-1); }
+#npc-giovana { left: 0%; transform: scaleX(-1); }
 #npc-augusto, #npc-player { right: 5%; }
 #npc-livia-aluno { left: 5%; transform: scaleX(-1); }
 #npc-player-aluno { right: 5%; }
