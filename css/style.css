@@ -630,6 +630,18 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     width: 100%;
 }
 
+.titulo-jogo {
+    color: #fff;
+    font-size: clamp(24px, 3.2vw, 36px);
+    line-height: 1.05;
+    letter-spacing: .045em;
+    text-align: center;
+    text-shadow: 0 3px 14px #050914, 0 0 18px rgba(77, 219, 255, .5);
+    margin: 0 0 12px;
+}
+
+.titulo-jogo span { display: block; color: var(--ui-ciano); }
+
 #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
 #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
     width: min(92%, 940px);
