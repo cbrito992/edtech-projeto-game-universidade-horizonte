@@ -251,7 +251,8 @@ function mostrarAtividadeAtos(atividade) {
     const lista = document.getElementById('opcoes-atividade-atos');
     document.getElementById('pergunta-atividade-atos').textContent = atividade.pergunta;
     document.getElementById('retorno-atividade-atos').textContent = '';
-    document.getElementById('btn-continuar-atividade-atos').classList.add('escondido');
+    const continuar = document.getElementById('btn-continuar-atividade-atos');
+    continuar.classList.add('escondido');
     lista.replaceChildren();
     atividade.opcoes.forEach(opcao => {
         const botao = document.createElement('button');
@@ -261,12 +262,17 @@ function mostrarAtividadeAtos(atividade) {
         botao.addEventListener('click', () => {
             tocarSom(somTela);
             document.getElementById('retorno-atividade-atos').textContent = opcao.retorno;
-            if (opcao.adequada) {
-                lista.querySelectorAll('button').forEach(b => { b.disabled = true; });
-                const continuar = document.getElementById('btn-continuar-atividade-atos');
-                continuar.classList.remove('escondido');
-                continuar.focus();
+            (jogador.escolhas.atividades ||= {})[`ato${atoAtual}-${indiceJornada}`] = opcao.texto;
+            if (!opcao.adequada && passosJornada[indiceJornada + 1]?.texto) {
+                const proximo = passosJornada[indiceJornada + 1];
+                passosJornada[indiceJornada + 1] = {
+                    ...proximo,
+                    texto: `A equipe seguiu a proposta escolhida: “${opcao.texto}” ${opcao.retorno} Essas questões permanecem em aberto para a próxima etapa.`
+                };
             }
+            lista.querySelectorAll('button').forEach(b => { b.disabled = true; });
+            continuar.classList.remove('escondido');
+            continuar.focus();
         });
         lista.appendChild(botao);
     });
