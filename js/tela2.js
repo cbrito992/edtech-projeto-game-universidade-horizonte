@@ -116,16 +116,9 @@ btnConfClasse.addEventListener('click', (e) => {
             bgmTela1.currentTime = 0;
         }
 
-        const tela2 = document.getElementById('tela2');
-        tela2.classList.add('fade-out');
-
-        setTimeout(() => {
-            tela2.classList.remove('cena-ativa', 'fade-out');
-            tela2.classList.add('escondido');
-            mostrarTransicaoAto('Ato I', '', () => {
-                document.dispatchEvent(new Event('iniciarJogoAtos'));
-            });
-        }, preferenciasAcessibilidade.reduzirMovimento ? 0 : 1000);
+        mostrarTransicaoAto('Ato I', '', () => {
+            document.dispatchEvent(new Event('iniciarJogoAtos'));
+        });
     });
 });
 

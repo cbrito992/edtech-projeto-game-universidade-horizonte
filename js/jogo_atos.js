@@ -7,6 +7,7 @@ let maquinaConselhoAtos;
 let linhasConselho = [];
 let indiceConselhoAtos = 0;
 let aposTransicao;
+let transicaoEmAndamento = false;
 
 function preencherNome(texto) {
     return String(texto || '').replace(/{nome}/g, jogador.nome || 'Visitante');
@@ -41,28 +42,67 @@ function escreverConselho(elemento, conteudo) {
 }
 
 function mostrarTransicaoAto(titulo, subtitulo, callback) {
+    if (transicaoEmAndamento) return;
+    transicaoEmAndamento = true;
     const tela = document.getElementById('tela-transicao-ato1');
+    const cortina = document.getElementById('cortina-transicao-ato');
     const subtituloEl = document.getElementById('texto-transicao-ato');
+    const botao = document.getElementById('btn-iniciar-ato1');
+    const movimentoReduzido = preferenciasAcessibilidade.reduzirMovimento;
     document.getElementById('titulo-ato1').textContent = titulo;
     subtituloEl.textContent = subtitulo;
     subtituloEl.classList.toggle('escondido', !subtitulo);
-    document.getElementById('btn-iniciar-ato1').textContent = titulo === 'Ato I' ? 'Começar ato' : 'Continuar';
+    botao.textContent = titulo === 'Ato I' ? 'Começar ato' : 'Continuar';
+    botao.disabled = true;
     document.getElementById('menu-persistente').classList.add('escondido');
-    tela.classList.remove('escondido');
-    tela.classList.add('cena-ativa', 'fade-in');
     aposTransicao = callback;
-    document.getElementById('btn-iniciar-ato1').focus();
+
+    // Escurece a cena atual antes de revelar o cartão do ato.
+    cortina.classList.add('cortina-visivel');
+    setTimeout(() => {
+        document.querySelectorAll('.tela.cena-ativa').forEach(cena => {
+            if (cena === tela) return;
+            cena.classList.remove('cena-ativa', 'fade-in', 'fade-out');
+            cena.classList.add('escondido');
+        });
+        tela.classList.remove('escondido', 'saindo-transicao-ato', 'transicao-ato-pronta');
+        tela.classList.add('cena-ativa');
+
+        requestAnimationFrame(() => {
+            cortina.classList.remove('cortina-visivel');
+            tela.classList.add('transicao-ato-pronta');
+        });
+
+        setTimeout(() => {
+            botao.disabled = false;
+            botao.focus();
+            transicaoEmAndamento = false;
+        }, movimentoReduzido ? 0 : 1750);
+    }, movimentoReduzido ? 0 : 700);
 }
 
 document.getElementById('btn-iniciar-ato1').addEventListener('click', () => {
+    if (transicaoEmAndamento || !aposTransicao) return;
+    transicaoEmAndamento = true;
     tocarSom(somMenu);
     const tela = document.getElementById('tela-transicao-ato1');
-    tela.classList.remove('cena-ativa', 'fade-in');
-    tela.classList.add('escondido');
-    document.getElementById('menu-persistente').classList.remove('escondido');
-    const callback = aposTransicao;
-    aposTransicao = null;
-    if (callback) callback();
+    const cortina = document.getElementById('cortina-transicao-ato');
+    const botao = document.getElementById('btn-iniciar-ato1');
+    const movimentoReduzido = preferenciasAcessibilidade.reduzirMovimento;
+    botao.disabled = true;
+    tela.classList.add('saindo-transicao-ato');
+    cortina.classList.add('cortina-visivel');
+
+    setTimeout(() => {
+        tela.classList.remove('cena-ativa', 'transicao-ato-pronta', 'saindo-transicao-ato');
+        tela.classList.add('escondido');
+        const callback = aposTransicao;
+        aposTransicao = null;
+        if (callback) callback();
+        document.getElementById('menu-persistente').classList.remove('escondido');
+        requestAnimationFrame(() => cortina.classList.remove('cortina-visivel'));
+        transicaoEmAndamento = false;
+    }, movimentoReduzido ? 0 : 750);
 });
 
 function ocultarPaineisJornada() {
@@ -97,6 +137,15 @@ function iniciarAto(numero) {
 function carregarPassoJornada() {
     const passo = passosJornada[indiceJornada];
     if (!passo) return;
+    if (passo.tipo === 'fimAto') {
+        if (atoAtual === 1) {
+            somBiblioteca.pause();
+            mostrarTransicaoAto('Ato II', 'Três meses depois...', () => iniciarAto(2));
+        } else {
+            iniciarConselhoAtos();
+        }
+        return;
+    }
     ocultarPaineisJornada();
     const caixa = document.getElementById('caixa-dialogo-atos');
     caixa.classList.add('escondido');
@@ -105,17 +154,6 @@ function carregarPassoJornada() {
 
     if (passo.tipo === 'decisao') {
         mostrarDecisaoJornada();
-        return;
-    }
-    if (passo.tipo === 'fimAto') {
-        if (atoAtual === 1) {
-            document.getElementById('tela-caminho-atos').classList.remove('cena-ativa', 'fade-in');
-            document.getElementById('tela-caminho-atos').classList.add('escondido');
-            somBiblioteca.pause();
-            mostrarTransicaoAto('Ato II', 'Três meses depois...', () => iniciarAto(2));
-        } else {
-            iniciarConselhoAtos();
-        }
         return;
     }
     if (passo.recurso) {

@@ -141,6 +141,52 @@ body {
     padding: 5%;
 }
 
+#cortina-transicao-ato {
+    position: absolute;
+    inset: 0;
+    z-index: 230;
+    background: #05070d;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .7s cubic-bezier(.4, 0, .2, 1), visibility 0s linear .7s;
+}
+
+#cortina-transicao-ato.cortina-visivel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .7s cubic-bezier(.4, 0, .2, 1), visibility 0s;
+}
+
+#tela-transicao-ato1.cena-ativa {
+    animation: none;
+    opacity: 1;
+}
+
+#tela-transicao-ato1 .conteudo-transicao-ato > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .85s ease-out, transform .85s ease-out;
+}
+
+#tela-transicao-ato1.transicao-ato-pronta .conteudo-transicao-ato > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#tela-transicao-ato1.transicao-ato-pronta #titulo-ato1 { transition-delay: .2s; }
+#tela-transicao-ato1.transicao-ato-pronta #texto-transicao-ato { transition-delay: .55s; }
+#tela-transicao-ato1.transicao-ato-pronta #btn-iniciar-ato1 { transition-delay: 1.05s; }
+#tela-transicao-ato1.saindo-transicao-ato .conteudo-transicao-ato > * {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition-delay: 0s;
+    transition-duration: .45s;
+}
+
+#btn-iniciar-ato1:disabled { pointer-events: none; }
+
 #tela-caminho-atos {
     background-color: #10182b;
     z-index: 10;
