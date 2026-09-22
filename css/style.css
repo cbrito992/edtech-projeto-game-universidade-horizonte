@@ -141,6 +141,14 @@ body {
     padding: 5%;
 }
 
+#tela-caminho-atos {
+    background-color: #10182b;
+    z-index: 10;
+}
+
+#npc-companheiro-atos { left: 5%; transform: scaleX(-1); }
+#npc-player-atos { right: 5%; }
+
 .conteudo-transicao-ato {
     display: flex;
     flex-direction: column;
@@ -163,6 +171,13 @@ body {
 
 #btn-iniciar-ato1 {
     min-width: 190px;
+}
+
+#texto-transicao-ato {
+    color: #fff;
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: 700;
+    text-shadow: 0 3px 14px #000;
 }
 
 #tela3-aluno, #tela4-aluno, #tela-caminho-adicional {
@@ -814,6 +829,101 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
 .card-classe:hover { background: #15264b; border-color: var(--ui-ciano); }
 .card-classe.selecionado { background: linear-gradient(110deg, #173f67, #3b1952); border-color: var(--ui-ciano); box-shadow: 0 0 0 3px rgba(54,217,255,.14); }
 .card-classe.selecionado h3, .card-classe.selecionado p { color: #fff; }
+
+.nivel-classe {
+    display: inline-block;
+    margin: 2px 0 6px;
+    padding: 3px 9px;
+    color: #071324;
+    background: var(--ui-amarelo);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.caixa-dialogo-jornada {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92%, 940px);
+    min-height: 145px;
+    padding: 30px 170px 30px 42px;
+    color: var(--ui-texto);
+    background: linear-gradient(120deg, rgba(5,10,25,.97), rgba(17,26,54,.94));
+    border: 1px solid rgba(255,255,255,.2);
+    border-left: 6px solid var(--ui-ciano);
+    border-top: 2px solid var(--ui-ciano);
+    border-radius: 4px 20px 4px 20px;
+    box-shadow: 0 18px 46px rgba(0,0,0,.72);
+    z-index: 20;
+}
+
+#nome-falante-atos {
+    display: table;
+    margin: -45px 0 12px -16px;
+    padding: 8px 18px;
+    color: #06101d;
+    background: var(--ui-ciano);
+    border-radius: 3px 10px 3px 10px;
+    font-size: clamp(14px, 1.8vw, 18px);
+    box-shadow: 4px 4px 0 #087e9a;
+}
+
+#texto-narrativa-atos {
+    font-size: clamp(16px, 1.55vw, 20px);
+    line-height: 1.6;
+}
+
+#btn-avancar-atos { position: absolute; right: 15px; bottom: 15px; }
+
+.painel-jornada {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: min(90%, 820px);
+    max-height: 83%;
+    padding: clamp(18px, 3vw, 30px);
+    overflow-y: auto;
+    color: var(--ui-texto);
+    background: rgba(7, 12, 28, .97);
+    border: 1px solid rgba(54,217,255,.6);
+    border-top: 5px solid var(--ui-ciano);
+    border-radius: 8px 22px 8px 22px;
+    box-shadow: 0 22px 60px rgba(0,0,0,.8);
+    z-index: 70;
+}
+
+.painel-jornada h2 { color: var(--ui-ciano); font-size: clamp(18px, 2.2vw, 26px); line-height: 1.3; }
+.painel-jornada p, .painel-jornada li { line-height: 1.5; }
+.painel-jornada ul { padding-left: 22px; }
+.rotulo-jornada { color: var(--ui-amarelo); font-size: 12px; font-weight: 800; letter-spacing: .15em; }
+.lista-opcoes-atos { display: grid; gap: 12px; }
+.lista-opcoes-atos .btn-escolha { width: 100%; }
+.lista-opcoes-atos .btn-escolha:disabled { opacity: .65; cursor: default; }
+#painel-recurso-atos iframe { width: 100%; min-height: 200px; aspect-ratio: 16 / 9; border: 1px solid var(--ui-ciano); }
+#link-recurso-atos { color: var(--ui-ciano); font-weight: 700; text-decoration: underline; }
+#retorno-atividade-atos { color: var(--ui-amarelo); min-height: 25px; }
+.painel-jornada > .btn-menu { align-self: flex-start; }
+
+body.texto-maior #texto-narrativa-atos { font-size: clamp(19px, 1.8vw, 24px); }
+body.alto-contraste .caixa-dialogo-jornada, body.alto-contraste .painel-jornada { background: #000; border-color: #fff; }
+
+@media (max-width: 760px), (max-height: 540px) {
+    .caixa-dialogo-jornada { min-height: 115px; padding: 24px 115px 16px 22px; }
+    #nome-falante-atos { margin: -37px 0 8px -8px; padding: 5px 11px; }
+    #texto-narrativa-atos { font-size: 14px; line-height: 1.4; }
+    .painel-jornada { gap: 9px; max-height: 86%; padding: 14px; }
+    .painel-jornada h2 { font-size: 17px; }
+    .painel-jornada p, .painel-jornada li { font-size: 12px; }
+    #painel-recurso-atos iframe { min-height: 120px; }
+}
 
 body.texto-maior #game-container { font-size: 118%; }
 body.texto-maior #texto-narrativa, body.texto-maior #texto-narrativa-tela2,

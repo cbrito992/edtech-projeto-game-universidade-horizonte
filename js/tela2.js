@@ -122,34 +122,11 @@ btnConfClasse.addEventListener('click', (e) => {
         setTimeout(() => {
             tela2.classList.remove('cena-ativa', 'fade-out');
             tela2.classList.add('escondido');
-            const transicao = document.getElementById('tela-transicao-ato1');
-            transicao.classList.remove('escondido');
-            transicao.classList.add('cena-ativa', 'fade-in');
-            document.getElementById('menu-persistente').classList.add('escondido');
-            document.getElementById('btn-iniciar-ato1').focus();
+            mostrarTransicaoAto('Ato I', '', () => {
+                document.dispatchEvent(new Event('iniciarJogoAtos'));
+            });
         }, preferenciasAcessibilidade.reduzirMovimento ? 0 : 1000);
     });
-});
-
-document.getElementById('btn-iniciar-ato1').addEventListener('click', () => {
-    tocarSom(somMenu);
-    const transicao = document.getElementById('tela-transicao-ato1');
-    transicao.classList.remove('cena-ativa', 'fade-in');
-    transicao.classList.add('escondido');
-    document.getElementById('menu-persistente').classList.remove('escondido');
-
-    if (jogador.classeID === 'aluno') {
-        const tela3 = document.getElementById('tela3-aluno');
-        tela3.classList.remove('escondido');
-        tela3.classList.add('cena-ativa', 'fade-in');
-        document.getElementById('npc-player-aluno').src = `assets/images/player_${jogador.genero}.png`;
-        document.dispatchEvent(new Event('iniciarTelaAluno'));
-    } else if (jogador.classeID === 'professor' || jogador.classeID === 'estagiario') {
-        const telaAdicional = document.getElementById('tela-caminho-adicional');
-        telaAdicional.classList.remove('escondido');
-        telaAdicional.classList.add('cena-ativa', 'fade-in');
-        document.dispatchEvent(new Event('iniciarCaminhoAdicional'));
-    }
 });
 
 // Ação de Reiniciar (Menu Sanduíche)

@@ -84,6 +84,7 @@ function retomarMusicaAtiva() {
         somConselho.play().catch(e => console.log(e));
     } else if ((document.getElementById('tela3-aluno') && document.getElementById('tela3-aluno').classList.contains('cena-ativa')) ||
                (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa')) ||
+               (document.getElementById('tela-caminho-atos') && document.getElementById('tela-caminho-atos').classList.contains('cena-ativa')) ||
                (document.getElementById('tela-caminho-adicional') && document.getElementById('tela-caminho-adicional').classList.contains('cena-ativa'))) {
         somBiblioteca.play().catch(e => console.log(e));
     }
@@ -221,12 +222,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.dispatchEvent(new Event('reiniciarTela1'));
         } else if (document.getElementById('tela2').classList.contains('cena-ativa')) {
             document.dispatchEvent(new Event('reiniciarTela2'));
+        } else if (document.getElementById('tela-caminho-atos').classList.contains('cena-ativa')) {
+            document.dispatchEvent(new Event('reiniciarJogoAtos'));
+        } else if (document.getElementById('tela5-conselho').classList.contains('cena-ativa')) {
+            document.dispatchEvent(new Event('reiniciarConselhoAtos'));
         } else if (document.getElementById('tela3-aluno') && document.getElementById('tela3-aluno').classList.contains('cena-ativa')) {
             document.dispatchEvent(new Event('reiniciarTelaAluno'));
         } else if (document.getElementById('tela4-aluno') && document.getElementById('tela4-aluno').classList.contains('cena-ativa')) {
             document.dispatchEvent(new Event('reiniciarTelaAluno2'));
-        } else if (document.getElementById('tela5-conselho') && document.getElementById('tela5-conselho').classList.contains('cena-ativa')) {
-            document.dispatchEvent(new Event('reiniciarTelaConselho'));
         } else if (document.getElementById('tela-caminho-adicional') && document.getElementById('tela-caminho-adicional').classList.contains('cena-ativa')) {
             document.dispatchEvent(new Event('reiniciarCaminhoAdicional'));
         }
