@@ -58,7 +58,7 @@ const recursosAtos = {
 
 const roteirosAtos = {
     estagiario: {
-        nivel: 'Iniciante',
+        nivel: 'Fácil',
         companheiro: 'NICODEMOS',
         avatar: 'assets/images/npc_nicodemos.png',
         fundo1: 'assets/images/background_sala de informatica.png',
@@ -278,7 +278,7 @@ const roteirosAtos = {
     },
 
     professor: {
-        nivel: 'Avançado',
+        nivel: 'Difícil',
         companheiro: 'PROFESSOR AUGUSTO',
         avatar: 'assets/images/npc_professor_augusto_tela1.png',
         fundo1: 'assets/images/background_sala de aula.png',
