@@ -8,12 +8,16 @@ let linhasConselho = [];
 let indiceConselhoAtos = 0;
 let aposTransicao;
 let transicaoEmAndamento = false;
+const digitacoesAtivas = new Map();
 
 function preencherNome(texto) {
     return String(texto || '').replace(/{nome}/g, jogador.nome || 'Visitante');
 }
 
 function escreverTexto(elemento, conteudo, atualizarMaquina) {
+    const anterior = digitacoesAtivas.get(elemento);
+    if (anterior) clearInterval(anterior.temporizador);
+    digitacoesAtivas.delete(elemento);
     atualizarMaquina(null);
     elemento.textContent = '';
     if (deveExibirTextoInstantaneamente()) {
@@ -25,10 +29,22 @@ function escreverTexto(elemento, conteudo, atualizarMaquina) {
         elemento.textContent += conteudo.charAt(indice++);
         if (indice >= conteudo.length) {
             clearInterval(temporizador);
+            digitacoesAtivas.delete(elemento);
             atualizarMaquina(null);
         }
-    }, 25);
+    }, 38);
+    digitacoesAtivas.set(elemento, { conteudo, temporizador, atualizarMaquina });
     atualizarMaquina(temporizador);
+}
+
+function completarDigitacao(elemento) {
+    const digitacao = digitacoesAtivas.get(elemento);
+    if (!digitacao) return false;
+    clearInterval(digitacao.temporizador);
+    elemento.textContent = digitacao.conteudo;
+    digitacao.atualizarMaquina(null);
+    digitacoesAtivas.delete(elemento);
+    return true;
 }
 
 function escreverJornada(elemento, conteudo) {
@@ -261,6 +277,7 @@ function avancarJornada() {
 
 document.getElementById('btn-avancar-atos').addEventListener('click', () => {
     tocarSom(somTela);
+    if (completarDigitacao(document.getElementById('texto-narrativa-atos'))) return;
     avancarJornada();
 });
 document.getElementById('btn-continuar-recurso-atos').addEventListener('click', () => {
@@ -472,6 +489,7 @@ function mostrarFinalAtos() {
 
 document.getElementById('btn-avancar-conselho').addEventListener('click', () => {
     tocarSom(somTela);
+    if (completarDigitacao(document.getElementById('texto-narrativa-conselho'))) return;
     indiceConselhoAtos++;
     carregarFalaConselhoAtos();
 });
