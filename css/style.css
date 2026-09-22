@@ -187,6 +187,17 @@ body {
 
 #btn-iniciar-ato1:disabled { pointer-events: none; }
 
+/* Cada nova fala entra como um quadro de graphic novel, de forma gradual. */
+#texto-narrativa-atos.fala-em-fade,
+#texto-narrativa-conselho.fala-em-fade {
+    animation: surgir-fala .95s ease-out both;
+}
+
+@keyframes surgir-fala {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 #tela-caminho-atos {
     background-color: #10182b;
     z-index: 10;
