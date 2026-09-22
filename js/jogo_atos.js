@@ -16,23 +16,21 @@ function preencherNome(texto) {
 
 function escreverTexto(elemento, conteudo, atualizarMaquina) {
     const anterior = digitacoesAtivas.get(elemento);
-    if (anterior) clearInterval(anterior.temporizador);
+    if (anterior) clearTimeout(anterior.temporizador);
     digitacoesAtivas.delete(elemento);
     atualizarMaquina(null);
-    elemento.textContent = '';
+    elemento.classList.remove('fala-em-fade');
+    elemento.textContent = conteudo;
     if (deveExibirTextoInstantaneamente()) {
-        elemento.textContent = conteudo;
         return;
     }
-    let indice = 0;
-    const temporizador = setInterval(() => {
-        elemento.textContent += conteudo.charAt(indice++);
-        if (indice >= conteudo.length) {
-            clearInterval(temporizador);
-            digitacoesAtivas.delete(elemento);
-            atualizarMaquina(null);
-        }
-    }, 38);
+    // Reinicia a animação também quando duas falas seguidas usam o mesmo elemento.
+    void elemento.offsetWidth;
+    elemento.classList.add('fala-em-fade');
+    const temporizador = setTimeout(() => {
+        digitacoesAtivas.delete(elemento);
+        atualizarMaquina(null);
+    }, 950);
     digitacoesAtivas.set(elemento, { conteudo, temporizador, atualizarMaquina });
     atualizarMaquina(temporizador);
 }
@@ -40,20 +38,21 @@ function escreverTexto(elemento, conteudo, atualizarMaquina) {
 function completarDigitacao(elemento) {
     const digitacao = digitacoesAtivas.get(elemento);
     if (!digitacao) return false;
-    clearInterval(digitacao.temporizador);
+    clearTimeout(digitacao.temporizador);
     elemento.textContent = digitacao.conteudo;
+    elemento.classList.remove('fala-em-fade');
     digitacao.atualizarMaquina(null);
     digitacoesAtivas.delete(elemento);
     return true;
 }
 
 function escreverJornada(elemento, conteudo) {
-    clearInterval(maquinaJornada);
+    clearTimeout(maquinaJornada);
     escreverTexto(elemento, conteudo, temporizador => { maquinaJornada = temporizador; });
 }
 
 function escreverConselho(elemento, conteudo) {
-    clearInterval(maquinaConselhoAtos);
+    clearTimeout(maquinaConselhoAtos);
     escreverTexto(elemento, conteudo, temporizador => { maquinaConselhoAtos = temporizador; });
 }
 
@@ -158,7 +157,12 @@ function carregarPassoJornada() {
             somBiblioteca.pause();
             mostrarTransicaoAto('Ato II', 'Três meses depois...', () => iniciarAto(2));
         } else {
-            iniciarConselhoAtos();
+            const cortina = document.getElementById('cortina-transicao-ato');
+            cortina.classList.add('cortina-visivel');
+            setTimeout(() => {
+                iniciarConselhoAtos();
+                requestAnimationFrame(() => cortina.classList.remove('cortina-visivel'));
+            }, preferenciasAcessibilidade.reduzirMovimento ? 0 : 900);
         }
         return;
     }
@@ -300,7 +304,7 @@ document.addEventListener('iniciarJogoAtos', () => {
 });
 
 document.addEventListener('reiniciarJogoAtos', () => {
-    clearInterval(maquinaJornada);
+    clearTimeout(maquinaJornada);
     document.getElementById('iframe-recurso-atos').src = '';
     if (atoAtual === 1) {
         delete jogador.escolhas.ato1;
@@ -477,7 +481,7 @@ function mostrarDecisaoConselho() {
 }
 
 function mostrarFinalAtos() {
-    clearInterval(maquinaConselhoAtos);
+    clearTimeout(maquinaConselhoAtos);
     mostrarAvatarConselhoAtos('');
     document.getElementById('caixa-dialogo-conselho').classList.add('escondido');
     const final = desfechosAtos[jogador.finalLiberado];
