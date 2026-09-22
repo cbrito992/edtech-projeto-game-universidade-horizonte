@@ -44,7 +44,7 @@ let volumeGlobal = 0.5;
 const preferenciasAcessibilidade = {
     textoMaior: false,
     altoContraste: false,
-    reduzirMovimento: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    reduzirMovimento: false,
     textoInstantaneo: false
 };
 
