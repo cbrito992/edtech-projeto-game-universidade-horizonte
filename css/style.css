@@ -613,9 +613,9 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .btn-secundario { background: linear-gradient(135deg, #173f67, #142544); border-color: var(--ui-ciano); box-shadow: 0 5px 0 #07182b; }
 
 .menu-container {
-    width: min(88%, 360px);
-    padding: 22px;
-    gap: 12px;
+    width: min(84%, 290px);
+    padding: 14px;
+    gap: 8px;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
@@ -628,19 +628,40 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 
 .menu-container .btn-menu {
     width: 100%;
+    min-height: 42px;
+    padding: 9px 20px;
+    font-size: 14px;
 }
 
 .titulo-jogo {
+    position: absolute;
+    top: clamp(14px, 3.5%, 34px);
+    left: 50%;
+    z-index: 12;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 88%;
+    padding: 12px clamp(24px, 4vw, 54px);
     color: #fff;
-    font-size: clamp(24px, 3.2vw, 36px);
+    font-size: clamp(25px, 3.2vw, 40px);
     line-height: 1.05;
     letter-spacing: .045em;
     text-align: center;
-    text-shadow: 0 3px 14px #050914, 0 0 18px rgba(77, 219, 255, .5);
-    margin: 0 0 12px;
+    text-shadow: 0 3px 14px #050914, 0 0 18px rgba(77, 219, 255, .65);
+    background: linear-gradient(115deg, rgba(8, 18, 40, .58), rgba(28, 18, 48, .42));
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-top: 2px solid rgba(126, 235, 255, .9);
+    border-radius: 8px 24px 8px 24px;
+    box-shadow: 0 0 24px rgba(54, 217, 255, .32), inset 0 0 22px rgba(255, 255, 255, .08);
+    backdrop-filter: blur(9px) saturate(125%);
+    -webkit-backdrop-filter: blur(9px) saturate(125%);
 }
 
-.titulo-jogo span { display: block; color: var(--ui-ciano); }
+.titulo-jogo span { color: var(--ui-ciano); }
+
+#tela-menu { padding-bottom: 4%; }
+
+.controle-volume-menu { padding: 8px 10px; }
 
 #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
 #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
@@ -1014,7 +1035,11 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
 
 @media (max-width: 760px), (max-height: 540px) {
     #btn-acessibilidade-flutuante { top: 10px; left: 10px; width: 46px; height: 46px; min-height: 46px; padding: 7px; }
-    .menu-container { width: min(86%, 320px); padding: 14px; gap: 9px; }
+    #tela-menu { padding-bottom: 2.5%; }
+    .titulo-jogo { top: 10px; padding: 8px 22px; font-size: clamp(20px, 4.5vw, 28px); }
+    .menu-container { width: min(76%, 255px); padding: 10px; gap: 6px; }
+    .menu-container .btn-menu { min-height: 36px; padding: 7px 14px; font-size: 12px; }
+    .controle-volume-menu { padding: 6px 9px; font-size: 12px; }
     .btn-menu { min-height: 42px; padding: 9px 16px; font-size: 13px; }
     .controle-volume-menu { min-width: 160px; }
     #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
