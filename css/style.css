@@ -655,9 +655,61 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     box-shadow: 0 0 24px rgba(54, 217, 255, .32), inset 0 0 22px rgba(255, 255, 255, .08);
     backdrop-filter: blur(9px) saturate(125%);
     -webkit-backdrop-filter: blur(9px) saturate(125%);
+    overflow: hidden;
+    isolation: isolate;
+    animation: flutuar-titulo 5.5s ease-in-out infinite, pulsar-titulo 3.6s ease-in-out infinite;
 }
 
-.titulo-jogo span { color: var(--ui-ciano); }
+.titulo-principal {
+    display: block;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.titulo-principal strong {
+    color: var(--ui-ciano);
+    font-weight: 900;
+    text-shadow: 0 0 12px rgba(54, 217, 255, .9);
+}
+
+.titulo-jogo small {
+    display: block;
+    margin-top: 5px;
+    color: #ffe178;
+    font-size: .32em;
+    font-weight: 800;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+}
+
+.titulo-jogo::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -55%;
+    bottom: -55%;
+    left: -28%;
+    width: 18%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+    transform: skewX(-18deg);
+    animation: reflexo-titulo 5.8s ease-in-out infinite;
+}
+
+@keyframes flutuar-titulo {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(5px); }
+}
+
+@keyframes pulsar-titulo {
+    0%, 100% { box-shadow: 0 0 20px rgba(54,217,255,.24), inset 0 0 22px rgba(255,255,255,.08); }
+    50% { box-shadow: 0 0 34px rgba(54,217,255,.48), inset 0 0 28px rgba(255,255,255,.13); }
+}
+
+@keyframes reflexo-titulo {
+    0%, 58% { left: -28%; opacity: 0; }
+    64% { opacity: 1; }
+    82%, 100% { left: 112%; opacity: 0; }
+}
 
 #tela-menu { padding-bottom: 4%; }
 
