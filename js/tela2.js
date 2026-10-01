@@ -138,6 +138,7 @@ document.addEventListener('reiniciarTela2', () => {
     document.getElementById('etapa-dados').classList.remove('escondido');
 
     document.querySelectorAll('.card-classe').forEach(c => c.classList.remove('selecionado'));
+    document.getElementById('btn-confirmar-classe').classList.add('escondido');
 
     document.getElementById('caixa-dialogo-tela2').classList.remove('escondido');
     typeWriterTela2(bancoDeDialogos.tela2.fala1, document.getElementById('texto-narrativa-tela2'));

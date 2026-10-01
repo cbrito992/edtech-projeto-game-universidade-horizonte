@@ -143,6 +143,7 @@ function iniciarAto(numero) {
         : [];
     passosJornada = [...lembranca, ...dados.antes, { tipo: 'decisao' }];
     indiceJornada = 0;
+    document.getElementById('btn-voltar-decisao-atos').classList.add('escondido');
     somBiblioteca.loop = true;
     aplicarVolumeGlobal();
     if (somLigado) somBiblioteca.play().catch(() => {});
@@ -213,6 +214,7 @@ function mostrarDecisaoJornada() {
             tocarSom(somMenu);
             jogador.escolhas[`ato${atoAtual}`] = opcao.id;
             passosJornada.splice(indiceJornada + 1, 0, ...opcao.passos, { tipo: 'fimAto' });
+            document.getElementById('btn-voltar-decisao-atos').classList.remove('escondido');
             indiceJornada++;
             carregarPassoJornada();
         });
@@ -299,6 +301,30 @@ document.getElementById('btn-continuar-recurso-atos').addEventListener('click', 
 document.getElementById('btn-continuar-atividade-atos').addEventListener('click', () => {
     tocarSom(somMenu);
     avancarJornada();
+});
+
+document.getElementById('btn-voltar-decisao-atos').addEventListener('click', () => {
+    tocarSom(somMenu);
+    clearTimeout(maquinaJornada);
+    document.getElementById('iframe-recurso-atos').src = '';
+    if (somLigado) somBiblioteca.play().catch(() => {});
+
+    const chaveAto = `ato${atoAtual}`;
+    delete jogador.escolhas[chaveAto];
+    if (jogador.escolhas.atividades) {
+        Object.keys(jogador.escolhas.atividades)
+            .filter(chave => chave.startsWith(`${chaveAto}-`))
+            .forEach(chave => delete jogador.escolhas.atividades[chave]);
+    }
+
+    const dados = atoAtual === 1 ? roteiroJornada.ato1 : roteiroJornada.ato2;
+    const lembranca = atoAtual === 2
+        ? [{ nome: roteiroJornada.companheiro, texto: dados.retorno[jogador.escolhas.ato1] }]
+        : [];
+    passosJornada = [...lembranca, ...dados.antes, { tipo: 'decisao' }];
+    indiceJornada = passosJornada.length - 1;
+    document.getElementById('btn-voltar-decisao-atos').classList.add('escondido');
+    carregarPassoJornada();
 });
 
 document.addEventListener('iniciarJogoAtos', () => {

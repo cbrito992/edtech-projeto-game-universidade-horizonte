@@ -870,6 +870,7 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
     max-width: 680px;
     max-height: 88%;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: clamp(22px, 4vw, 38px);
     color: var(--ui-texto);
     background: linear-gradient(140deg, rgba(7,12,28,.97), rgba(20,28,58,.96));
@@ -965,25 +966,37 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
     background: #0e1733;
     border-color: #53658f;
     border-radius: 5px 14px 5px 14px;
+    flex: 0 0 auto;
 }
 .card-classe h3 { color: var(--ui-ciano); }
 .card-classe p { color: #c8d2e8; }
 .card-classe:hover { background: #15264b; border-color: var(--ui-ciano); }
-.card-classe.selecionado { background: linear-gradient(110deg, #173f67, #3b1952); border-color: var(--ui-ciano); box-shadow: 0 0 0 3px rgba(54,217,255,.14); }
+.card-classe.selecionado { background: linear-gradient(110deg, #173f67, #3b1952); border-color: var(--ui-ciano); box-shadow: inset 0 0 0 3px rgba(54,217,255,.14); }
 .card-classe.selecionado h3, .card-classe.selecionado p { color: #fff; }
 
-.nivel-classe {
-    display: inline-block;
-    margin: 2px 0 6px;
-    padding: 3px 9px;
-    color: #071324;
-    background: var(--ui-amarelo);
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .06em;
+#btn-confirmar-classe.escondido {
+    display: block !important;
+    visibility: hidden;
+    pointer-events: none;
 }
+
+.btn-voltar-decisao {
+    position: absolute;
+    top: 18px;
+    left: 74px;
+    z-index: 75;
+    min-height: 42px;
+    padding: 9px 14px;
+    color: var(--ui-texto);
+    background: rgba(7, 12, 28, .9);
+    border: 1px solid rgba(54,217,255,.72);
+    border-radius: 5px 12px 5px 12px;
+    font-weight: 800;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 22px rgba(0,0,0,.38);
+}
+.btn-voltar-decisao:hover { color: #071324; background: var(--ui-ciano); }
 
 .caixa-dialogo-jornada {
     position: absolute;
@@ -1102,11 +1115,15 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     #texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional { font-size: 14px; line-height: 1.45; }
     .btn-escolha, .btn-escolha-final { min-height: 48px; padding: 10px 14px 10px 40px; font-size: 13px; }
     .grade-acessibilidade { grid-template-columns: 1fr; }
-    #painel-criacao { width: min(90%, 580px); padding: 16px 20px; }
+    #painel-criacao { width: min(90%, 580px); max-height: 92%; padding: 14px 16px; }
     #etapa-dados, #etapa-classe { gap: 9px; }
     #input-nome, #select-genero { min-height: 44px; padding: 8px 12px; }
     .descricao-painel { font-size: 13px; }
-    .card-classe { padding: 9px 12px; }
+    .grid-classes { gap: 7px; margin-bottom: 8px; }
+    .card-classe { padding: 8px 10px; }
+    .card-classe h3 { margin-bottom: 3px; font-size: 14px; }
+    .card-classe p { font-size: 11px; line-height: 1.3; }
+    .btn-voltar-decisao { top: 10px; left: 64px; min-height: 36px; padding: 7px 10px; font-size: 12px; }
 }
 
 /* Força o carregamento dos backgrounds em segundo plano sem exibir na tela */
