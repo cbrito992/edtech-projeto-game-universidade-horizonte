@@ -129,18 +129,15 @@
                     <div class="grid-classes">
                         <div class="card-classe" data-id="estagiario" data-titulo="Estagiário">
                             <h3>Estagiário</h3>
-                            <span class="nivel-classe">Fácil</span>
                             <p>Em início de carreira e pronto para aprender. Observe diferentes perspectivas, investigue os problemas e descubra seu próprio posicionamento.</p>
-                        </div>
-                        <div class="card-classe" data-id="gestor" data-titulo="Gestor Educacional">
-                            <h3>Gestor Educacional</h3>
-                            <span class="nivel-classe">Intermediário</span>
-                            <p>Articule estudantes, professores e equipes para orientar o uso da IA na universidade. Investigue seus impactos na aprendizagem, na inclusão e nas decisões institucionais.</p>
                         </div>
                         <div class="card-classe" data-id="professor" data-titulo="Professor Visitante">
                             <h3>Professor Visitante</h3>
-                            <span class="nivel-classe">Difícil</span>
                             <p>Experiência docente com um olhar externo. Analise os desafios considerando a aprendizagem, a prática pedagógica e o papel do professor.</p>
+                        </div>
+                        <div class="card-classe" data-id="gestor" data-titulo="Gestor Educacional">
+                            <h3>Gestor Educacional</h3>
+                            <p>Articule estudantes, professores e equipes para orientar o uso da IA na universidade. Investigue seus impactos na aprendizagem, na inclusão e nas decisões institucionais.</p>
                         </div>
                     </div>
                     <button id="btn-confirmar-classe" class="btn-menu escondido">Confirmar</button>
@@ -167,6 +164,7 @@
         <section id="tela-caminho-atos" class="tela escondido" aria-label="Jornada do personagem">
             <img id="npc-companheiro-atos" class="npc escondido" src="" alt="">
             <img id="npc-player-atos" class="npc escondido" src="" alt="Jogador">
+            <button id="btn-voltar-decisao-atos" class="btn-voltar-decisao escondido" type="button" aria-label="Voltar e alterar a decisão deste ato">← Alterar decisão</button>
 
             <div id="painel-decisao-atos" class="painel-jornada escondido" role="group" aria-labelledby="pergunta-decisao-atos">
                 <p class="rotulo-jornada">DECISÃO</p>
@@ -292,6 +290,11 @@
             <div id="painel-final-aluno" class="painel-final escondido">
                 <h2 id="titulo-final-aluno"></h2>
                 <p id="texto-final-aluno"></p>
+                <section id="feedback-decisoes-final" aria-labelledby="titulo-feedback-final">
+                    <h3 id="titulo-feedback-final">Como suas escolhas construíram este desfecho</h3>
+                    <p id="resumo-feedback-final"></p>
+                    <div id="etapas-feedback-final"></div>
+                </section>
                 <p class="mensagem-outros-finais">Sua jornada revelou uma possibilidade, não uma resposta definitiva. Retorne às decisões para descobrir como outras prioridades transformam o futuro da Universidade Horizonte.</p>
                 <button id="btn-recomecar-aluno" class="btn-menu">Descobrir outro final</button>
             </div>
