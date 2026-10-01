@@ -287,19 +287,26 @@ function avancarJornada() {
     carregarPassoJornada();
 }
 
+function encerrarJanelaDeRevisao() {
+    document.getElementById('btn-voltar-decisao-atos').classList.add('escondido');
+}
+
 document.getElementById('btn-avancar-atos').addEventListener('click', () => {
     tocarSom(somTela);
     if (completarDigitacao(document.getElementById('texto-narrativa-atos'))) return;
+    encerrarJanelaDeRevisao();
     avancarJornada();
 });
 document.getElementById('btn-continuar-recurso-atos').addEventListener('click', () => {
     tocarSom(somMenu);
+    encerrarJanelaDeRevisao();
     document.getElementById('iframe-recurso-atos').src = '';
     if (somLigado) somBiblioteca.play().catch(() => {});
     avancarJornada();
 });
 document.getElementById('btn-continuar-atividade-atos').addEventListener('click', () => {
     tocarSom(somMenu);
+    encerrarJanelaDeRevisao();
     avancarJornada();
 });
 
@@ -519,8 +526,44 @@ function mostrarFinalAtos() {
     const final = desfechosAtos[jogador.finalLiberado];
     document.getElementById('titulo-final-aluno').textContent = final.titulo;
     document.getElementById('texto-final-aluno').textContent = final.texto;
+    montarFeedbackFinal();
     document.getElementById('painel-final-aluno').classList.remove('escondido');
     document.getElementById('btn-recomecar-aluno').focus();
+}
+
+function montarFeedbackFinal() {
+    const memoria = memoriaConselho[jogador.classeID];
+    const opcaoAto1 = roteiroJornada.ato1.opcoes.find(opcao => opcao.id === jogador.escolhas.ato1);
+    const opcaoAto2 = roteiroJornada.ato2.opcoes.find(opcao => opcao.id === jogador.escolhas.ato2);
+    const opcaoConselho = propostasConselho.find(opcao => opcao.chave === jogador.escolhas.conselho);
+    const leituras = {
+        A: 'No Conselho, sua trajetória se consolidou na prioridade de ampliar oportunidades com acesso, suporte e acompanhamento dos resultados.',
+        B: 'No Conselho, sua trajetória se consolidou na prioridade de preservar mediação humana, formação e tempo para decisões pedagógicas.',
+        C: 'No Conselho, sua trajetória se consolidou na prioridade de tornar o uso da IA transparente, verificável e aberto à contestação.'
+    };
+
+    document.getElementById('resumo-feedback-final').textContent =
+        `${leituras[jogador.finalLiberado]} As escolhas anteriores não eram certas ou erradas: elas produziram experiências que deram contexto a essa decisão.`;
+
+    const etapas = [
+        { titulo: 'Ato I — prioridade inicial', escolha: opcaoAto1?.texto, consequencia: memoria.ato1[jogador.escolhas.ato1] },
+        { titulo: 'Ato II — resposta às consequências', escolha: opcaoAto2?.texto, consequencia: memoria.ato2[jogador.escolhas.ato2] },
+        { titulo: 'Conselho — compromisso institucional', escolha: opcaoConselho?.texto, consequencia: 'Esta última decisão definiu o desfecho apresentado, apoiada pelas experiências reunidas nos dois atos.' }
+    ];
+    const lista = document.getElementById('etapas-feedback-final');
+    lista.replaceChildren();
+    etapas.forEach(etapa => {
+        const artigo = document.createElement('article');
+        artigo.className = 'etapa-feedback';
+        const titulo = document.createElement('strong');
+        titulo.textContent = etapa.titulo;
+        const escolha = document.createElement('span');
+        escolha.textContent = etapa.escolha || 'Escolha não registrada.';
+        const consequencia = document.createElement('small');
+        consequencia.textContent = etapa.consequencia;
+        artigo.append(titulo, escolha, consequencia);
+        lista.appendChild(artigo);
+    });
 }
 
 document.getElementById('btn-avancar-conselho').addEventListener('click', () => {
