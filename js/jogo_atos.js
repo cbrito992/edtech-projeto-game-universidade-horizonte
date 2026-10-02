@@ -213,7 +213,15 @@ function mostrarDecisaoJornada() {
         botao.addEventListener('click', () => {
             tocarSom(somMenu);
             jogador.escolhas[`ato${atoAtual}`] = opcao.id;
-            passosJornada.splice(indiceJornada + 1, 0, ...opcao.passos, { tipo: 'fimAto' });
+            const passosEscolhidos = [...opcao.passos];
+            const chaveAto = `ato${atoAtual}`;
+            const chaveNivelamento = nivelamentoPorEscolha[jogador.classeID]?.[chaveAto]?.[opcao.id];
+            const vistos = jogador.escolhas.nivelamentos || [];
+            if (chaveNivelamento && !vistos.includes(chaveNivelamento)) {
+                // Primeiro vemos uma consequência; depois o jogo oferece outra lente para a situação.
+                passosEscolhidos.splice(Math.min(1, passosEscolhidos.length), 0, { recurso: chaveNivelamento });
+            }
+            passosJornada.splice(indiceJornada + 1, 0, ...passosEscolhidos, { tipo: 'fimAto' });
             document.getElementById('btn-voltar-decisao-atos').classList.remove('escondido');
             indiceJornada++;
             carregarPassoJornada();
@@ -229,6 +237,9 @@ function mostrarRecursoAtos(chave) {
     const painel = document.getElementById('painel-recurso-atos');
     const frame = document.getElementById('iframe-recurso-atos');
     const pontos = document.getElementById('pontos-recurso-atos');
+    const rotulo = painel.querySelector('.rotulo-jornada');
+    rotulo.textContent = recurso.nivelamento ? 'AMPLIE SUA PERSPECTIVA' : 'ARQUIVO DE INVESTIGAÇÃO';
+    painel.classList.toggle('recurso-nivelamento', Boolean(recurso.nivelamento));
     document.getElementById('titulo-recurso-atos').textContent = recurso.titulo;
     document.getElementById('descricao-recurso-atos').textContent = recurso.descricao;
     pontos.replaceChildren();
@@ -244,6 +255,10 @@ function mostrarRecursoAtos(chave) {
     link.href = recurso.url;
     link.textContent = recurso.video ? 'Abrir vídeo em outra aba' : 'Ler material completo em outra aba';
     painel.classList.remove('escondido');
+    if (recurso.nivelamento) {
+        const vistos = (jogador.escolhas.nivelamentos ||= []);
+        if (!vistos.includes(chave)) vistos.push(chave);
+    }
     if (recurso.video) somBiblioteca.pause();
     document.getElementById('btn-continuar-recurso-atos').focus();
 }
@@ -550,6 +565,16 @@ function montarFeedbackFinal() {
         { titulo: 'Ato II — resposta às consequências', escolha: opcaoAto2?.texto, consequencia: memoria.ato2[jogador.escolhas.ato2] },
         { titulo: 'Conselho — compromisso institucional', escolha: opcaoConselho?.texto, consequencia: 'Esta última decisão definiu o desfecho apresentado, apoiada pelas experiências reunidas nos dois atos.' }
     ];
+    const nivelamentosVistos = (jogador.escolhas.nivelamentos || [])
+        .map(chave => recursosAtos[chave]?.dimensao)
+        .filter(Boolean);
+    if (nivelamentosVistos.length) {
+        etapas.splice(2, 0, {
+            titulo: 'Nivelamento — perspectivas ampliadas',
+            escolha: nivelamentosVistos.join(' • '),
+            consequencia: 'Esses conteúdos foram apresentados durante os atos porque suas decisões priorizaram outros aspectos do problema. Eles ampliaram o repertório levado ao Conselho.'
+        });
+    }
     const lista = document.getElementById('etapas-feedback-final');
     lista.replaceChildren();
     etapas.forEach(etapa => {

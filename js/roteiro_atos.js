@@ -53,6 +53,48 @@ const recursosAtos = {
         descricao: 'Observe as relações entre objetivos da disciplina, uso da ferramenta e avaliação da aprendizagem.',
         video: 'https://www.youtube.com/embed/S2Pq1fwgTuM',
         url: 'https://www.youtube.com/watch?v=S2Pq1fwgTuM'
+    },
+    nivelamentoInclusao: {
+        nivelamento: true,
+        dimensao: 'Inclusão e condições de participação',
+        titulo: 'Quem consegue participar desta decisão?',
+        descricao: 'A mesma política pode produzir experiências diferentes conforme acesso, conectividade, acessibilidade e disponibilidade de apoio humano.',
+        pontos: ['Identifique quem pode ficar de fora ou depender de uma alternativa.', 'Considere suporte e acessibilidade como parte da implementação.', 'Pergunte como a comunidade poderá relatar barreiras e participar das revisões.'],
+        url: 'https://www.unesco.org/pt/articles/guia-para-ia-generativa-na-educacao-e-na-pesquisa'
+    },
+    nivelamentoMediacao: {
+        nivelamento: true,
+        dimensao: 'Mediação humana e aprendizagem',
+        titulo: 'O que ainda precisa de acompanhamento humano?',
+        descricao: 'Automatizar uma etapa não elimina a necessidade de escuta, orientação e evidências de aprendizagem. O desafio é definir onde a presença humana é indispensável.',
+        pontos: ['Relacione a ferramenta ao objetivo pedagógico da atividade.', 'Preveja momentos de diálogo, explicação e revisão.', 'Evite transformar rapidez ou aparência de qualidade em prova de aprendizagem.'],
+        url: 'https://www.unesco.org/pt/articles/marco-referencial-de-competencias-em-ia-para-professores'
+    },
+    nivelamentoTransparencia: {
+        nivelamento: true,
+        dimensao: 'Transparência e responsabilidade',
+        titulo: 'Como tornar a decisão verificável?',
+        descricao: 'Uma decisão responsável permite compreender fontes, dados, critérios, limites e responsáveis. Transparência também cria condições para corrigir e contestar.',
+        pontos: ['Registre como a IA participou do processo.', 'Confira fontes, dados e condições do serviço.', 'Defina responsáveis, formas de contestação e critérios para rever a decisão.'],
+        url: 'https://www.unesco.org/pt/articles/guia-para-ia-generativa-na-educacao-e-na-pesquisa'
+    }
+};
+
+// Cada escolha destaca uma prioridade e deixa outra dimensão menos explorada.
+// O recurso correspondente surge durante o ato como ampliação de perspectiva,
+// sem atribuir nota ou classificar a resposta como certa ou errada.
+const nivelamentoPorEscolha = {
+    estagiario: {
+        ato1: { auditavel: 'nivelamentoInclusao', amplo: 'nivelamentoTransparencia', adiar: 'nivelamentoMediacao' },
+        ato2: { negociar: 'nivelamentoInclusao', aceitar: 'nivelamentoTransparencia', interna: 'nivelamentoMediacao' }
+    },
+    gestor: {
+        ato1: { processo: 'nivelamentoInclusao', produto: 'nivelamentoMediacao', restricao: 'nivelamentoTransparencia' },
+        ato2: { verificar: 'nivelamentoInclusao', prazo: 'nivelamentoTransparencia', refazer: 'nivelamentoMediacao' }
+    },
+    professor: {
+        ato1: { autentica: 'nivelamentoInclusao', presencial: 'nivelamentoTransparencia', detector: 'nivelamentoMediacao' },
+        ato2: { conjunto: 'nivelamentoInclusao', individual: 'nivelamentoTransparencia', revisao: 'nivelamentoMediacao' }
     }
 };
 
