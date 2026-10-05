@@ -47,8 +47,15 @@ function carregarDialogo() {
     }
 
     // Controle Visual dos NPCs
-    document.getElementById('npc-livia').classList.toggle('escondido', !linha.livia);
-    document.getElementById('npc-augusto').classList.toggle('escondido', !linha.augusto);
+    const npcLivia = document.getElementById('npc-livia');
+    const npcAugusto = document.getElementById('npc-augusto');
+    if (emTelaMobileVertical()) {
+        npcLivia.classList.toggle('escondido', linha.nome !== 'LÍVIA');
+        npcAugusto.classList.toggle('escondido', linha.nome !== 'PROFESSOR AUGUSTO');
+    } else {
+        npcLivia.classList.toggle('escondido', !linha.livia);
+        npcAugusto.classList.toggle('escondido', !linha.augusto);
+    }
 
     // Controle Dinâmico de Background
     if (linha.nome === "NOTIFICAÇÃO") {

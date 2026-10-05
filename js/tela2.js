@@ -36,6 +36,10 @@ document.getElementById('btn-avancar-tela2').addEventListener('click', (e) => {
     tocarSom(somTela);
     document.getElementById('caixa-dialogo-tela2').classList.add('escondido');
     document.getElementById('painel-criacao').classList.remove('escondido');
+    if (emTelaMobileVertical()) {
+        document.getElementById('npc-giovana').classList.add('escondido');
+        document.getElementById('npc-player').classList.add('escondido');
+    }
 });
 
 // ETAPA 1: Validação de Nome e Gênero
@@ -53,7 +57,7 @@ function checarDados() {
     if (selGenero.value !== "") {
         const imgPlayer = document.getElementById('npc-player');
         imgPlayer.src = `assets/images/player_${selGenero.value}.png`;
-        imgPlayer.classList.remove('escondido');
+        imgPlayer.classList.toggle('escondido', emTelaMobileVertical());
     }
 }
 
@@ -93,6 +97,8 @@ btnConfClasse.addEventListener('click', (e) => {
 
     document.getElementById('painel-criacao').classList.add('escondido');
     document.getElementById('caixa-dialogo-tela2').classList.remove('escondido');
+    document.getElementById('npc-player').classList.add('escondido');
+    document.getElementById('npc-giovana').classList.remove('escondido');
 
     let textoFinal = bancoDeDialogos.tela2.fala2
         .replace('{nome}', jogador.nome)

@@ -102,8 +102,13 @@ function carregarDialogoAluno() {
 
         // Mostra os NPCs apenas se houver interação humana
         if (nomeFormatado !== "SISTEMA") {
-            npcPlayer.classList.remove('escondido');
-            npcLivia.classList.remove('escondido');
+            if (emTelaMobileVertical()) {
+                const jogadorFalando = nomeFormatado === (jogador.nome || 'Visitante');
+                (jogadorFalando ? npcPlayer : npcLivia).classList.remove('escondido');
+            } else {
+                npcPlayer.classList.remove('escondido');
+                npcLivia.classList.remove('escondido');
+            }
         }
     }
 

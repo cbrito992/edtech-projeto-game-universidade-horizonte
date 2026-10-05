@@ -113,8 +113,13 @@ function carregarCaminhoAdicional() {
     if (nomeFormatado) {
         nome.classList.remove('escondido');
         nome.innerText = nomeFormatado;
-        npc.classList.remove('escondido');
-        player.classList.remove('escondido');
+        if (emTelaMobileVertical()) {
+            const jogadorFalando = nomeFormatado === (jogador.nome || 'Visitante');
+            (jogadorFalando ? player : npc).classList.remove('escondido');
+        } else {
+            npc.classList.remove('escondido');
+            player.classList.remove('escondido');
+        }
     } else {
         nome.classList.add('escondido');
     }

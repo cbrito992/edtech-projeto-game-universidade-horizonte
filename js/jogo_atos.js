@@ -105,6 +105,9 @@ document.getElementById('btn-iniciar-ato1').addEventListener('click', () => {
     const botao = document.getElementById('btn-iniciar-ato1');
     const movimentoReduzido = preferenciasAcessibilidade.reduzirMovimento;
     botao.disabled = true;
+    // O play nasce do gesto do usuário; isso evita bloqueio de áudio móvel
+    // quando a cena seguinte só é ativada após o tempo do fade.
+    if (somLigado) somBiblioteca.play().catch(() => {});
     tela.classList.add('saindo-transicao-ato');
     cortina.classList.add('cortina-visivel');
 
@@ -129,7 +132,8 @@ function ocultarPaineisJornada() {
 function iniciarAto(numero) {
     atoAtual = numero;
     const cena = document.getElementById('tela-caminho-atos');
-    cena.style.backgroundImage = `url("${numero === 1 ? roteiroJornada.fundo1 : roteiroJornada.fundo2}")`;
+    const caminhoFundo = numero === 1 ? roteiroJornada.fundo1 : roteiroJornada.fundo2;
+    cena.style.backgroundImage = `url("${encodeURI(caminhoFundo)}")`;
     cena.classList.remove('escondido');
     cena.classList.add('cena-ativa', 'fade-in');
     const companheiro = document.getElementById('npc-companheiro-atos');

@@ -79,8 +79,13 @@ function carregarDialogoAluno2() {
     if (nomeFormatado) {
         nome.classList.remove('escondido');
         nome.innerText = nomeFormatado;
-        npcPlayer.classList.remove('escondido');
-        npcLivia.classList.remove('escondido');
+        if (emTelaMobileVertical()) {
+            const jogadorFalando = nomeFormatado === (jogador.nome || 'Visitante');
+            (jogadorFalando ? npcPlayer : npcLivia).classList.remove('escondido');
+        } else {
+            npcPlayer.classList.remove('escondido');
+            npcLivia.classList.remove('escondido');
+        }
     } else {
         nome.classList.add('escondido');
     }

@@ -48,6 +48,10 @@ const preferenciasAcessibilidade = {
     textoInstantaneo: false
 };
 
+function emTelaMobileVertical() {
+    return window.matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
+}
+
 function aplicarVolumeGlobal() {
     somMenu.volume = volumeGlobal;
     somTela.volume = volumeGlobal;
