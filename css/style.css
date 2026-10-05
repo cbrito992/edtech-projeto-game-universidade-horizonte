@@ -1154,51 +1154,16 @@ body.alto-contraste .caixa-dialogo-jornada, body.alto-contraste .painel-jornada 
     #painel-criacao { max-height: calc(100% - 28px); }
 }
 
-@media (max-height: 430px) {
-    .cena-ativa { padding-bottom: 1.5%; }
-    #tela-menu { padding-bottom: 1%; }
-    .titulo-jogo { top: 6px; padding: 5px 18px; font-size: clamp(17px, 4.4vh, 22px); }
-    .titulo-jogo small { margin-top: 2px; }
-    .menu-container { width: min(62%, 230px); padding: 7px; gap: 4px; }
-    .menu-container .btn-menu { min-height: 30px; padding: 5px 12px; font-size: 10px; }
-    .controle-volume-menu { gap: 3px; padding: 4px 7px; font-size: 10px; }
-    .controle-volume-menu span { font-size: 10px; }
-    #menu-persistente { top: 6px; right: 6px; }
-    #btn-sanduiche { width: 38px; height: 38px; min-height: 38px; font-size: 18px; }
-    #painel-opcoes { right: 46px; width: min(230px, calc(100vw - 58px)); max-height: calc(100% - 12px); padding: 10px; }
-    #btn-acessibilidade-flutuante { top: 50px; right: 6px; width: 38px; height: 38px; min-height: 38px; padding: 5px; }
-    #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
-    #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
-        width: min(90%, 820px);
-        min-height: 96px;
-        padding: 22px 96px 10px 18px;
+@media (max-width: 960px) and (max-height: 540px) and (orientation: landscape) {
+    #game-container {
+        width: 100vw;
+        height: 100svh;
+        max-width: none;
+        aspect-ratio: auto;
     }
-    #nome-falante, #nome-falante-tela2, #nome-falante-aluno,
-    #nome-falante-aluno2, #nome-falante-conselho, #nome-falante-adicional {
-        margin: -31px 0 5px -7px;
-        padding: 4px 9px;
-        font-size: 11px;
-    }
-    #texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno,
-    #texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional {
-        font-size: 11px;
-        line-height: 1.3;
-    }
-    .painel-escolhas, #painel-escolhas-aluno { width: min(90%, 760px); padding: 10px; }
-    .btn-escolha, .btn-escolha-final { min-height: 34px; padding: 6px 10px 6px 32px; font-size: 10px; line-height: 1.25; }
-    .btn-escolha::before, .btn-escolha-final::before { left: 11px; }
-    .painel-jornada { gap: 6px; max-height: calc(100% - 16px); padding: 10px 12px; }
-    .painel-jornada h2 { font-size: 15px; }
-    .painel-jornada p, .painel-jornada li { font-size: 11px; line-height: 1.3; }
-    .lista-opcoes-atos { gap: 6px; }
-    .lista-opcoes-atos .btn-escolha { min-height: 38px; padding: 7px 10px 7px 34px; font-size: 11px; }
-    #painel-recurso-atos iframe { min-height: 92px; }
-    .painel-jornada > .btn-menu { min-height: 36px; padding: 7px 12px; font-size: 11px; }
-    .caixa-texto { width: min(92%, 720px); max-height: calc(100% - 16px); padding: 10px 14px; }
-    .caixa-texto h2 { margin-bottom: 5px; font-size: 16px; }
-    .caixa-texto p { margin-bottom: 5px; font-size: 11px; line-height: 1.3; }
-    .grade-acessibilidade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-    .btn-alternancia, .btn-opcao { min-height: 34px; font-size: 10px; }
+    .cena-ativa { padding-bottom: 2%; }
+    .painel-jornada { width: min(92%, 820px); max-height: calc(100% - 20px); }
+    .painel-final { width: min(92%, 820px); max-height: calc(100% - 12px); }
 }
 
 body.texto-maior #game-container { font-size: 118%; }
@@ -1246,44 +1211,11 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     .grid-classes { gap: 7px; margin-bottom: 8px; }
     .card-classe { padding: 8px 10px; }
     .card-classe h3 { margin-bottom: 3px; font-size: 14px; }
-    .card-classe p { font-size: 11px; line-height: 1.3; }
+    .card-classe p { font-size: 12px; line-height: 1.35; }
     .btn-voltar-decisao { top: 10px; left: 10px; min-height: 36px; padding: 7px 10px; font-size: 12px; }
     .painel-final { max-height: calc(100% - 12px); padding: 10px 12px; }
     #feedback-decisoes-final { margin: 12px 0; padding: 10px; }
     .etapa-feedback { padding: 8px 9px; font-size: 12px; }
-}
-
-/* Celulares em paisagem: a altura disponível orienta toda a interface. */
-@media (max-height: 430px) and (orientation: landscape) {
-    #menu-persistente { top: 6px; right: 6px; }
-    #btn-sanduiche { width: 38px; height: 38px; min-height: 38px; font-size: 18px; }
-    #painel-opcoes { top: 0; right: 46px; width: min(230px, calc(100vw - 58px)); max-height: calc(100% - 12px); padding: 10px; }
-    #btn-acessibilidade-flutuante { top: 50px; right: 6px; width: 38px; height: 38px; min-height: 38px; padding: 5px; }
-    #tela-menu { padding-bottom: 1%; }
-    .titulo-jogo { top: 6px; padding: 5px 18px; font-size: clamp(17px, 4.4vh, 22px); }
-    .menu-container { width: min(62%, 230px); padding: 7px; gap: 4px; }
-    .menu-container .btn-menu { min-height: 30px; padding: 5px 12px; font-size: 10px; }
-    .controle-volume-menu { min-width: 0; gap: 3px; padding: 4px 7px; font-size: 10px; }
-    #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
-    #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
-        width: min(90%, 820px);
-        min-height: 96px;
-        padding: 22px 96px 10px 18px;
-    }
-    #nome-falante, #nome-falante-tela2, #nome-falante-aluno,
-    #nome-falante-aluno2, #nome-falante-conselho, #nome-falante-adicional {
-        margin: -31px 0 5px -7px;
-        padding: 4px 9px;
-        font-size: 11px;
-    }
-    #texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno,
-    #texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional {
-        font-size: 11px;
-        line-height: 1.3;
-    }
-    .painel-escolhas, #painel-escolhas-aluno { width: min(90%, 760px); padding: 10px; }
-    .btn-escolha, .btn-escolha-final { min-height: 34px; padding: 6px 10px 6px 32px; font-size: 10px; line-height: 1.25; }
-    .grade-acessibilidade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 }
 
 /* Força o carregamento dos backgrounds em segundo plano sem exibir na tela */
