@@ -267,7 +267,6 @@ function mostrarAtividadeAtos(atividade) {
     const painel = document.getElementById('painel-atividade-atos');
     const lista = document.getElementById('opcoes-atividade-atos');
     document.getElementById('pergunta-atividade-atos').textContent = atividade.pergunta;
-    document.getElementById('retorno-atividade-atos').textContent = '';
     const continuar = document.getElementById('btn-continuar-atividade-atos');
     continuar.classList.add('escondido');
     lista.replaceChildren();
@@ -278,7 +277,6 @@ function mostrarAtividadeAtos(atividade) {
         botao.textContent = opcao.texto;
         botao.addEventListener('click', () => {
             tocarSom(somTela);
-            document.getElementById('retorno-atividade-atos').textContent = opcao.retorno;
             (jogador.escolhas.atividades ||= {})[`ato${atoAtual}-${indiceJornada}`] = opcao.texto;
             if (!opcao.adequada && passosJornada[indiceJornada + 1]?.texto) {
                 const proximo = passosJornada[indiceJornada + 1];

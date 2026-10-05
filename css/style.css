@@ -10,13 +10,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
     height: 100vh;
+    height: 100svh;
     overflow: hidden;
 }
 
 #game-container {
-    width: 100%;
-    max-width: 1280px;
+    width: min(100vw, 1280px, calc(100svh * 1.7778));
+    max-width: none;
+    max-height: 100svh;
     aspect-ratio: 16 / 9;
     position: relative;
     overflow: hidden;
@@ -864,9 +867,10 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
 
 .painel-final {
     width: min(92%, 820px);
-    max-height: 88%;
-    overflow-y: auto;
+    max-height: calc(100% - 24px);
+    overflow: hidden;
     max-width: 760px;
+    padding: clamp(14px, 2.4vh, 24px) clamp(14px, 2.5vw, 26px);
     background: linear-gradient(135deg, rgba(5,10,25,.98), rgba(25,18,52,.97));
     border: 1px solid rgba(54,217,255,.55);
     border-top: 5px solid var(--ui-ciano);
@@ -880,29 +884,42 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
 }
 .painel-final::-webkit-scrollbar, .painel-jornada::-webkit-scrollbar,
 #painel-criacao::-webkit-scrollbar, .caixa-texto::-webkit-scrollbar { display: none; }
-.painel-final h2 { color: var(--ui-ciano); letter-spacing: .06em; }
+.painel-final h2 {
+    color: var(--ui-ciano);
+    margin-bottom: clamp(6px, 1.2vh, 12px);
+    font-size: clamp(18px, 2.7vh, 26px);
+    letter-spacing: .06em;
+}
+.painel-final > p {
+    margin-bottom: clamp(8px, 1.5vh, 14px);
+    font-size: clamp(11px, 1.7vh, 15px);
+    line-height: 1.4;
+}
 
 #feedback-decisoes-final {
     display: grid;
-    gap: 10px;
-    margin: 18px 0;
-    padding: 15px;
+    gap: clamp(5px, 1vh, 9px);
+    margin: clamp(7px, 1.2vh, 12px) 0;
+    padding: clamp(8px, 1.4vh, 12px);
     background: rgba(54,217,255,.065);
     border: 1px solid rgba(54,217,255,.42);
     border-radius: 5px 15px 5px 15px;
 }
-#feedback-decisoes-final h3 { color: var(--ui-amarelo); font-size: clamp(16px, 2vw, 21px); }
-#resumo-feedback-final { line-height: 1.5; }
-#etapas-feedback-final { display: grid; gap: 9px; }
+#feedback-decisoes-final h3 { color: var(--ui-amarelo); font-size: clamp(14px, 2.2vh, 19px); }
+#resumo-feedback-final { margin: 0; font-size: clamp(10px, 1.55vh, 13px); line-height: 1.35; }
+#etapas-feedback-final { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(5px, .8vw, 9px); }
 .etapa-feedback {
-    padding: 10px 12px;
+    padding: clamp(6px, 1vh, 9px);
+    min-width: 0;
     background: rgba(7,12,28,.72);
     border-left: 4px solid var(--ui-ciano);
     border-radius: 3px 10px 3px 10px;
 }
-.etapa-feedback strong { display: block; margin-bottom: 4px; color: var(--ui-ciano); }
-.etapa-feedback span, .etapa-feedback small { display: block; line-height: 1.4; }
-.etapa-feedback small { margin-top: 5px; color: #c8d2e8; }
+.etapa-feedback strong { display: block; margin-bottom: 3px; color: var(--ui-ciano); font-size: clamp(10px, 1.55vh, 13px); }
+.etapa-feedback span, .etapa-feedback small { display: block; font-size: clamp(9px, 1.35vh, 12px); line-height: 1.3; }
+.etapa-feedback small { margin-top: 4px; color: #c8d2e8; }
+.painel-final .mensagem-outros-finais { padding-top: clamp(7px, 1.2vh, 12px); }
+.painel-final #btn-recomecar-aluno { min-height: 40px; padding: 8px 18px; }
 
 /* Criação de perfil */
 #painel-criacao {
@@ -1112,7 +1129,6 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
 .lista-opcoes-atos .btn-escolha:disabled { opacity: .65; cursor: default; }
 #painel-recurso-atos iframe { width: 100%; min-height: 200px; aspect-ratio: 16 / 9; border: 1px solid var(--ui-ciano); }
 #link-recurso-atos { color: var(--ui-ciano); font-weight: 700; text-decoration: underline; }
-#retorno-atividade-atos { color: var(--ui-amarelo); min-height: 25px; }
 .painel-jornada > .btn-menu { align-self: flex-start; }
 
 body.texto-maior #texto-narrativa-atos { font-size: clamp(19px, 1.8vw, 24px); }
@@ -1132,11 +1148,45 @@ body.alto-contraste .caixa-dialogo-jornada, body.alto-contraste .painel-jornada 
     body { min-height: 100svh; }
     #game-container { width: 100vw; height: 100svh; max-width: none; aspect-ratio: auto; }
     .painel-jornada { width: calc(100% - 24px); max-height: calc(100% - 28px); }
-    .painel-final { width: calc(100% - 24px); max-height: calc(100% - 28px); }
+    .painel-final { width: calc(100% - 16px); max-height: calc(100% - 16px); }
+    #etapas-feedback-final { grid-template-columns: 1fr; }
+    .etapa-feedback small { display: none; }
     #painel-criacao { max-height: calc(100% - 28px); }
 }
 
 @media (max-height: 430px) {
+    .cena-ativa { padding-bottom: 1.5%; }
+    #tela-menu { padding-bottom: 1%; }
+    .titulo-jogo { top: 6px; padding: 5px 18px; font-size: clamp(17px, 4.4vh, 22px); }
+    .titulo-jogo small { margin-top: 2px; }
+    .menu-container { width: min(62%, 230px); padding: 7px; gap: 4px; }
+    .menu-container .btn-menu { min-height: 30px; padding: 5px 12px; font-size: 10px; }
+    .controle-volume-menu { gap: 3px; padding: 4px 7px; font-size: 10px; }
+    .controle-volume-menu span { font-size: 10px; }
+    #menu-persistente { top: 6px; right: 6px; }
+    #btn-sanduiche { width: 38px; height: 38px; min-height: 38px; font-size: 18px; }
+    #painel-opcoes { right: 46px; width: min(230px, calc(100vw - 58px)); max-height: calc(100% - 12px); padding: 10px; }
+    #btn-acessibilidade-flutuante { top: 50px; right: 6px; width: 38px; height: 38px; min-height: 38px; padding: 5px; }
+    #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
+    #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
+        width: min(90%, 820px);
+        min-height: 96px;
+        padding: 22px 96px 10px 18px;
+    }
+    #nome-falante, #nome-falante-tela2, #nome-falante-aluno,
+    #nome-falante-aluno2, #nome-falante-conselho, #nome-falante-adicional {
+        margin: -31px 0 5px -7px;
+        padding: 4px 9px;
+        font-size: 11px;
+    }
+    #texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno,
+    #texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+    .painel-escolhas, #painel-escolhas-aluno { width: min(90%, 760px); padding: 10px; }
+    .btn-escolha, .btn-escolha-final { min-height: 34px; padding: 6px 10px 6px 32px; font-size: 10px; line-height: 1.25; }
+    .btn-escolha::before, .btn-escolha-final::before { left: 11px; }
     .painel-jornada { gap: 6px; max-height: calc(100% - 16px); padding: 10px 12px; }
     .painel-jornada h2 { font-size: 15px; }
     .painel-jornada p, .painel-jornada li { font-size: 11px; line-height: 1.3; }
@@ -1144,6 +1194,11 @@ body.alto-contraste .caixa-dialogo-jornada, body.alto-contraste .painel-jornada 
     .lista-opcoes-atos .btn-escolha { min-height: 38px; padding: 7px 10px 7px 34px; font-size: 11px; }
     #painel-recurso-atos iframe { min-height: 92px; }
     .painel-jornada > .btn-menu { min-height: 36px; padding: 7px 12px; font-size: 11px; }
+    .caixa-texto { width: min(92%, 720px); max-height: calc(100% - 16px); padding: 10px 14px; }
+    .caixa-texto h2 { margin-bottom: 5px; font-size: 16px; }
+    .caixa-texto p { margin-bottom: 5px; font-size: 11px; line-height: 1.3; }
+    .grade-acessibilidade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+    .btn-alternancia, .btn-opcao { min-height: 34px; font-size: 10px; }
 }
 
 body.texto-maior #game-container { font-size: 118%; }
@@ -1193,9 +1248,42 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     .card-classe h3 { margin-bottom: 3px; font-size: 14px; }
     .card-classe p { font-size: 11px; line-height: 1.3; }
     .btn-voltar-decisao { top: 10px; left: 10px; min-height: 36px; padding: 7px 10px; font-size: 12px; }
-    .painel-final { max-height: 92%; padding: 14px; }
+    .painel-final { max-height: calc(100% - 12px); padding: 10px 12px; }
     #feedback-decisoes-final { margin: 12px 0; padding: 10px; }
     .etapa-feedback { padding: 8px 9px; font-size: 12px; }
+}
+
+/* Celulares em paisagem: a altura disponível orienta toda a interface. */
+@media (max-height: 430px) and (orientation: landscape) {
+    #menu-persistente { top: 6px; right: 6px; }
+    #btn-sanduiche { width: 38px; height: 38px; min-height: 38px; font-size: 18px; }
+    #painel-opcoes { top: 0; right: 46px; width: min(230px, calc(100vw - 58px)); max-height: calc(100% - 12px); padding: 10px; }
+    #btn-acessibilidade-flutuante { top: 50px; right: 6px; width: 38px; height: 38px; min-height: 38px; padding: 5px; }
+    #tela-menu { padding-bottom: 1%; }
+    .titulo-jogo { top: 6px; padding: 5px 18px; font-size: clamp(17px, 4.4vh, 22px); }
+    .menu-container { width: min(62%, 230px); padding: 7px; gap: 4px; }
+    .menu-container .btn-menu { min-height: 30px; padding: 5px 12px; font-size: 10px; }
+    .controle-volume-menu { min-width: 0; gap: 3px; padding: 4px 7px; font-size: 10px; }
+    #caixa-dialogo, #caixa-dialogo-tela2, #caixa-dialogo-aluno,
+    #caixa-dialogo-aluno2, #caixa-dialogo-conselho, #caixa-dialogo-adicional {
+        width: min(90%, 820px);
+        min-height: 96px;
+        padding: 22px 96px 10px 18px;
+    }
+    #nome-falante, #nome-falante-tela2, #nome-falante-aluno,
+    #nome-falante-aluno2, #nome-falante-conselho, #nome-falante-adicional {
+        margin: -31px 0 5px -7px;
+        padding: 4px 9px;
+        font-size: 11px;
+    }
+    #texto-narrativa, #texto-narrativa-tela2, #texto-narrativa-aluno,
+    #texto-narrativa-aluno2, #texto-narrativa-conselho, #texto-narrativa-adicional {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+    .painel-escolhas, #painel-escolhas-aluno { width: min(90%, 760px); padding: 10px; }
+    .btn-escolha, .btn-escolha-final { min-height: 34px; padding: 6px 10px 6px 32px; font-size: 10px; line-height: 1.25; }
+    .grade-acessibilidade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 }
 
 /* Força o carregamento dos backgrounds em segundo plano sem exibir na tela */
