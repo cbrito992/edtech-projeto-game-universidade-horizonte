@@ -1147,6 +1147,47 @@ body.alto-contraste .caixa-dialogo-jornada, body.alto-contraste .painel-jornada 
 @media (max-width: 760px) and (orientation: portrait) {
     body { min-height: 100svh; }
     #game-container { width: 100vw; height: 100svh; max-width: none; aspect-ratio: auto; }
+    .tela {
+        isolation: isolate;
+        background-position: var(--foco-mobile, center);
+    }
+    .tela::before, .tela::after {
+        content: '';
+        position: absolute;
+        inset: -28px;
+        pointer-events: none;
+        background-image: inherit;
+        background-position: var(--foco-mobile, center);
+        background-repeat: no-repeat;
+    }
+    .tela::before {
+        z-index: 0;
+        background-size: cover;
+        filter: blur(22px) brightness(.42) saturate(.82);
+        transform: scale(1.1);
+    }
+    .tela::after {
+        inset: 0;
+        z-index: 1;
+        background-size: var(--arte-mobile-size, cover);
+    }
+    .tela > * { z-index: 2; }
+    /* A composição do menu contém personagens nas laterais: um corte menos
+       agressivo preserva o grupo e o fundo desfocado completa o retrato. */
+    #tela-menu {
+        --foco-mobile: center 18%;
+        --arte-mobile-size: 155% auto;
+        background-repeat: no-repeat;
+    }
+    #tela-transicao-ato1 {
+        --foco-mobile: center;
+        --arte-mobile-size: contain;
+        background-repeat: no-repeat;
+    }
+    #tela1 { --foco-mobile: 43% center; }
+    #tela2, #tela-caminho-atos, #tela-caminho-adicional { --foco-mobile: center; }
+    #tela3-aluno, #tela4-aluno { --foco-mobile: 55% center; }
+    #tela5-conselho { --foco-mobile: center; }
     .painel-jornada { width: calc(100% - 24px); max-height: calc(100% - 28px); }
     .painel-final { width: calc(100% - 16px); max-height: calc(100% - 16px); }
     #etapas-feedback-final { grid-template-columns: 1fr; }
