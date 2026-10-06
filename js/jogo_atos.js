@@ -1,6 +1,8 @@
 let roteiroJornada;
 let passosJornada = [];
 let indiceJornada = 0;
+let indiceDecisaoJornada = -1;
+let escolhaJornadaEmProcessamento = false;
 let atoAtual = 1;
 let maquinaJornada;
 let maquinaConselhoAtos;
@@ -151,6 +153,8 @@ function iniciarAto(numero) {
         : [];
     passosJornada = [...lembranca, ...dados.antes, { tipo: 'decisao' }];
     indiceJornada = 0;
+    indiceDecisaoJornada = passosJornada.length - 1;
+    escolhaJornadaEmProcessamento = false;
     document.getElementById('btn-voltar-decisao-atos').classList.add('escondido');
     somBiblioteca.loop = true;
     aplicarVolumeGlobal();
@@ -213,12 +217,15 @@ function mostrarDecisaoJornada() {
     const lista = document.getElementById('opcoes-decisao-atos');
     document.getElementById('pergunta-decisao-atos').textContent = ato.pergunta;
     lista.replaceChildren();
+    escolhaJornadaEmProcessamento = false;
     ato.opcoes.forEach(opcao => {
         const botao = document.createElement('button');
         botao.type = 'button';
         botao.className = 'btn-escolha';
         botao.textContent = opcao.texto;
         botao.addEventListener('click', () => {
+            if (escolhaJornadaEmProcessamento) return;
+            escolhaJornadaEmProcessamento = true;
             tocarSom(somMenu);
             jogador.escolhas[`ato${atoAtual}`] = opcao.id;
             const passosEscolhidos = [...opcao.passos];
@@ -233,9 +240,15 @@ function mostrarDecisaoJornada() {
                 // Primeiro vemos uma consequência; depois o jogo oferece outra lente para a situação.
                 passosEscolhidos.splice(Math.min(1, passosEscolhidos.length), 0, { recurso: chaveNivelamento });
             }
-            passosJornada.splice(indiceJornada + 1, 0, ...passosEscolhidos, { tipo: 'fimAto' });
+            // Reconstrói o ramo em vez de inseri-lo. Assim, escolhas anteriores nunca
+            // deixam passos ou marcadores de fim duplicados após várias revisões.
+            passosJornada = [
+                ...passosJornada.slice(0, indiceDecisaoJornada + 1),
+                ...passosEscolhidos,
+                { tipo: 'fimAto' }
+            ];
             document.getElementById('btn-voltar-decisao-atos').classList.remove('escondido');
-            indiceJornada++;
+            indiceJornada = indiceDecisaoJornada + 1;
             carregarPassoJornada();
         });
         lista.appendChild(botao);
@@ -342,7 +355,13 @@ document.getElementById('btn-voltar-decisao-atos').addEventListener('click', () 
     if (somLigado) somBiblioteca.play().catch(() => {});
 
     const chaveAto = `ato${atoAtual}`;
+    const escolhaAnterior = jogador.escolhas[chaveAto];
+    const nivelamentoAnterior = nivelamentoPorEscolha[jogador.classeID]?.[chaveAto]?.[escolhaAnterior];
     delete jogador.escolhas[chaveAto];
+    if (nivelamentoAnterior && jogador.escolhas.nivelamentos) {
+        jogador.escolhas.nivelamentos = jogador.escolhas.nivelamentos
+            .filter(chave => chave !== nivelamentoAnterior);
+    }
     if (jogador.escolhas.atividades) {
         Object.keys(jogador.escolhas.atividades)
             .filter(chave => chave.startsWith(`${chaveAto}-`))
@@ -354,7 +373,9 @@ document.getElementById('btn-voltar-decisao-atos').addEventListener('click', () 
         ? [{ nome: roteiroJornada.companheiro, texto: dados.retorno[jogador.escolhas.ato1] }]
         : [];
     passosJornada = [...lembranca, ...dados.antes, { tipo: 'decisao' }];
-    indiceJornada = passosJornada.length - 1;
+    indiceDecisaoJornada = passosJornada.length - 1;
+    indiceJornada = indiceDecisaoJornada;
+    escolhaJornadaEmProcessamento = false;
     document.getElementById('btn-voltar-decisao-atos').classList.add('escondido');
     carregarPassoJornada();
 });
