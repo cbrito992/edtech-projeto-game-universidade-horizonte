@@ -14,6 +14,10 @@ function preencherNome(texto) {
     return String(texto || '').replace(/{nome}/g, jogador.nome || 'Visitante');
 }
 
+function obterRamoNarrativo(classe = jogador.classeID, ato1 = jogador.escolhas.ato1, ato2 = jogador.escolhas.ato2) {
+    return arvoreNarrativa?.[classe]?.[ato1]?.[ato2] || null;
+}
+
 function escreverTexto(elemento, conteudo, atualizarMaquina) {
     const anterior = digitacoesAtivas.get(elemento);
     if (anterior) clearTimeout(anterior.temporizador);
@@ -218,6 +222,10 @@ function mostrarDecisaoJornada() {
             tocarSom(somMenu);
             jogador.escolhas[`ato${atoAtual}`] = opcao.id;
             const passosEscolhidos = [...opcao.passos];
+            if (atoAtual === 2) {
+                const ramo = obterRamoNarrativo(jogador.classeID, jogador.escolhas.ato1, opcao.id);
+                if (ramo) passosEscolhidos.unshift({ nome: roteiroJornada.companheiro, texto: ramo.consequencia });
+            }
             const chaveAto = `ato${atoAtual}`;
             const chaveNivelamento = nivelamentoPorEscolha[jogador.classeID]?.[chaveAto]?.[opcao.id];
             const vistos = jogador.escolhas.nivelamentos || [];
@@ -411,39 +419,141 @@ const memoriaConselho = {
     }
 };
 
-const propostasConselho = [
-    {
-        chave: 'A',
-        texto: 'Ampliar o programa por etapas, garantindo acesso, suporte humano e acompanhamento público dos resultados.',
-        fala: 'Quero ampliar o acesso com apoio real, alternativas equivalentes e revisão dos efeitos em cada etapa.'
-    },
-    {
-        chave: 'B',
-        texto: 'Priorizar mediação humana e formação, com usos da IA delimitados por objetivos pedagógicos claros.',
-        fala: 'Quero dar tempo e condições para que pessoas orientem as escolhas pedagógicas antes de cada ampliação.'
-    },
-    {
-        chave: 'C',
-        texto: 'Instituir uma política de uso transparente, com verificação, limites para dados e participação da comunidade.',
-        fala: 'Quero tornar as decisões verificáveis: declarar processos, conferir evidências e permitir contestação.'
-    }
-];
-
-const respostasConselho = {
+// Árvore 3 x 3 de cada função. Os códigos de resultado são apenas internos:
+// o jogador vê a solução e a explicação do percurso, nunca uma classificação A/B/C.
+const criarRamo = (final, consequencia, sintese, compromisso) => ({ final, consequencia, sintese, compromisso });
+const arvoreNarrativa = {
     estagiario: {
-        A: 'Podemos ampliar, desde que suporte, critérios de acesso e condições do contrato cresçam junto com o serviço.',
-        B: 'Precisaremos de equipes disponíveis para ajudar quem encontra dificuldades, inclusive fora do laboratório.',
-        C: 'Documentar dados, custos e falhas nos permite corrigir o projeto antes que uma decisão provisória vire dependência permanente.'
+        auditavel: {
+            negociar: criarRamo('C',
+                'Como o piloto já produzia registros auditáveis, a equipe levou evidências concretas à negociação e conseguiu delimitar dados, suporte e condições de saída.',
+                'Você combinou experimentação controlada com negociação verificável. O projeto avançou com rastreabilidade e espaço para correções.',
+                'Formalizar uma política de inovação responsável, com auditoria, limites contratuais e revisão pública.'),
+            aceitar: criarRamo('A',
+                'Os registros do piloto permitiram manter o serviço enquanto a equipe identificava riscos no contrato. A expansão continuou, mas cada nova etapa passou a depender de indicadores públicos.',
+                'Você preservou a continuidade e usou as evidências do piloto para corrigir a expansão sem interromper o apoio já oferecido.',
+                'Ampliar por etapas, vinculando cada avanço a suporte, indicadores e revisão dos dados utilizados.'),
+            interna: criarRamo('B',
+                'A experiência do piloto mostrou quais tarefas exigiam acompanhamento humano. A alternativa institucional foi planejada com participação das equipes que prestariam suporte.',
+                'Você articulou autonomia tecnológica e presença humana, evitando tratar o desenvolvimento interno como uma solução puramente técnica.',
+                'Investir em capacidade institucional, formação e acompanhamento antes de substituir o serviço atual.')
+        },
+        amplo: {
+            negociar: criarRamo('A',
+                'A diversidade de usos encontrada na abertura deu força à negociação: acesso e suporte entraram no contrato ao lado das regras de dados.',
+                'Você transformou uma expansão turbulenta em aprendizado coletivo e usou essa experiência para negociar condições mais inclusivas.',
+                'Consolidar a ampliação com suporte proporcional à demanda e acompanhamento público dos resultados.'),
+            aceitar: criarRamo('B',
+                'Manter a oferta evitou uma ruptura, mas a sobrecarga reapareceu. A universidade percebeu que continuidade sem equipes preparadas apenas deslocaria o problema.',
+                'Suas escolhas favoreceram disponibilidade imediata; as consequências mostraram que a tecnologia depende de mediação, orientação e capacidade de atendimento.',
+                'Priorizar formação e apoio humano antes de qualquer nova expansão do serviço.'),
+            interna: criarRamo('C',
+                'A abertura ampla revelou requisitos que não apareciam no laboratório. Eles foram convertidos em critérios técnicos, de acessibilidade e de governança para a solução institucional.',
+                'Você partiu de experiências reais para reduzir dependência externa e documentar responsabilidades que antes estavam dispersas.',
+                'Criar uma alternativa institucional transparente, auditável e construída a partir das necessidades observadas.')
+        },
+        adiar: {
+            negociar: criarRamo('B',
+                'O tempo de preparação permitiu ouvir grupos que estavam fora do piloto. Na negociação, a universidade incluiu atendimento, acessibilidade e alternativas de uso.',
+                'Você usou a pausa para ampliar a escuta e transformou cautela em condições concretas de participação.',
+                'Adotar o serviço somente com formação, apoio humano e alternativas acessíveis garantidas.'),
+            aceitar: criarRamo('A',
+                'Depois de uma espera cuidadosa, a continuidade gratuita acelerou a entrada de novos participantes. A equipe manteve canais de escuta para corrigir desigualdades durante a expansão.',
+                'Você equilibrou preparação e oportunidade de acesso, aceitando avançar sem abandonar o acompanhamento das diferenças encontradas.',
+                'Abrir o programa gradualmente e revisar seus efeitos sobre grupos com condições distintas de acesso.'),
+            interna: criarRamo('C',
+                'A análise feita durante o adiamento ofereceu requisitos claros para uma solução própria e para uma transição que não deixasse usuários sem atendimento.',
+                'Você converteu prudência em planejamento institucional e definiu critérios verificáveis para evitar novas dependências.',
+                'Desenvolver uma alternativa pública com governança de dados, cronograma realista e transição acompanhada.')
+        }
     },
     gestor: {
-        A: 'Mais estudantes terão acesso, mas o acompanhamento precisa alcançar também quem aprende por caminhos diferentes.',
-        B: 'Quero poder conversar com pessoas sobre o que compreendi, sem perder os apoios que tornam o estudo possível.',
-        C: 'Mostrar as fontes e o processo ajuda a reconhecer a colaboração sem tratar uma resposta pronta como prova de aprendizagem.'
+        processo: {
+            verificar: criarRamo('C',
+                'Os registros de autoria facilitaram a conferência coletiva: cada pessoa mostrou como encontrou, usou ou descartou uma fonte.',
+                'Você conectou transparência do processo à verificação das evidências, criando uma prática que pode ser compreendida e contestada.',
+                'Instituir critérios de autoria, declaração de uso e verificação de fontes em todas as disciplinas.'),
+            prazo: criarRamo('B',
+                'Como o percurso estava documentado, o grupo conseguiu explicar a pressa e organizar uma correção orientada, sem transformar a falha em punição automática.',
+                'Você valorizou o processo e, diante do prazo, percebeu que a mediação é necessária para converter um erro em aprendizagem.',
+                'Criar momentos de orientação e revisão para que prazos acadêmicos não eliminem a aprendizagem reflexiva.'),
+            refazer: criarRamo('A',
+                'Os rascunhos permitiram redistribuir a revisão sem apagar o trabalho anterior. O grupo refez a seção e transformou o material em referência para outras turmas.',
+                'Você preservou evidências do percurso e reorganizou a produção coletiva, tornando o aprendizado reutilizável e acessível.',
+                'Ampliar a prática de portfólios e revisão coletiva com modelos que possam circular pela universidade.')
+        },
+        produto: {
+            verificar: criarRamo('B',
+                'A conferência mostrou que um texto fluente escondia fontes frágeis. A gestão acrescentou encontros de defesa e revisão ao calendário.',
+                'Você começou pela qualidade do produto e encontrou na verificação a necessidade de diálogo para reconhecer compreensão real.',
+                'Priorizar acompanhamento e defesa das decisões, sem reduzir a avaliação à aparência do texto final.'),
+            prazo: criarRamo('A',
+                'A entrega preservou o trabalho visível, mas a correção posterior revelou diferentes necessidades de apoio. A experiência foi usada para redesenhar a próxima oferta.',
+                'Você privilegiou continuidade e alcance; as consequências levaram a uma expansão acompanhada por indicadores de aprendizagem.',
+                'Expandir o programa com ciclos de entrega, revisão e apoio diferenciados para estudantes e equipes.'),
+            refazer: criarRamo('C',
+                'Ao reconstruir a seção, o grupo precisou tornar visíveis fontes, decisões e responsabilidades que o produto acabado ocultava.',
+                'Você saiu do foco exclusivo no resultado e chegou a uma política de rastreabilidade capaz de orientar futuras produções.',
+                'Exigir documentação de fontes, alterações e participação humana nos trabalhos apoiados por IA.')
+        },
+        restricao: {
+            verificar: criarRamo('A',
+                'A referência inicial sem IA ajudou a comparar processos, e a verificação coletiva abriu caminhos para usos posteriores mais bem acompanhados.',
+                'Você combinou um limite temporário com evidências que permitiram ampliar possibilidades sem abandonar critérios claros.',
+                'Autorizar novos usos por etapas, avaliando acesso, aprendizagem e alternativas em cada disciplina.'),
+            prazo: criarRamo('C',
+                'A urgência expôs ambiguidades da restrição: o grupo não sabia quais apoios poderia usar. A correção originou regras públicas e formas de contestação.',
+                'Você percebeu que limitar sem explicar produz novas incertezas; o percurso conduziu a critérios transparentes e revisáveis.',
+                'Publicar regras de uso, exceções de acessibilidade, responsabilidades e procedimentos de revisão.'),
+            refazer: criarRamo('B',
+                'A reconstrução exigiu acompanhamento próximo para não excluir apoios legítimos. Professores e estudantes revisaram juntos o objetivo da atividade.',
+                'Você preservou uma referência inicial, mas as consequências mostraram que limites justos dependem de escuta e mediação.',
+                'Definir limites pedagógicos com participação docente, apoio humano e alternativas acessíveis.')
+        }
     },
     professor: {
-        A: 'A ampliação só fará sentido se as disciplinas receberem tempo para redesenhar avaliações e examinar os resultados.',
-        B: 'A presença docente exige condições de trabalho, formação e abertura para novas práticas de pesquisa.',
-        C: 'Critérios transparentes permitem corrigir falhas de orientação sem terceirizar nosso julgamento a detectores.'
+        autentica: {
+            conjunto: criarRamo('C',
+                'Os registros da avaliação contextualizada ajudaram a rastrear onde dados sugeridos pela IA entraram na pesquisa. Estudante, orientador e instituição assumiram a revisão.',
+                'Você articulou avaliação autêntica e responsabilidade compartilhada, tornando método e autoria verificáveis.',
+                'Adotar uma política de integridade baseada em rastreabilidade, declaração de uso e responsabilidades compartilhadas.'),
+            individual: criarRamo('B',
+                'A defesa das decisões deu à estudante condições para explicar o percurso. A escuta individual foi incorporada a uma revisão acompanhada pelo orientador.',
+                'Você valorizou aplicação e diálogo; diante da falha, esse caminho se consolidou em mediação formativa, sem apagar responsabilidades.',
+                'Fortalecer orientação e escuta qualificada antes de decidir correções ou responsabilizações.'),
+            revisao: criarRamo('A',
+                'O problema contextualizado permitiu reconstruir parte da análise com dados reais. O caso virou material de formação para outras equipes de pesquisa.',
+                'Você transformou a revisão em oportunidade de aprendizagem institucional e de ampliação de práticas mais seguras.',
+                'Compartilhar protocolos e experiências revisadas, ampliando gradualmente práticas de pesquisa assistida por IA.')
+        },
+        presencial: {
+            conjunto: criarRamo('B',
+                'Os encontros presenciais facilitaram uma conversa franca sobre a origem dos dados. A resposta conjunta preservou escuta e responsabilidade.',
+                'Você construiu evidências pelo diálogo e manteve essa presença humana ao enfrentar uma falha de pesquisa.',
+                'Garantir tempo de orientação, formação e decisões compartilhadas em todas as pesquisas com IA.'),
+            individual: criarRamo('A',
+                'A conversa individual revelou lacunas que também apareciam em outros trabalhos. A universidade ampliou os encontros de orientação e criou apoio para mais turmas.',
+                'Você partiu da observação direta e transformou um caso particular em oportunidade de ampliar suporte institucional.',
+                'Expandir o acompanhamento em etapas, monitorando carga docente, participação e aprendizagem.'),
+            revisao: criarRamo('C',
+                'A revisão técnica precisou ser acompanhada por uma explicação oral das decisões. O novo protocolo passou a reunir registros, dados e defesa do método.',
+                'Você uniu evidência presencial e rastreabilidade documental para tornar a correção compreensível e verificável.',
+                'Formalizar revisões com registro do método, diálogo com autores e comunicação transparente às revistas.')
+        },
+        detector: {
+            conjunto: criarRamo('A',
+                'A experiência com falsos sinais tornou a equipe mais cautelosa. Na pesquisa, a análise conjunta substituiu suspeitas automáticas e gerou formação para toda a comunidade.',
+                'Você converteu uma crise de confiança em aprendizagem coletiva e em condições melhores para ampliar o uso responsável.',
+                'Ampliar formação e acesso a protocolos de análise, sem automatizar julgamentos sobre autoria.'),
+            individual: criarRamo('C',
+                'Depois do conflito com o detector, a escuta da estudante foi registrada e confrontada com dados e versões do artigo, evitando um novo julgamento automático.',
+                'Você aprendeu a não confundir indício com prova e levou essa cautela a um processo transparente de apuração.',
+                'Criar procedimentos verificáveis de escuta, contestação e revisão antes de qualquer responsabilização.'),
+            revisao: criarRamo('B',
+                'A tentativa de corrigir rapidamente repetiu a lógica do detector: buscar uma resposta simples para um problema complexo. A equipe interrompeu o envio e retomou a orientação.',
+                'As duas etapas mostraram os limites de soluções automáticas e conduziram a uma escolha pela presença humana e pelo tempo de análise.',
+                'Priorizar orientação, revisão colegiada e formação antes de adotar respostas automatizadas para integridade.')
+        }
     }
 };
 
@@ -465,12 +575,18 @@ function iniciarConselhoAtos() {
     if (somLigado) somConselho.play().catch(() => {});
 
     const memoria = memoriaConselho[jogador.classeID];
+    const ramo = obterRamoNarrativo();
+    if (!ramo) return;
+    jogador.finalLiberado = ramo.final;
+    jogador.escolhas.conselho = ramo.compromisso;
     linhasConselho = [
         { nome: '', texto: 'Sala do Conselho da Universidade Horizonte. Três meses de decisões e correções estão reunidos nesta mesa.' },
         { nome: 'REITORA HELENA', texto: 'Quero ouvir o que aconteceu em cada etapa. O tempo decorrido também é parte das consequências das nossas escolhas.' },
         { nome: roteiroJornada.companheiro, texto: memoria.ato1[jogador.escolhas.ato1] },
         { nome: roteiroJornada.companheiro, texto: memoria.ato2[jogador.escolhas.ato2] },
-        { nome: 'REITORA HELENA', texto: 'Agora precisamos escolher um compromisso para os próximos passos. Cada prioridade oferece possibilidades e exige responsabilidades.' }
+        { nome: '{nome}', texto: ramo.sintese },
+        { nome: roteiroJornada.companheiro, texto: ramo.compromisso },
+        { nome: 'REITORA HELENA', texto: 'O Conselho acolhe essa leitura do percurso. A decisão não encerra o debate: ela define a solução que a universidade colocará em prática e continuará avaliando com a comunidade.' }
     ];
     indiceConselhoAtos = 0;
     carregarFalaConselhoAtos();
@@ -491,8 +607,7 @@ function mostrarAvatarConselhoAtos(nome) {
 function carregarFalaConselhoAtos() {
     const linha = linhasConselho[indiceConselhoAtos];
     if (!linha) {
-        if (!jogador.finalLiberado) mostrarDecisaoConselho();
-        else mostrarFinalAtos();
+        mostrarFinalAtos();
         return;
     }
     const nome = preencherNome(linha.nome);
@@ -504,36 +619,6 @@ function carregarFalaConselhoAtos() {
     escreverConselho(document.getElementById('texto-narrativa-conselho'), preencherNome(linha.texto));
     document.getElementById('btn-avancar-conselho').textContent = indiceConselhoAtos === linhasConselho.length - 1 && jogador.finalLiberado
         ? 'Conhecer o futuro' : 'Avançar';
-}
-
-function mostrarDecisaoConselho() {
-    document.getElementById('caixa-dialogo-conselho').classList.add('escondido');
-    mostrarAvatarConselhoAtos('');
-    const painel = document.getElementById('painel-decisao-conselho');
-    const lista = document.getElementById('opcoes-decisao-conselho');
-    lista.replaceChildren();
-    propostasConselho.forEach(opcao => {
-        const botao = document.createElement('button');
-        botao.type = 'button';
-        botao.className = 'btn-escolha';
-        botao.textContent = opcao.texto;
-        botao.addEventListener('click', () => {
-            tocarSom(somMenu);
-            jogador.escolhas.conselho = opcao.chave;
-            jogador.finalLiberado = opcao.chave;
-            painel.classList.add('escondido');
-            linhasConselho.push(
-                { nome: '{nome}', texto: opcao.fala },
-                { nome: roteiroJornada.companheiro, texto: respostasConselho[jogador.classeID][opcao.chave] },
-                { nome: 'REITORA HELENA', texto: 'A universidade assume essa prioridade e a revisará com evidências, diálogo e participação da comunidade.' }
-            );
-            indiceConselhoAtos++;
-            carregarFalaConselhoAtos();
-        });
-        lista.appendChild(botao);
-    });
-    painel.classList.remove('escondido');
-    lista.querySelector('button')?.focus();
 }
 
 function mostrarFinalAtos() {
@@ -550,9 +635,9 @@ function mostrarFinalAtos() {
 
 function montarFeedbackFinal() {
     const memoria = memoriaConselho[jogador.classeID];
+    const ramo = obterRamoNarrativo();
     const opcaoAto1 = roteiroJornada.ato1.opcoes.find(opcao => opcao.id === jogador.escolhas.ato1);
     const opcaoAto2 = roteiroJornada.ato2.opcoes.find(opcao => opcao.id === jogador.escolhas.ato2);
-    const opcaoConselho = propostasConselho.find(opcao => opcao.chave === jogador.escolhas.conselho);
     const leituras = {
         A: 'No Conselho, sua trajetória se consolidou na prioridade de ampliar oportunidades com acesso, suporte e acompanhamento dos resultados.',
         B: 'No Conselho, sua trajetória se consolidou na prioridade de preservar mediação humana, formação e tempo para decisões pedagógicas.',
@@ -565,7 +650,7 @@ function montarFeedbackFinal() {
     const etapas = [
         { titulo: 'Ato I — prioridade inicial', escolha: opcaoAto1?.texto, consequencia: memoria.ato1[jogador.escolhas.ato1] },
         { titulo: 'Ato II — resposta às consequências', escolha: opcaoAto2?.texto, consequencia: memoria.ato2[jogador.escolhas.ato2] },
-        { titulo: 'Conselho — compromisso institucional', escolha: opcaoConselho?.texto, consequencia: 'Esta última decisão definiu o desfecho apresentado, apoiada pelas experiências reunidas nos dois atos.' }
+        { titulo: 'Conselho — leitura do percurso', escolha: ramo?.compromisso, consequencia: 'A combinação das duas decisões definiu esta solução. Uma escolha diferente em qualquer ato poderia produzir outra leitura institucional.' }
     ];
     const nivelamentosVistos = (jogador.escolhas.nivelamentos || [])
         .map(chave => recursosAtos[chave]?.dimensao)
