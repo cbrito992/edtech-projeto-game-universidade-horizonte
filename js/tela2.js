@@ -60,7 +60,6 @@ function atualizarSelecaoAvatar() {
         const selecionado = variacao === avatarSelecionado;
         botao.setAttribute('aria-pressed', String(selecionado));
         botao.classList.toggle('selecionado', selecionado);
-        botao.querySelector('img').src = genero ? caminhoAvatarJogador(genero, variacao) : '';
         botao.setAttribute('aria-label', `Aparência ${indice + 1}${selecionado ? ', selecionada' : ''}`);
     });
 

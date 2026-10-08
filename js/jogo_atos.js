@@ -75,13 +75,16 @@ function mostrarTransicaoAto(titulo, subtitulo, callback) {
         'Ato II': 'assets/images/background_transicao_ato2.webp',
         'Conselho': 'assets/images/background_transicao_ato3.webp'
     };
-    tela.style.setProperty('--background-transicao', `url("${fundosTransicao[titulo] || fundosTransicao['Ato I']}")`);
+    const fundoTransicao = fundosTransicao[titulo] || fundosTransicao['Ato I'];
+    tela.style.backgroundImage = `url("${fundoTransicao}")`;
+    tela.classList.toggle('transicao-titulo-longo', titulo.length > 6);
     document.getElementById('titulo-ato1').textContent = titulo;
     subtituloEl.textContent = subtitulo;
     subtituloEl.classList.toggle('escondido', !subtitulo);
     botao.textContent = titulo === 'Ato I' ? 'Começar ato' : titulo === 'Conselho' ? 'Entrar no Conselho' : 'Continuar';
     botao.disabled = true;
     document.getElementById('menu-persistente').classList.add('escondido');
+    document.getElementById('btn-acessibilidade-flutuante').classList.add('escondido');
     aposTransicao = callback;
 
     // Escurece a cena atual antes de revelar o cartão do ato.
@@ -132,6 +135,7 @@ document.getElementById('btn-iniciar-ato1').addEventListener('click', () => {
         aposTransicao = null;
         if (callback) callback();
         document.getElementById('menu-persistente').classList.remove('escondido');
+        document.getElementById('btn-acessibilidade-flutuante').classList.remove('escondido');
         requestAnimationFrame(() => cortina.classList.remove('cortina-visivel'));
         transicaoEmAndamento = false;
     }, movimentoReduzido ? 0 : 750);
@@ -300,8 +304,6 @@ function mostrarAtividadeAtos(atividade) {
     const painel = document.getElementById('painel-atividade-atos');
     const lista = document.getElementById('opcoes-atividade-atos');
     document.getElementById('pergunta-atividade-atos').textContent = atividade.pergunta;
-    const continuar = document.getElementById('btn-continuar-atividade-atos');
-    continuar.classList.add('escondido');
     lista.replaceChildren();
     atividade.opcoes.forEach(opcao => {
         const botao = document.createElement('button');
@@ -318,9 +320,10 @@ function mostrarAtividadeAtos(atividade) {
                     texto: `A equipe seguiu a proposta escolhida: “${opcao.texto}” ${opcao.retorno} Essas questões permanecem em aberto para a próxima etapa.`
                 };
             }
+            botao.classList.add('selecionado');
             lista.querySelectorAll('button').forEach(b => { b.disabled = true; });
-            continuar.classList.remove('escondido');
-            continuar.focus();
+            encerrarJanelaDeRevisao();
+            setTimeout(avancarJornada, preferenciasAcessibilidade.reduzirMovimento ? 0 : 350);
         });
         lista.appendChild(botao);
     });
@@ -350,12 +353,6 @@ document.getElementById('btn-continuar-recurso-atos').addEventListener('click', 
     if (somLigado) somBiblioteca.play().catch(() => {});
     avancarJornada();
 });
-document.getElementById('btn-continuar-atividade-atos').addEventListener('click', () => {
-    tocarSom(somMenu);
-    encerrarJanelaDeRevisao();
-    avancarJornada();
-});
-
 document.getElementById('btn-voltar-decisao-atos').addEventListener('click', () => {
     tocarSom(somMenu);
     clearTimeout(maquinaJornada);

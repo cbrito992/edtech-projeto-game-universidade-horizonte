@@ -62,7 +62,8 @@ function emTelaMobileVertical() {
 function aplicarVolumeGlobal() {
     somMenu.volume = volumeGlobal;
     somTela.volume = volumeGlobal;
-    bgmTela1.volume = volumeGlobal * 0.4;
+    const menuInicialAtivo = document.getElementById('tela-menu')?.classList.contains('cena-ativa');
+    bgmTela1.volume = volumeGlobal * (menuInicialAtivo ? 0.18 : 0.4);
     somBiblioteca.volume = volumeGlobal * 0.6;
     somConselho.volume = volumeGlobal * 0.6;
 
@@ -88,7 +89,8 @@ function deveExibirTextoInstantaneamente() {
 }
 
 function retomarMusicaAtiva() {
-    if (document.getElementById('tela1').classList.contains('cena-ativa') ||
+    if (document.getElementById('tela-menu').classList.contains('cena-ativa') ||
+        document.getElementById('tela1').classList.contains('cena-ativa') ||
         document.getElementById('tela2').classList.contains('cena-ativa')) {
         bgmTela1.play().catch(e => console.log(e));
     } else if (document.getElementById('tela5-conselho') && document.getElementById('tela5-conselho').classList.contains('cena-ativa')) {
@@ -140,6 +142,17 @@ document.addEventListener('DOMContentLoaded', () => {
     aplicarVolumeGlobal();
     aplicarPreferenciasAcessibilidade();
 
+    // Inicia a trilha suavemente no menu. Caso o navegador bloqueie autoplay
+    // com áudio, a primeira interação do jogador libera a reprodução.
+    const iniciarMusicaMenu = () => {
+        if (!somLigado || !document.getElementById('tela-menu').classList.contains('cena-ativa')) return;
+        bgmTela1.volume = volumeGlobal * 0.18;
+        bgmTela1.play().catch(() => {});
+    };
+    iniciarMusicaMenu();
+    document.addEventListener('pointerdown', iniciarMusicaMenu, { once: true });
+    document.addEventListener('keydown', iniciarMusicaMenu, { once: true });
+
     // 1. Botões do Menu Inicial (Instruções, Config)
     document.querySelectorAll('.btn-menu').forEach(botao => {
         botao.addEventListener('click', (e) => {
@@ -165,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Botão Jogar (Transição e Música)
     document.getElementById('btn-jogar').addEventListener('click', () => {
         tocarSom(somMenu);
+        bgmTela1.volume = volumeGlobal * 0.4;
         if (somLigado) bgmTela1.play().catch(e => console.log("Bloqueio de navegador", e));
 
         const telaMenu = document.getElementById('tela-menu');
