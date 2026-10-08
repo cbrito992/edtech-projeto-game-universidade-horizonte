@@ -445,6 +445,45 @@ const memoriaConselho = {
     }
 };
 
+const reacoesConselho = {
+    estagiario: {
+        ato1: {
+            auditavel: 'Eu estava ansioso para mostrar resultado logo. Quando os primeiros erros apareceram, senti alívio por termos começado pequeno — conseguimos ouvir as pessoas sem abandonar ninguém no meio do teste.',
+            amplo: 'No primeiro dia, ver tanta gente entrando foi empolgante. Depois chegaram as falhas e as mensagens sem resposta. Confesso que me senti responsável por termos corrido mais do que a equipe conseguia acompanhar.',
+            adiar: 'Esperar parecia prudente, mas foi desconfortável descobrir que os estudantes continuavam usando ferramentas externas sem apoio. A pausa não eliminou o problema; só o deixou menos visível para nós.'
+        },
+        ato2: {
+            negociar: 'A negociação foi cansativa, mas pela primeira vez senti que não estávamos apenas aceitando promessas. Havia perguntas que a fornecedora precisava responder diante da comunidade.',
+            aceitar: 'Manter o serviço trouxe alívio imediato. Quando lemos os termos com calma, esse alívio virou preocupação: continuidade também pode criar dependência.',
+            interna: 'Eu gosto da ideia de construirmos algo nosso, mas tive medo de prometer o que a equipe ainda não consegue entregar. Um plano honesto pareceu mais responsável que uma solução heroica.'
+        }
+    },
+    gestor: {
+        ato1: {
+            processo: 'Quando pude mostrar meus rascunhos, senti que meu trabalho voltou a ser meu. Não precisei esconder a ferramenta; precisei explicar minhas decisões.',
+            produto: 'No começo, a liberdade pareceu ótima. Na apresentação, ver colegas incapazes de defender textos tão bons foi constrangedor — e me fez pensar no que realmente estávamos aprendendo.',
+            restricao: 'A regra trouxe segurança para alguns, mas também medo. Colegas que usam apoio de acessibilidade ficaram sem saber se seriam tratados como desonestos.'
+        },
+        ato2: {
+            verificar: 'Revisar as fontes em grupo deu vergonha no início, mas ninguém ficou sozinho com o erro. Aos poucos, a sala voltou a conversar em vez de apenas procurar culpados.',
+            prazo: 'Entregar no prazo trouxe um alívio curto. Quando as referências inventadas vieram à tona, o grupo percebeu que a pressa apenas adiou uma conversa difícil.',
+            refazer: 'Apagar tudo parecia a saída mais limpa, mas também apagava o esforço real do grupo. Refazer com acompanhamento foi mais trabalhoso e muito mais justo.'
+        }
+    },
+    professor: {
+        ato1: {
+            autentica: 'Eu queria uma avaliação que me permitisse confiar no que os estudantes compreendiam. Ouvi-los justificar escolhas devolveu à sala uma curiosidade que eu temia perder.',
+            presencial: 'Os encontros presenciais me tranquilizaram, mas também mostraram que presença não é sinônimo de aprendizagem. Precisei escutar mais e controlar menos.',
+            detector: 'Quando o detector acusou estudantes que conseguiam explicar o próprio trabalho, senti que havia terceirizado meu julgamento. Reconstruir a confiança da turma foi mais difícil que aplicar qualquer ferramenta.'
+        },
+        ato2: {
+            conjunto: 'Assinar uma resposta conjunta foi desconfortável, mas correto. A estudante não poderia carregar sozinha uma falha que atravessou orientação, método e instituição.',
+            individual: 'A conversa individual revelou medo e confusão, não apenas descuido. Saí dela convencido de que responsabilizar também exige oferecer condições para reparar.',
+            revisao: 'Eu quis corrigir os números rapidamente. Percebi, porém, que uma correção silenciosa protegeria nossa aparência, não a integridade da pesquisa.'
+        }
+    }
+};
+
 // Árvore 3 x 3 de cada função. Os códigos de resultado são apenas internos:
 // o jogador vê a solução e a explicação do percurso, nunca uma classificação A/B/C.
 const criarRamo = (final, consequencia, sintese, compromisso) => ({ final, consequencia, sintese, compromisso });
@@ -605,14 +644,20 @@ function iniciarConselhoAtos() {
     if (!ramo) return;
     jogador.finalLiberado = ramo.final;
     jogador.escolhas.conselho = ramo.compromisso;
+    const reacoes = reacoesConselho[jogador.classeID];
+    const conviteCompanheiro = {
+        estagiario: 'Ainda fico nervoso pensando no que poderia ter dado errado, mas agora consigo enxergar o que aprendemos.',
+        gestor: 'Eu não saio daqui com uma resposta perfeita. Saio sabendo quais perguntas não podemos mais ignorar.',
+        professor: 'Esta experiência mexeu com certezas que eu levava para a sala de aula. Isso é desconfortável — e necessário.'
+    };
     linhasConselho = [
         { nome: '', texto: 'Sala do Conselho da Universidade Horizonte. Três meses de decisões e correções estão reunidos nesta mesa.' },
-        { nome: 'REITORA HELENA', texto: 'Quero ouvir o que aconteceu em cada etapa. O tempo decorrido também é parte das consequências das nossas escolhas.' },
-        { nome: roteiroJornada.companheiro, texto: memoria.ato1[jogador.escolhas.ato1] },
-        { nome: roteiroJornada.companheiro, texto: memoria.ato2[jogador.escolhas.ato2] },
-        { nome: '{nome}', texto: ramo.sintese },
-        { nome: roteiroJornada.companheiro, texto: ramo.compromisso },
-        { nome: 'REITORA HELENA', texto: 'O Conselho acolhe essa leitura do percurso. A decisão não encerra o debate: ela define a solução que a universidade colocará em prática e continuará avaliando com a comunidade.' }
+        { nome: 'REITORA HELENA', texto: 'Antes dos relatórios, quero ouvir as pessoas. Houve pressão, erros e mudanças de rumo. O que cada etapa fez vocês perceberem?' },
+        { nome: roteiroJornada.companheiro, texto: reacoes.ato1[jogador.escolhas.ato1] },
+        { nome: roteiroJornada.companheiro, texto: reacoes.ato2[jogador.escolhas.ato2] },
+        { nome: '{nome}', texto: `Não foi uma escolha simples. ${ramo.sintese}` },
+        { nome: roteiroJornada.companheiro, texto: `${conviteCompanheiro[jogador.classeID]} Por isso, defendo este compromisso: ${ramo.compromisso}` },
+        { nome: 'REITORA HELENA', texto: 'Eu também preferiria uma decisão sem riscos. Ela não existe. O que podemos fazer é assumir este caminho, torná-lo público e ter coragem para revê-lo quando a comunidade mostrar que algo não está funcionando.' }
     ];
     indiceConselhoAtos = 0;
     carregarFalaConselhoAtos();
@@ -662,6 +707,7 @@ function mostrarFinalAtos() {
 function montarFeedbackFinal() {
     const memoria = memoriaConselho[jogador.classeID];
     const ramo = obterRamoNarrativo();
+    const final = desfechosAtos[jogador.finalLiberado];
     const opcaoAto1 = roteiroJornada.ato1.opcoes.find(opcao => opcao.id === jogador.escolhas.ato1);
     const opcaoAto2 = roteiroJornada.ato2.opcoes.find(opcao => opcao.id === jogador.escolhas.ato2);
     const leituras = {
@@ -671,36 +717,51 @@ function montarFeedbackFinal() {
     };
 
     document.getElementById('resumo-feedback-final').textContent =
-        `${leituras[jogador.finalLiberado]} As escolhas anteriores não eram certas ou erradas: elas produziram experiências que deram contexto a essa decisão.`;
+        `${leituras[jogador.finalLiberado]} Explore os três marcos para rever como essa solução foi construída.`;
+
+    const rotulosEscolhas = {
+        auditavel: 'Piloto acompanhado', amplo: 'Abertura ampla', adiar: 'Preparar antes',
+        negociar: 'Negociar condições', aceitar: 'Manter e revisar', interna: 'Alternativa institucional',
+        processo: 'Mostrar o processo', produto: 'Liberdade de ferramentas', restricao: 'Referência inicial',
+        verificar: 'Verificar em grupo', prazo: 'Entregar e corrigir', refazer: 'Reconstruir a seção',
+        autentica: 'Avaliação contextualizada', presencial: 'Etapas presenciais', detector: 'Análise automatizada',
+        conjunto: 'Responsabilidade compartilhada', individual: 'Escuta individual', revisao: 'Revisão técnica'
+    };
 
     const etapas = [
-        { titulo: 'Ato I — prioridade inicial', escolha: opcaoAto1?.texto, consequencia: memoria.ato1[jogador.escolhas.ato1] },
-        { titulo: 'Ato II — resposta às consequências', escolha: opcaoAto2?.texto, consequencia: memoria.ato2[jogador.escolhas.ato2] },
-        { titulo: 'Conselho — leitura do percurso', escolha: ramo?.compromisso, consequencia: 'A combinação das duas decisões definiu esta solução. Uma escolha diferente em qualquer ato poderia produzir outra leitura institucional.' }
+        { titulo: '1 · Ato I', escolha: rotulosEscolhas[jogador.escolhas.ato1] || opcaoAto1?.texto, consequencia: memoria.ato1[jogador.escolhas.ato1] },
+        { titulo: '2 · Ato II', escolha: rotulosEscolhas[jogador.escolhas.ato2] || opcaoAto2?.texto, consequencia: memoria.ato2[jogador.escolhas.ato2] },
+        { titulo: '3 · Solução', escolha: final.titulo, consequencia: ramo?.compromisso }
     ];
     const nivelamentosVistos = (jogador.escolhas.nivelamentos || [])
         .map(chave => recursosAtos[chave]?.dimensao)
         .filter(Boolean);
     if (nivelamentosVistos.length) {
-        etapas.splice(2, 0, {
-            titulo: 'Nivelamento — perspectivas ampliadas',
-            escolha: nivelamentosVistos.join(' • '),
-            consequencia: 'Esses conteúdos foram apresentados durante os atos porque suas decisões priorizaram outros aspectos do problema. Eles ampliaram o repertório levado ao Conselho.'
-        });
+        etapas[2].consequencia += ` Perspectivas revisitadas durante a jornada: ${nivelamentosVistos.join(' e ')}.`;
     }
     const lista = document.getElementById('etapas-feedback-final');
     lista.replaceChildren();
-    etapas.forEach(etapa => {
-        const artigo = document.createElement('article');
+    const detalhe = document.getElementById('detalhe-feedback-final');
+    const selecionarEtapa = (botao, etapa) => {
+        lista.querySelectorAll('.etapa-feedback').forEach(item => {
+            item.classList.toggle('ativo', item === botao);
+            item.setAttribute('aria-pressed', String(item === botao));
+        });
+        detalhe.textContent = etapa.consequencia;
+    };
+    etapas.forEach((etapa, indice) => {
+        const artigo = document.createElement('button');
+        artigo.type = 'button';
         artigo.className = 'etapa-feedback';
+        artigo.setAttribute('aria-pressed', 'false');
         const titulo = document.createElement('strong');
         titulo.textContent = etapa.titulo;
         const escolha = document.createElement('span');
         escolha.textContent = etapa.escolha || 'Escolha não registrada.';
-        const consequencia = document.createElement('small');
-        consequencia.textContent = etapa.consequencia;
-        artigo.append(titulo, escolha, consequencia);
+        artigo.append(titulo, escolha);
+        artigo.addEventListener('click', () => selecionarEtapa(artigo, etapa));
         lista.appendChild(artigo);
+        if (indice === 0) selecionarEtapa(artigo, etapa);
     });
 }
 

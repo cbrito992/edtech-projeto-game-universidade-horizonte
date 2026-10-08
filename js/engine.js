@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (botao.id === 'btn-instrucoes') {
                 tocarSom(somMenu);
                 document.getElementById('modal-instrucoes').classList.remove('escondido');
+                document.getElementById('btn-fechar-instrucoes').focus();
             }
             if (botao.id === 'btn-fechar-instrucoes') {
                 tocarSom(somMenu);
@@ -285,6 +286,7 @@ function configurarAcessibilidade() {
 
     Object.entries(controles).forEach(([id, [chave, rotulo]]) => {
         document.getElementById(id).addEventListener('click', e => {
+            tocarSom(somMenu);
             preferenciasAcessibilidade[chave] = !preferenciasAcessibilidade[chave];
             aplicarPreferenciasAcessibilidade();
             e.currentTarget.focus();
@@ -293,10 +295,48 @@ function configurarAcessibilidade() {
 
     document.addEventListener('keydown', e => {
         if (e.key !== 'Escape') return;
-        document.getElementById('modal-instrucoes').classList.add('escondido');
+        const instrucoes = document.getElementById('modal-instrucoes');
+        const opcoes = document.getElementById('painel-opcoes');
+        const instrucoesAberta = !instrucoes.classList.contains('escondido');
+        const acessibilidadeAberta = !modal.classList.contains('escondido');
+        const menuAberto = !opcoes.classList.contains('escondido');
+        const fechouAlgo = instrucoesAberta || acessibilidadeAberta || menuAberto;
+        if (!fechouAlgo) return;
+        e.preventDefault();
+        instrucoes.classList.add('escondido');
         modal.classList.add('escondido');
-        painelOpcoes.classList.add('escondido');
+        opcoes.classList.add('escondido');
         document.getElementById('btn-sanduiche').setAttribute('aria-expanded', 'false');
+        tocarSom(somMenu);
+        const retorno = acessibilidadeAberta
+            ? document.getElementById('btn-acessibilidade-flutuante')
+            : menuAberto ? document.getElementById('btn-sanduiche')
+                : document.getElementById('btn-instrucoes');
+        retorno?.focus();
+    });
+
+    let aguardandoFocoPorTab = false;
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Tab') aguardandoFocoPorTab = true;
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('button:not(:disabled)')) {
+            e.target.classList.add('acionado-por-teclado');
+        }
+    }, true);
+    document.addEventListener('keyup', e => {
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('button')) {
+            e.target.classList.remove('acionado-por-teclado');
+        }
+    }, true);
+    document.addEventListener('focusin', e => {
+        if (!aguardandoFocoPorTab || !e.target.matches('button, a, input, select')) return;
+        aguardandoFocoPorTab = false;
+        if (e.target.matches('button')) {
+            e.target.classList.remove('foco-por-teclado');
+            void e.target.offsetWidth;
+            e.target.classList.add('foco-por-teclado');
+            setTimeout(() => e.target.classList.remove('foco-por-teclado'), 350);
+        }
+        tocarSom(somTela);
     });
 }
 

@@ -626,6 +626,21 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     outline-offset: 4px;
 }
 
+button.foco-por-teclado {
+    animation: pulso-foco-teclado .32s ease-out;
+}
+
+button.acionado-por-teclado {
+    transform: translateY(3px) scale(.98);
+    filter: brightness(1.18);
+}
+
+@keyframes pulso-foco-teclado {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.035); box-shadow: 0 0 0 5px rgba(255,243,109,.22); }
+    100% { transform: scale(1); }
+}
+
 #btn-acessibilidade-flutuante {
     position: absolute;
     top: 86px;
@@ -952,15 +967,32 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
 #resumo-feedback-final { margin: 0; font-size: clamp(10px, 1.55vh, 13px); line-height: 1.35; }
 #etapas-feedback-final { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(5px, .8vw, 9px); }
 .etapa-feedback {
-    padding: clamp(6px, 1vh, 9px);
+    position: relative;
+    min-height: 66px;
+    padding: clamp(7px, 1.1vh, 10px);
     min-width: 0;
+    color: var(--ui-texto);
+    text-align: left;
     background: rgba(7,12,28,.72);
+    border: 1px solid rgba(54,217,255,.25);
     border-left: 4px solid var(--ui-ciano);
     border-radius: 3px 10px 3px 10px;
+    cursor: pointer;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
 }
-.etapa-feedback strong { display: block; margin-bottom: 3px; color: var(--ui-ciano); font-size: clamp(10px, 1.55vh, 13px); }
-.etapa-feedback span, .etapa-feedback small { display: block; font-size: clamp(9px, 1.35vh, 12px); line-height: 1.3; }
-.etapa-feedback small { margin-top: 4px; color: #c8d2e8; }
+.etapa-feedback:hover, .etapa-feedback:focus-visible { transform: translateY(-2px); border-color: var(--ui-ciano); }
+.etapa-feedback.ativo { background: rgba(22,142,232,.2); border-color: var(--ui-amarelo); border-left-color: var(--ui-amarelo); }
+.etapa-feedback strong { display: block; margin-bottom: 4px; color: var(--ui-ciano); font-size: clamp(10px, 1.55vh, 13px); }
+.etapa-feedback span { display: block; font-size: clamp(10px, 1.4vh, 12px); line-height: 1.25; }
+#detalhe-feedback-final {
+    min-height: 48px;
+    padding: clamp(7px, 1vh, 10px) clamp(9px, 1.2vw, 13px);
+    color: #dce8ff;
+    background: rgba(255,196,79,.07);
+    border-left: 3px solid var(--ui-amarelo);
+    font-size: clamp(10px, 1.5vh, 13px);
+    line-height: 1.35;
+}
 .painel-final .mensagem-outros-finais { padding-top: clamp(7px, 1.2vh, 12px); }
 .painel-final #btn-recomecar-aluno { min-height: 40px; padding: 8px 18px; }
 
@@ -1266,7 +1298,7 @@ body.alto-contraste .caixa-dialogo-jornada, body.alto-contraste .painel-jornada 
     .painel-jornada { width: calc(100% - 24px); max-height: calc(100% - 28px); }
     .painel-final { width: calc(100% - 16px); max-height: calc(100% - 16px); }
     #etapas-feedback-final { grid-template-columns: 1fr; }
-    .etapa-feedback small { display: none; }
+    #detalhe-feedback-final { min-height: 44px; }
     #painel-criacao { max-height: calc(100% - 28px); }
 }
 
