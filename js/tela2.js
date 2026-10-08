@@ -46,6 +46,42 @@ document.getElementById('btn-avancar-tela2').addEventListener('click', (e) => {
 const inNome = document.getElementById('input-nome');
 const selGenero = document.getElementById('select-genero');
 const btnConfDados = document.getElementById('btn-confirmar-dados');
+const selecaoAparencia = document.getElementById('selecao-aparencia');
+const opcoesAvatar = [...document.querySelectorAll('.opcao-avatar')];
+const statusAvatar = document.getElementById('status-avatar');
+let avatarSelecionado = '';
+
+function atualizarSelecaoAvatar() {
+    const genero = selGenero.value;
+    selecaoAparencia.classList.toggle('escondido', !genero);
+
+    opcoesAvatar.forEach((botao, indice) => {
+        const variacao = botao.dataset.avatar;
+        const selecionado = variacao === avatarSelecionado;
+        botao.setAttribute('aria-pressed', String(selecionado));
+        botao.classList.toggle('selecionado', selecionado);
+        botao.querySelector('img').src = genero ? caminhoAvatarJogador(genero, variacao) : '';
+        botao.setAttribute('aria-label', `Aparência ${indice + 1}${selecionado ? ', selecionada' : ''}`);
+    });
+
+    statusAvatar.textContent = avatarSelecionado
+        ? 'Aparência personalizada selecionada. Selecione-a novamente para voltar ao avatar padrão.'
+        : 'Avatar padrão selecionado.';
+
+    const imgPlayer = document.getElementById('npc-player');
+    if (genero) {
+        imgPlayer.src = caminhoAvatarJogador(genero, avatarSelecionado);
+        imgPlayer.classList.toggle('escondido', emTelaMobileVertical());
+    }
+}
+
+opcoesAvatar.forEach(botao => {
+    botao.addEventListener('click', () => {
+        tocarSom(somTela);
+        avatarSelecionado = avatarSelecionado === botao.dataset.avatar ? '' : botao.dataset.avatar;
+        atualizarSelecaoAvatar();
+    });
+});
 
 function checarDados() {
     if (inNome.value.trim() !== "" && selGenero.value !== "") {
@@ -54,11 +90,7 @@ function checarDados() {
         btnConfDados.classList.add('escondido');
     }
 
-    if (selGenero.value !== "") {
-        const imgPlayer = document.getElementById('npc-player');
-        imgPlayer.src = `assets/images/player_${selGenero.value}.png`;
-        imgPlayer.classList.toggle('escondido', emTelaMobileVertical());
-    }
+    atualizarSelecaoAvatar();
 }
 
 inNome.addEventListener('input', checarDados);
@@ -68,6 +100,7 @@ btnConfDados.addEventListener('click', (e) => {
     tocarSom(somMenu);
     jogador.nome = inNome.value.trim();
     jogador.genero = selGenero.value;
+    jogador.avatar = avatarSelecionado;
 
     document.getElementById('etapa-dados').classList.add('escondido');
     document.getElementById('etapa-classe').classList.remove('escondido');
@@ -132,11 +165,14 @@ btnConfClasse.addEventListener('click', (e) => {
 document.addEventListener('reiniciarTela2', () => {
     jogador.nome = "";
     jogador.genero = "";
+    jogador.avatar = "";
     jogador.classeID = "";
     jogador.classeTitulo = "";
 
     document.getElementById('input-nome').value = "";
     document.getElementById('select-genero').value = "";
+    avatarSelecionado = '';
+    atualizarSelecaoAvatar();
     document.getElementById('npc-player').classList.add('escondido');
 
     document.getElementById('painel-criacao').classList.add('escondido');

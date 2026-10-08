@@ -74,7 +74,7 @@ function carregarDialogoAluno() {
         elNome.classList.remove('escondido');
         elNome.innerText = "SISTEMA";
 
-        let textoArtigo = `O artigo foi aberto em uma nova aba do navegador.<br><br><a href="${linha.url}" target="_blank" style="color:#ff0081; text-decoration:underline;">Clique aqui caso o bloqueador de pop-ups tenha impedido a abertura.</a>`;
+        let textoArtigo = `O artigo foi aberto em uma nova aba do navegador.<br><br><a href="${linha.url}" target="_blank" style="color:var(--ui-ciano); text-decoration:underline;">Clique aqui caso o bloqueador de pop-ups tenha impedido a abertura.</a>`;
         typeWriterAluno(textoArtigo, elTexto);
 
         // Abre o link diretamente
@@ -196,7 +196,7 @@ document.getElementById('btn-avancar-aluno').addEventListener('click', () => {
             tela3.classList.add('escondido');
             tela4.classList.remove('escondido');
             tela4.classList.add('cena-ativa', 'fade-in');
-            document.getElementById('npc-player-aluno2').src = `assets/images/player_${jogador.genero}.png`;
+            document.getElementById('npc-player-aluno2').src = caminhoAvatarJogador();
             document.dispatchEvent(new Event('iniciarTelaAluno2'));
         }, 1000);
     }

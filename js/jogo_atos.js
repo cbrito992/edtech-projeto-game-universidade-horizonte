@@ -70,10 +70,16 @@ function mostrarTransicaoAto(titulo, subtitulo, callback) {
     const subtituloEl = document.getElementById('texto-transicao-ato');
     const botao = document.getElementById('btn-iniciar-ato1');
     const movimentoReduzido = preferenciasAcessibilidade.reduzirMovimento;
+    const fundosTransicao = {
+        'Ato I': 'assets/images/background_transicao_ato1.webp',
+        'Ato II': 'assets/images/background_transicao_ato2.webp',
+        'Conselho': 'assets/images/background_transicao_ato3.webp'
+    };
+    tela.style.setProperty('--background-transicao', `url("${fundosTransicao[titulo] || fundosTransicao['Ato I']}")`);
     document.getElementById('titulo-ato1').textContent = titulo;
     subtituloEl.textContent = subtitulo;
     subtituloEl.classList.toggle('escondido', !subtitulo);
-    botao.textContent = titulo === 'Ato I' ? 'Começar ato' : 'Continuar';
+    botao.textContent = titulo === 'Ato I' ? 'Começar ato' : titulo === 'Conselho' ? 'Entrar no Conselho' : 'Continuar';
     botao.disabled = true;
     document.getElementById('menu-persistente').classList.add('escondido');
     aposTransicao = callback;
@@ -113,7 +119,9 @@ document.getElementById('btn-iniciar-ato1').addEventListener('click', () => {
     botao.disabled = true;
     // O play nasce do gesto do usuário; isso evita bloqueio de áudio móvel
     // quando a cena seguinte só é ativada após o tempo do fade.
-    if (somLigado) somBiblioteca.play().catch(() => {});
+    if (somLigado && document.getElementById('titulo-ato1').textContent !== 'Conselho') {
+        somBiblioteca.play().catch(() => {});
+    }
     tela.classList.add('saindo-transicao-ato');
     cortina.classList.add('cortina-visivel');
 
@@ -145,7 +153,7 @@ function iniciarAto(numero) {
     const companheiro = document.getElementById('npc-companheiro-atos');
     companheiro.src = roteiroJornada.avatar;
     companheiro.alt = roteiroJornada.companheiro;
-    document.getElementById('npc-player-atos').src = `assets/images/player_${jogador.genero}.png`;
+    document.getElementById('npc-player-atos').src = caminhoAvatarJogador();
 
     const dados = numero === 1 ? roteiroJornada.ato1 : roteiroJornada.ato2;
     const lembranca = numero === 2
@@ -170,12 +178,12 @@ function carregarPassoJornada() {
             somBiblioteca.pause();
             mostrarTransicaoAto('Ato II', 'Três meses depois...', () => iniciarAto(2));
         } else {
-            const cortina = document.getElementById('cortina-transicao-ato');
-            cortina.classList.add('cortina-visivel');
-            setTimeout(() => {
-                iniciarConselhoAtos();
-                requestAnimationFrame(() => cortina.classList.remove('cortina-visivel'));
-            }, preferenciasAcessibilidade.reduzirMovimento ? 0 : 900);
+            somBiblioteca.pause();
+            mostrarTransicaoAto(
+                'Conselho',
+                'As escolhas feitas agora encontram outras perspectivas.',
+                iniciarConselhoAtos
+            );
         }
         return;
     }
@@ -586,7 +594,7 @@ function iniciarConselhoAtos() {
     const conselho = document.getElementById('tela5-conselho');
     conselho.classList.remove('escondido');
     conselho.classList.add('cena-ativa', 'fade-in');
-    document.getElementById('npc-player-conselho').src = `assets/images/player_${jogador.genero}.png`;
+    document.getElementById('npc-player-conselho').src = caminhoAvatarJogador();
     document.getElementById('painel-final-aluno').classList.add('escondido');
     document.getElementById('painel-decisao-conselho').classList.add('escondido');
     document.getElementById('caixa-dialogo-conselho').classList.remove('escondido');

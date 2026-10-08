@@ -59,7 +59,7 @@ function carregarDialogoAluno2() {
         nome.classList.remove('escondido');
         nome.innerText = 'SISTEMA';
         btnAvancar.classList.remove('escondido');
-        const aviso = `O artigo foi aberto em uma nova aba do navegador.<br><br><a href="${linha.url}" target="_blank" rel="noopener noreferrer" style="color:#ff0081;text-decoration:underline;">Clique aqui se a nova aba não abriu.</a>`;
+        const aviso = `O artigo foi aberto em uma nova aba do navegador.<br><br><a href="${linha.url}" target="_blank" rel="noopener noreferrer" style="color:var(--ui-ciano);text-decoration:underline;">Clique aqui se a nova aba não abriu.</a>`;
         typeWriterAluno2(aviso, texto);
         window.open(linha.url, '_blank', 'noopener,noreferrer');
         return;
@@ -108,7 +108,7 @@ function irParaConselho() {
         tela4.classList.add('escondido');
         tela5.classList.remove('escondido');
         tela5.classList.add('cena-ativa', 'fade-in');
-        document.getElementById('npc-player-conselho').src = `assets/images/player_${jogador.genero}.png`;
+        document.getElementById('npc-player-conselho').src = caminhoAvatarJogador();
         document.dispatchEvent(new Event('iniciarTelaConselho'));
     }, 1000);
 }

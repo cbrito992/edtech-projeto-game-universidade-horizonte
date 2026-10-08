@@ -140,7 +140,7 @@ function irParaConselhoAdicional() {
         telaAtual.classList.add('escondido');
         conselho.classList.remove('escondido');
         conselho.classList.add('cena-ativa', 'fade-in');
-        document.getElementById('npc-player-conselho').src = `assets/images/player_${jogador.genero}.png`;
+        document.getElementById('npc-player-conselho').src = caminhoAvatarJogador();
         document.dispatchEvent(new Event('iniciarTelaConselho'));
     }, preferenciasAcessibilidade.reduzirMovimento ? 0 : 1000);
 }
@@ -167,7 +167,7 @@ document.addEventListener('iniciarCaminhoAdicional', () => {
     const npc = document.getElementById('npc-companheiro');
     npc.src = caminhoAtual.npcImagem;
     npc.alt = caminhoAtual.npcNome;
-    document.getElementById('npc-player-adicional').src = `assets/images/player_${jogador.genero}.png`;
+    document.getElementById('npc-player-adicional').src = caminhoAvatarJogador();
     somBiblioteca.loop = true;
     aplicarVolumeGlobal();
     if (somLigado) somBiblioteca.play().catch(e => console.log(e));

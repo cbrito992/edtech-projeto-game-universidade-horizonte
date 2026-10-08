@@ -103,8 +103,8 @@ const roteirosAtos = {
         nivel: 'Fácil',
         companheiro: 'NICODEMOS',
         avatar: 'assets/images/npc_nicodemos.png',
-        fundo1: 'assets/images/background_sala de informatica.png',
-        fundo2: 'assets/images/background_hall.png',
+        fundo1: 'assets/images/background_sala de informatica.webp',
+        fundo2: 'assets/images/background_hall.webp',
         ato1: {
             antes: [
                 { nome: '', texto: 'Laboratório do Comitê Horizonte IA. O assistente acadêmico já funciona nos testes; ainda não existe uma regra para oferecê-lo ao campus.' },
@@ -213,8 +213,8 @@ const roteirosAtos = {
         nivel: 'Intermediário',
         companheiro: 'LÍVIA',
         avatar: 'assets/images/npc_livia_stand.png',
-        fundo1: 'assets/images/background_biblioteca.png',
-        fundo2: 'assets/images/background_sala de aula.png',
+        fundo1: 'assets/images/background_biblioteca.webp',
+        fundo2: 'assets/images/background_sala de aula.webp',
         ato1: {
             antes: [
                 { nome: '', texto: 'Como gestor educacional do Programa Horizonte IA, você recebe relatos de turmas com práticas muito diferentes de uso da ferramenta.' },
@@ -323,8 +323,8 @@ const roteirosAtos = {
         nivel: 'Difícil',
         companheiro: 'PROFESSOR AUGUSTO',
         avatar: 'assets/images/npc_professor_augusto_tela1.png',
-        fundo1: 'assets/images/background_sala de aula.png',
-        fundo2: 'assets/images/background_sala de informatica.png',
+        fundo1: 'assets/images/background_sala de aula.webp',
+        fundo2: 'assets/images/background_sala de informatica.webp',
         ato1: {
             antes: [
                 { nome: '', texto: 'Sala 12. Na mesa de Augusto há vinte trabalhos com estrutura semelhante. A disciplina pede que os estudantes expliquem conceitos de cultura digital.' },

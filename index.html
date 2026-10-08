@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizonte IA — Decisões em Jogo</title>
+    <title>HorizonQ — Perguntas que mudam caminhos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -37,8 +37,10 @@
         <div id="tela-menu" class="tela cena-ativa">
             <img id="npc-menu-mobile" src="assets/images/npc_gerente_de_ti.png" alt="" aria-hidden="true">
             <h1 class="titulo-jogo">
-                <span class="titulo-principal">Horizonte <strong>IA</strong></span>
-                <small>Decisões em Jogo</small>
+                <span class="marca-horizonq">
+                    <img src="assets/images/title_game_menu.png" alt="HorizonQ">
+                </span>
+                <small>Perguntas que mudam caminhos</small>
             </h1>
             <div class="menu-container">
                 <button id="btn-jogar" class="btn-menu">Jogar</button>
@@ -120,6 +122,21 @@
                             <option value="female">Feminino</option>
                         </select>
                     </div>
+                    <fieldset id="selecao-aparencia" class="selecao-aparencia escondido">
+                        <legend>Escolha uma aparência <span>(opcional)</span></legend>
+                        <div class="opcoes-avatar" role="group" aria-label="Variações visuais do avatar">
+                            <button class="opcao-avatar" type="button" data-avatar="white" aria-pressed="false" aria-label="Aparência 1">
+                                <img src="" alt="">
+                            </button>
+                            <button class="opcao-avatar" type="button" data-avatar="black" aria-pressed="false" aria-label="Aparência 2">
+                                <img src="" alt="">
+                            </button>
+                            <button class="opcao-avatar" type="button" data-avatar="asian" aria-pressed="false" aria-label="Aparência 3">
+                                <img src="" alt="">
+                            </button>
+                        </div>
+                        <p id="status-avatar" aria-live="polite">Avatar padrão selecionado.</p>
+                    </fieldset>
                     <button id="btn-confirmar-dados" class="btn-menu escondido">Continuar</button>
                 </div>
 
@@ -224,7 +241,7 @@
 
         <!-- Tela 4: Segunda interação do Aluno de Intercâmbio -->
         <div id="tela4-aluno" class="tela escondido">
-            <img id="npc-livia-aluno2" class="npc escondido" src="assets/images/npc_livia_instruction.png" alt="Lívia">
+            <img id="npc-livia-aluno2" class="npc escondido" src="assets/images/npc_livia_stand.png" alt="Lívia">
             <img id="npc-player-aluno2" class="npc escondido" src="" alt="Jogador">
 
             <div id="painel-video-aluno2" class="painel-midia escondido">

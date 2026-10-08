@@ -15,7 +15,7 @@ const bancoDeDialogos = {
             texto: "COMUNICADO INSTITUCIONAL<br>A Universidade Horizonte iniciará neste semestre o Programa Horizonte IA.<br>Algumas disciplinas participarão de um projeto-piloto de integração entre Inteligência Artificial e aprendizagem.",
             livia: false,
             augusto: false,
-            bg: "url('assets/images/background_tela_apresentacao_celular.png')",
+            bg: "url('assets/images/background_tela_introducao.webp')",
             btnTexto: "Avançar"
         },
         {
@@ -40,7 +40,7 @@ const bancoDeDialogos = {
     },
 
     trilhaAluno: [
-        { nome: "", texto: "Primeiro dia oficial no programa Horizonte IA.<br>O campus parece ainda maior quando você está tentando encontrar o bloco de pesquisa.", player: false, bg: "url('assets/images/background_biblioteca.png')" },
+        { nome: "", texto: "Primeiro dia oficial no programa Horizonte IA.<br>O campus parece ainda maior quando você está tentando encontrar o bloco de pesquisa.", player: false, bg: "url('assets/images/background_biblioteca.webp')" },
         { nome: "{nome}", texto: "Certo... Bloco B, laboratório 204. Não deve ser tão difícil.", player: true },
 
         { nome: "LÍVIA", texto: "Posso perguntar uma coisa?", player: false },
@@ -77,7 +77,7 @@ const bancoDeDialogos = {
     },
 
     trilhaAluno2: [
-        { nome: "", texto: "Antes de seguir para o laboratório, uma nova notificação chega ao seu celular.<br><br>O conselho pede uma análise sobre autoria, equidade e responsabilidade no uso acadêmico da IA.", bg: "url('assets/images/background_biblioteca.png')" },
+        { nome: "", texto: "Antes de seguir para o laboratório, uma nova notificação chega ao seu celular.<br><br>O conselho pede uma análise sobre autoria, equidade e responsabilidade no uso acadêmico da IA.", bg: "url('assets/images/background_biblioteca.webp')" },
         { nome: "LÍVIA", texto: "Eles apresentaram um caso: uma estudante usou IA para organizar categorias iniciais e revisar a clareza do texto. Depois verificou as fontes e escreveu a análise final." },
         { nome: "{nome}", texto: "Isso não cabe facilmente em 'usou' ou 'não usou'. Precisamos observar a finalidade, o quanto da contribuição intelectual foi preservado e se houve transparência." },
         { tipo: "video", url: "https://www.youtube.com/embed/S2Pq1fwgTuM" },

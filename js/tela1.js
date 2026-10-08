@@ -59,11 +59,11 @@ function carregarDialogo() {
 
     // Controle Dinâmico de Background
     if (linha.nome === "NOTIFICAÇÃO") {
-        telaConfig.style.backgroundImage = "url('assets/images/background_tela_apresentacao.png')";
+        telaConfig.style.backgroundImage = "url('assets/images/background_tela_introducao.webp')";
     } else if (linha.bg) {
         telaConfig.style.backgroundImage = linha.bg;
     } else {
-        telaConfig.style.backgroundImage = "url('assets/images/background_tela_apresentacao.png')";
+        telaConfig.style.backgroundImage = "url('assets/images/background_tela_introducao.webp')";
     }
 
     // Controle Dinâmico do Botão

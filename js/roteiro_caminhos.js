@@ -2,7 +2,7 @@ const caminhosAdicionais = {
     professor: {
         npcNome: "PROFESSOR AUGUSTO",
         npcImagem: "assets/images/npc_professor_augusto_tela1.png",
-        inicio: "url('assets/images/background_sala de aula.png')",
+        inicio: "url('assets/images/background_sala de aula.webp')",
         dialogos: [
             { nome: "", texto: "Sala 12. O projeto-piloto começa com uma pergunta deixada no quadro: o que ainda pertence ao professor quando uma máquina também explica, corrige e sugere?" },
             { nome: "PROFESSOR AUGUSTO", texto: "Bem-vindo, {nome}. Recebi vinte trabalhos muito parecidos. Alguns estudantes usaram IA; outros apenas imitaram a estrutura que ela costuma produzir." },
@@ -24,7 +24,7 @@ const caminhosAdicionais = {
             { nome: "PROFESSOR AUGUSTO", texto: "E personalizar não é apenas trocar palavras. Uma boa intervenção depende do objetivo da atividade, das evidências de aprendizagem e das necessidades reais do estudante." },
             { tipo: "link", url: "https://www.unesco.org/pt/articles/marco-referencial-de-competencias-em-ia-para-professores" },
             { nome: "{nome}", texto: "O marco trata o professor como responsável pelo desenho pedagógico e pelo uso ético, não como alguém que apenas opera uma ferramenta." },
-            { nome: "PROFESSOR AUGUSTO", texto: "Isso nos leva à segunda interação: como avaliar autoria e aprendizagem quando a IA participa da produção?", bg: "url('assets/images/background_sala de informatica.png')" },
+            { nome: "PROFESSOR AUGUSTO", texto: "Isso nos leva à segunda interação: como avaliar autoria e aprendizagem quando a IA participa da produção?", bg: "url('assets/images/background_sala de informatica.webp')" },
             { nome: "", texto: "Laboratório de informática. Na tela, três versões do mesmo trabalho: o rascunho do estudante, as sugestões da IA e a versão entregue." },
             { nome: "PROFESSOR AUGUSTO", texto: "O texto final está bem escrito, mas isso não basta. Preciso escolher o que a avaliação realmente deve tornar visível." },
             {
@@ -57,7 +57,7 @@ const caminhosAdicionais = {
     estagiario: {
         npcNome: "NICODEMOS",
         npcImagem: "assets/images/npc_nicodemos.png",
-        inicio: "url('assets/images/background_sala de informatica.png')",
+        inicio: "url('assets/images/background_sala de informatica.webp')",
         dialogos: [
             { nome: "", texto: "Laboratório do Comitê Horizonte IA. Planilhas, termos de uso e relatórios disputam espaço na mesma tela." },
             { nome: "NICODEMOS", texto: "Você deve ser {nome}. Sou Nicodemos, também estou apoiando o comitê. A reitoria quer lançar um assistente acadêmico para todo o campus." },
@@ -79,7 +79,7 @@ const caminhosAdicionais = {
             { nome: "NICODEMOS", texto: "Encontrei um debate sobre políticas digitais, equidade, acessibilidade, sustentabilidade e proteção de dados. É exatamente o nosso problema." },
             { tipo: "link", url: "https://www.iiep.unesco.org/pt/articles/inteligencia-artificial-e-educacao-o-papel-da-ia-nas-politicas-educacionais" },
             { nome: "{nome}", texto: "Implementar não é apenas contratar uma plataforma. Precisamos de governança, formação, infraestrutura, canais de contestação e critérios para medir impacto." },
-            { nome: "NICODEMOS", texto: "E chegou uma proposta da empresa fornecedora. Vamos analisá-la no hall antes da reunião.", bg: "url('assets/images/background_hall.png')" },
+            { nome: "NICODEMOS", texto: "E chegou uma proposta da empresa fornecedora. Vamos analisá-la no hall antes da reunião.", bg: "url('assets/images/background_hall.webp')" },
             { nome: "", texto: "A proposta oferece seis meses gratuitos. Em troca, a empresa solicita dados de uso para aprimorar o sistema e não garante os mesmos recursos no plano gratuito após o piloto." },
             { nome: "NICODEMOS", texto: "A oferta acelera o projeto, mas cria dependência. Recusar agora protege a instituição, mas também adia benefícios. Precisamos escolher como lidar com a incerteza." },
             {

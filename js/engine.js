@@ -2,6 +2,7 @@
 let jogador = {
     nome: "",
     genero: "",
+    avatar: "",
     classeID: "",
     classeTitulo: "",
     escolhas: {}, // Memória permanente para os finais
@@ -9,6 +10,12 @@ let jogador = {
     finalLiberado: "",
     ultimaEscolhaFinal: ""
 };
+
+function caminhoAvatarJogador(genero = jogador.genero, variacao = jogador.avatar) {
+    if (!genero) return '';
+    const nomeArquivo = variacao ? `player_${genero}_${variacao}.png` : `player_${genero}2.png`;
+    return `assets/images/${nomeArquivo}`;
+}
 
 function registrarTendenciaFinal(interacao, finalEscolhido) {
     const escolhaAnterior = jogador.escolhas[interacao];
