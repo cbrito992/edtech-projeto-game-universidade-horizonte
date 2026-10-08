@@ -60,7 +60,8 @@ function atualizarSelecaoAvatar() {
         const selecionado = variacao === avatarSelecionado;
         botao.setAttribute('aria-pressed', String(selecionado));
         botao.classList.toggle('selecionado', selecionado);
-        botao.setAttribute('aria-label', `Aparência ${indice + 1}${selecionado ? ', selecionada' : ''}`);
+        const rotulo = variacao ? `Aparência ${indice}` : 'Aparência padrão';
+        botao.setAttribute('aria-label', `${rotulo}${selecionado ? ', selecionada' : ''}`);
     });
 
     statusAvatar.textContent = avatarSelecionado

@@ -1131,6 +1131,19 @@ kbd { padding: 2px 6px; color: #08101f; background: #fff; border-radius: 3px; bo
 .opcao-avatar[data-avatar="white"] { --cor-avatar: #efc5a5; }
 .opcao-avatar[data-avatar="black"] { --cor-avatar: #70412f; }
 .opcao-avatar[data-avatar="asian"] { --cor-avatar: #d9a06f; }
+.opcao-avatar-padrao {
+    --cor-avatar: linear-gradient(135deg, #38bfff 0 48%, #ffbf3f 52% 100%);
+}
+.opcao-avatar-padrao::after {
+    content: '★';
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    color: #07152d;
+    font-size: 15px;
+    line-height: 1;
+}
 .opcao-avatar:hover { transform: translateY(-3px); border-color: var(--ui-ciano); }
 .opcao-avatar.selecionado {
     border-color: var(--ui-amarelo);
