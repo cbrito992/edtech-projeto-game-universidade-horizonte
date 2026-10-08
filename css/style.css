@@ -713,12 +713,12 @@ button.acionado-por-teclado {
 
 .titulo-jogo {
     position: absolute;
-    top: clamp(24px, 7%, 66px);
-    left: clamp(24px, 5%, 72px);
+    top: clamp(16px, 4%, 42px);
+    left: clamp(14px, 2.5%, 34px);
     z-index: 12;
     transform: none;
-    width: min(43vw, 500px);
-    max-width: 48%;
+    width: min(35vw, 420px);
+    max-width: 40%;
     padding: 0;
     color: #fff;
     font-size: clamp(25px, 3.2vw, 40px);
@@ -1357,7 +1357,7 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     #painel-opcoes { top: 0; right: 58px; width: min(260px, calc(100vw - 78px)); }
     #btn-acessibilidade-flutuante { top: 68px; right: 10px; width: 46px; height: 46px; min-height: 46px; padding: 7px; }
     #tela-menu { padding: 0 0 2.5% 5%; }
-    .titulo-jogo { top: 10px; left: 4%; width: min(43vw, 390px); max-width: 48%; padding: 0; }
+    .titulo-jogo { top: 8px; left: 2%; width: min(32vw, 350px); max-width: 36%; padding: 0; }
     .menu-container { width: min(76%, 255px); padding: 10px; gap: 6px; }
     .menu-container .btn-menu { min-height: 36px; padding: 7px 14px; font-size: 12px; }
     .controle-volume-menu { padding: 6px 9px; font-size: 12px; }
