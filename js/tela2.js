@@ -120,6 +120,8 @@ cardsClasse.forEach(card => {
         jogador.classeID = card.getAttribute('data-id');
         jogador.classeTitulo = card.getAttribute('data-titulo');
 
+        // Atualiza a prévia com o uniforme da função escolhida.
+        document.getElementById('npc-player').src = caminhoAvatarJogador();
         btnConfClasse.classList.remove('escondido');
     });
 });
