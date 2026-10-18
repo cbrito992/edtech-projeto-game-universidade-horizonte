@@ -11,10 +11,14 @@ let jogador = {
     ultimaEscolhaFinal: ""
 };
 
-function caminhoAvatarJogador(genero = jogador.genero, variacao = jogador.avatar) {
+function caminhoAvatarJogador(genero = jogador.genero, variacao = jogador.avatar, classe = jogador.classeID) {
     if (!genero) return '';
-    const nomeArquivo = variacao ? `player_${genero}_${variacao}.png` : `player_${genero}2.png`;
-    return `assets/images/${nomeArquivo}`;
+    const sufixos = { estagiario: 'ES', professor: 'PV', gestor: 'GE' };
+    // Enquanto a função não foi escolhida, mostra a versão de Estagiário.
+    const funcao = sufixos[classe] || 'ES';
+    // A opção padrão utiliza a aparência white dos novos assets.
+    const aparencia = ['white', 'black', 'asian'].includes(variacao) ? variacao : 'white';
+    return `assets/images/player_${genero}_${aparencia}_${funcao}.webp`;
 }
 
 function registrarTendenciaFinal(interacao, finalEscolhido) {
