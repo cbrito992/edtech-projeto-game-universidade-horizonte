@@ -372,7 +372,7 @@ body {
 #npc-livia { left: 5%; transform: scaleX(-1); }
 #npc-giovana { left: 0%; transform: scaleX(-1); }
 #npc-augusto { right: 5%; }
-#npc-player { right: 0; height: 72%; }
+#npc-player { right: 0; height: 86%; }
 #npc-livia-aluno { left: 5%; transform: scaleX(-1); }
 #npc-player-aluno { right: 5%; }
 #npc-livia-aluno2 { left: 5%; transform: scaleX(-1); }
