@@ -13,12 +13,17 @@ let jogador = {
 
 function caminhoAvatarJogador(genero = jogador.genero, variacao = jogador.avatar, classe = jogador.classeID) {
     if (!genero) return '';
+    const aparencias = ['white', 'black', 'asian'];
     const sufixos = { estagiario: 'ES', professor: 'PV', gestor: 'GE' };
-    // Enquanto a função não foi escolhida, mostra a versão de Estagiário.
-    const funcao = sufixos[classe] || 'ES';
-    // A opção padrão utiliza a aparência white dos novos assets.
-    const aparencia = ['white', 'black', 'asian'].includes(variacao) ? variacao : 'white';
-    return `assets/images/player_${genero}_${aparencia}_${funcao}.webp`;
+    const aparencia = aparencias.includes(variacao) ? variacao : '';
+
+    // Antes de escolher a função, mantém os avatares originais de aparência.
+    if (!classe || !sufixos[classe]) {
+        return `assets/images/${aparencia ? `player_${genero}_${aparencia}.png` : `player_${genero}2.png`}`;
+    }
+
+    // Depois da escolha da função, carrega a roupa correspondente.
+    return `assets/images/player_${genero}_${aparencia || 'white'}_${sufixos[classe]}.webp`;
 }
 
 function registrarTendenciaFinal(interacao, finalEscolhido) {
