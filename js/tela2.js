@@ -106,6 +106,9 @@ btnConfDados.addEventListener('click', (e) => {
 
     document.getElementById('etapa-dados').classList.add('escondido');
     document.getElementById('etapa-classe').classList.remove('escondido');
+    // Mostra os dois personagens acima do painel na seleção de função mobile.
+    document.getElementById('npc-giovana').classList.remove('escondido');
+    document.getElementById('npc-player').classList.remove('escondido');
     cardsClasse.forEach(card => card.classList.toggle('selecionado', card.dataset.id === jogador.classeID));
     btnConfClasse.classList.toggle('escondido', !jogador.classeID);
     if (jogador.classeID) document.getElementById('npc-player').src = caminhoAvatarJogador();
