@@ -1499,17 +1499,17 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     padding-right: 28px;
 }
 #tela2:has(#etapa-classe:not(.escondido)) #npc-giovana {
-    left: -3%;
-    height: 84%;
+    left: 0;
+    height: 90%;
 }
 #tela2:has(#etapa-classe:not(.escondido)) #npc-player {
-    right: -3%;
-    height: 84%;
+    right: 0;
+    height: 90%;
 }
 @media (min-width: 1101px) {
     #tela2:has(#etapa-classe:not(.escondido)) #npc-giovana,
     #tela2:has(#etapa-classe:not(.escondido)) #npc-player {
-        max-width: 22%;
+        max-width: 30%;
         object-fit: contain;
         object-position: bottom;
     }
@@ -1534,10 +1534,10 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
         visibility: visible;
         pointer-events: none;
         position: absolute;
-        top: clamp(82px, 10svh, 120px);
+        top: clamp(54px, 6svh, 80px);
         bottom: auto;
-        height: clamp(135px, 22svh, 210px);
-        max-width: 45%;
+        height: clamp(185px, 30svh, 290px);
+        max-width: 49%;
         width: auto;
         object-fit: contain;
         object-position: bottom;
@@ -1554,7 +1554,7 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
         bottom: max(12px, 2svh);
         left: 50%;
         transform: translateX(-50%);
-        max-height: 65svh;
+        max-height: 62svh;
         overflow-y: auto;
         z-index: 10;
     }
