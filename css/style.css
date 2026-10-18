@@ -1516,3 +1516,39 @@ body:has(.reduzir-movimento) #tela5-conselho {
         bottom: 12px;
     }
 }
+
+
+/* HorizonQ — enquadramento dos personagens na escolha de função.
+   Restrito à etapa de classe para não alterar o perfil ou os atos. */
+#tela2:has(#etapa-classe:not(.escondido)) #painel-criacao {
+    width: min(82%, 620px);
+    max-width: 620px;
+    padding-left: 28px;
+    padding-right: 28px;
+}
+#tela2:has(#etapa-classe:not(.escondido)) #npc-giovana {
+    left: -3%;
+    height: 84%;
+}
+#tela2:has(#etapa-classe:not(.escondido)) #npc-player {
+    right: -3%;
+    height: 84%;
+}
+@media (min-width: 1101px) {
+    #tela2:has(#etapa-classe:not(.escondido)) #npc-giovana,
+    #tela2:has(#etapa-classe:not(.escondido)) #npc-player {
+        max-width: 22%;
+        object-fit: contain;
+        object-position: bottom;
+    }
+}
+/* Em telas compactas, prioriza a legibilidade da escolha e evita cortes
+   causados por uma largura fixa de painel. */
+@media (max-width: 760px) {
+    #tela2:has(#etapa-classe:not(.escondido)) #painel-criacao {
+        width: min(92%, 580px);
+        max-width: 580px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
