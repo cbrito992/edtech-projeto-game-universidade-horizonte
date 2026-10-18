@@ -1469,3 +1469,31 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-editar-personagem { left: 12px; }
     #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-avancar-tela2 { right: 12px; }
 }
+
+/* Teste cinematográfico: movimento muito leve apenas no Hall e no Conselho.
+   Anima somente o background, sem deslocar avatares, botões ou textos. */
+@keyframes camera-horizonq {
+    0%, 100% { background-size: 104% 104%; background-position: 48% 50%; }
+    50% { background-size: 108% 108%; background-position: 52% 50%; }
+}
+#tela2.cena-ativa,
+#tela5-conselho.cena-ativa {
+    background-repeat: no-repeat;
+    animation: camera-horizonq 30s ease-in-out infinite;
+}
+/* Acessibilidade: respeita a configuração do jogo e do dispositivo. */
+body.reduzir-movimento #tela2,
+body.reduzir-movimento #tela5-conselho,
+body:has(.reduzir-movimento) #tela2,
+body:has(.reduzir-movimento) #tela5-conselho {
+    animation: none !important;
+    background-size: cover;
+    background-position: center;
+}
+@media (prefers-reduced-motion: reduce) {
+    #tela2, #tela5-conselho {
+        animation: none !important;
+        background-size: cover;
+        background-position: center;
+    }
+}
