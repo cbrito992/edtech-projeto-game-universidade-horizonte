@@ -1431,3 +1431,32 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     pointer-events: none;
     z-index: -100;
 }
+
+
+/* Revisão do personagem antes do Ato I: botões adaptáveis sem sobrepor o diálogo. */
+#caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) {
+    padding-right: 35px;
+    padding-bottom: 78px;
+}
+#caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #texto-narrativa-tela2 {
+    padding-right: 0;
+}
+#btn-editar-personagem {
+    position: absolute;
+    bottom: 15px;
+    left: 22px;
+    right: auto;
+    padding: 8px 15px;
+    font-size: 13px;
+    z-index: 20;
+}
+@media (max-width: 560px) {
+    #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) {
+        padding: 16px 14px 112px;
+    }
+    #btn-editar-personagem { left: 12px; bottom: 56px; }
+    #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-avancar-tela2 {
+        right: 12px;
+        bottom: 9px;
+    }
+}
