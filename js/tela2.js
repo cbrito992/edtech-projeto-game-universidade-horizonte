@@ -50,6 +50,8 @@ const selecaoAparencia = document.getElementById('selecao-aparencia');
 const opcoesAvatar = [...document.querySelectorAll('.opcao-avatar')];
 const statusAvatar = document.getElementById('status-avatar');
 let avatarSelecionado = '';
+const btnEditarPersonagem = document.getElementById('btn-editar-personagem');
+let editandoPersonagem = false;
 
 function atualizarSelecaoAvatar() {
     const genero = selGenero.value;
@@ -70,7 +72,7 @@ function atualizarSelecaoAvatar() {
 
     const imgPlayer = document.getElementById('npc-player');
     if (genero) {
-        imgPlayer.src = caminhoAvatarJogador(genero, avatarSelecionado);
+        imgPlayer.src = caminhoAvatarJogador(genero, avatarSelecionado, '');
         imgPlayer.classList.toggle('escondido', emTelaMobileVertical());
     }
 }
@@ -104,6 +106,9 @@ btnConfDados.addEventListener('click', (e) => {
 
     document.getElementById('etapa-dados').classList.add('escondido');
     document.getElementById('etapa-classe').classList.remove('escondido');
+    cardsClasse.forEach(card => card.classList.toggle('selecionado', card.dataset.id === jogador.classeID));
+    btnConfClasse.classList.toggle('escondido', !jogador.classeID);
+    if (jogador.classeID) document.getElementById('npc-player').src = caminhoAvatarJogador();
 });
 
 // ETAPA 2: Seleção de Classe
@@ -126,6 +131,22 @@ cardsClasse.forEach(card => {
     });
 });
 
+// Permite rever nome, avatar e função sem perder os dados anteriores.
+btnEditarPersonagem.addEventListener('click', () => {
+    tocarSom(somTela);
+    editandoPersonagem = true;
+    inNome.value = jogador.nome;
+    selGenero.value = jogador.genero;
+    avatarSelecionado = jogador.avatar;
+    document.getElementById('etapa-classe').classList.add('escondido');
+    document.getElementById('etapa-dados').classList.remove('escondido');
+    document.getElementById('caixa-dialogo-tela2').classList.add('escondido');
+    document.getElementById('painel-criacao').classList.remove('escondido');
+    btnEditarPersonagem.classList.add('escondido');
+    checarDados();
+    inNome.focus();
+});
+
 // ETAPA 3: Conclusão e Roteamento de Cena
 btnConfClasse.addEventListener('click', (e) => {
     tocarSom(somMenu);
@@ -134,6 +155,8 @@ btnConfClasse.addEventListener('click', (e) => {
     document.getElementById('caixa-dialogo-tela2').classList.remove('escondido');
     document.getElementById('npc-player').classList.add('escondido');
     document.getElementById('npc-giovana').classList.remove('escondido');
+    btnEditarPersonagem.classList.remove('escondido');
+    editandoPersonagem = false;
 
     let textoFinal = bancoDeDialogos.tela2.fala2
         .replace('{nome}', jogador.nome)
@@ -165,6 +188,8 @@ btnConfClasse.addEventListener('click', (e) => {
 
 // Ação de Reiniciar (Menu Sanduíche)
 document.addEventListener('reiniciarTela2', () => {
+    editandoPersonagem = false;
+    btnEditarPersonagem.classList.add('escondido');
     jogador.nome = "";
     jogador.genero = "";
     jogador.avatar = "";
