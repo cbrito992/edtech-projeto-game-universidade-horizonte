@@ -1433,10 +1433,10 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
 }
 
 
-/* Revisão do personagem antes do Ato I: botões adaptáveis sem sobrepor o diálogo. */
+/* Ações de confirmação alinhadas no diálogo com Giovana. */
 #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) {
     padding-right: 35px;
-    padding-bottom: 78px;
+    padding-bottom: 76px;
 }
 #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #texto-narrativa-tela2 {
     padding-right: 0;
@@ -1450,13 +1450,22 @@ body.reduzir-movimento *, body.reduzir-movimento *::before, body.reduzir-movimen
     font-size: 13px;
     z-index: 20;
 }
+#caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-avancar-tela2 {
+    bottom: 15px;
+}
 @media (max-width: 560px) {
     #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) {
-        padding: 16px 14px 112px;
+        padding: 16px 14px 74px;
     }
-    #btn-editar-personagem { left: 12px; bottom: 56px; }
+    #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-editar-personagem,
     #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-avancar-tela2 {
-        right: 12px;
-        bottom: 9px;
+        bottom: 12px;
+        width: calc(50% - 21px);
+        min-width: 0;
+        padding: 9px 4px;
+        font-size: clamp(10px, 2.8vw, 13px);
+        text-align: center;
     }
+    #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-editar-personagem { left: 12px; }
+    #caixa-dialogo-tela2:has(#btn-editar-personagem:not(.escondido)) #btn-avancar-tela2 { right: 12px; }
 }
