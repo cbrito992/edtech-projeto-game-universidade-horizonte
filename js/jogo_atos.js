@@ -407,79 +407,79 @@ document.addEventListener('reiniciarJogoAtos', () => {
 });
 
 const memoriaConselho = {
-    estagiario: {
-        ato1: {
-            auditavel: 'O primeiro piloto foi acompanhado de perto; isso ajudou a conhecer limites, embora tenha demorado a chegar a toda a comunidade.',
-            amplo: 'A abertura ampla trouxe demandas reais, mas exigiu conter problemas de suporte e dados antes de continuar.',
-            adiar: 'O adiamento revelou desigualdade fora da rede institucional; o comitê abriu um piloto acessível depois de ouvir a comunidade.'
+    "estagiario": {
+        "ato1": {
+            "auditavel": "O primeiro piloto foi acompanhado de perto; isso ajudou a conhecer limites, embora tenha demorado a chegar a toda a comunidade.",
+            "amplo": "A abertura ampla trouxe demandas reais, mas exigiu conter problemas de suporte e dados antes de continuar.",
+            "adiar": "O adiamento revelou desigualdade fora da rede institucional; o comitê abriu um piloto acessível depois de ouvir a comunidade."
         },
-        ato2: {
-            negociar: 'Na proposta da fornecedora, você exigiu condições verificáveis para dados e continuidade.',
-            aceitar: 'A continuidade imediata levou a uma revisão urgente dos termos de uso.',
-            interna: 'A busca por autonomia tecnológica precisou ser combinada com um serviço provisório viável.'
+        "ato2": {
+            "negociar": "Na proposta da fornecedora, você exigiu condições verificáveis para dados e continuidade.",
+            "aceitar": "Você recomendou continuidade transitória condicionada à suspensão da reutilização de conteúdos e à revisão pelas equipes responsáveis.",
+            "interna": "A busca por autonomia tecnológica precisou ser combinada com um serviço provisório viável."
         }
     },
-    gestor: {
-        ato1: {
-            processo: 'A orientação para demonstrar processo ajudou a distinguir apoio da substituição do trabalho intelectual.',
-            produto: 'Ao priorizar o texto entregue, você descobriu a necessidade de pedir evidências de compreensão.',
-            restricao: 'Os limites iniciais foram ajustados para não confundir acessibilidade com produção substitutiva.'
+    "gestor": {
+        "ato1": {
+            "processo": "Você articulou critérios comuns de uso e evidências de aprendizagem; a implementação exigiu formação e horas de acompanhamento.",
+            "produto": "Você preservou a autonomia das disciplinas com condições comuns de acesso; a variedade de experiências exigiu uma avaliação mais cuidadosa.",
+            "restricao": "Você delimitou o piloto pela capacidade de suporte e previu alternativas; quem ficou fora ainda precisava ser ouvido."
         },
-        ato2: {
-            verificar: 'A verificação coletiva impediu que referências inventadas entrassem no artigo.',
-            prazo: 'A entrega com referências não verificadas exigiu uma correção pública com o grupo.',
-            refazer: 'A retirada da seção abriu um conflito que precisou de mediação e revisão em conjunto.'
+        "ato2": {
+            "verificar": "Você reuniu diferentes setores para validar resultados e condicionou a expansão a evidências e suporte.",
+            "prazo": "Você apresentou um relatório preliminar, delimitou a continuidade e marcou a conclusão da avaliação.",
+            "refazer": "Você propôs reorganizar a implantação com prioridade para equipes, acessibilidade e transição acompanhada."
         }
     },
-    professor: {
-        ato1: {
-            autentica: 'O redesenho das atividades revelou como os estudantes aplicam e justificam o conhecimento.',
-            presencial: 'As etapas presenciais deram evidências úteis, depois combinadas à investigação digital.',
-            detector: 'A confiança da turma foi abalada por sinais de um detector, e os critérios precisaram ser reconstruídos.'
+    "professor": {
+        "ato1": {
+            "autentica": "O redesenho das atividades revelou como os estudantes aplicam e justificam o conhecimento.",
+            "presencial": "As etapas presenciais deram evidências úteis, depois combinadas à investigação digital.",
+            "detector": "A confiança da turma foi abalada por sinais de um detector, e os critérios precisaram ser reconstruídos."
         },
-        ato2: {
-            conjunto: 'A resposta à revista reconheceu responsabilidades e abriu uma revisão do método.',
-            individual: 'O foco inicial na estudante precisou se ampliar para incluir a orientação e a instituição.',
-            revisao: 'A tentativa de corrigir somente os números revelou uma falha maior, que exigiu comunicação formal.'
+        "ato2": {
+            "conjunto": "A resposta à revista reconheceu responsabilidades e abriu uma revisão do método.",
+            "individual": "O foco inicial na estudante precisou se ampliar para incluir a orientação e a instituição.",
+            "revisao": "A tentativa de corrigir somente os números revelou uma falha maior, que exigiu comunicação formal."
         }
     }
 };
 
 const reacoesConselho = {
-    estagiario: {
-        ato1: {
-            auditavel: 'Eu estava ansioso para mostrar resultado logo. Quando os primeiros erros apareceram, senti alívio por termos começado pequeno — conseguimos ouvir as pessoas sem abandonar ninguém no meio do teste.',
-            amplo: 'No primeiro dia, ver tanta gente entrando foi empolgante. Depois chegaram as falhas e as mensagens sem resposta. Confesso que me senti responsável por termos corrido mais do que a equipe conseguia acompanhar.',
-            adiar: 'Esperar parecia prudente, mas foi desconfortável descobrir que os estudantes continuavam usando ferramentas externas sem apoio. A pausa não eliminou o problema; só o deixou menos visível para nós.'
+    "estagiario": {
+        "ato1": {
+            "auditavel": "Eu estava ansioso para mostrar resultado logo. Quando os primeiros erros apareceram, senti alívio por termos começado pequeno — conseguimos ouvir as pessoas sem abandonar ninguém no meio do teste.",
+            "amplo": "No primeiro dia, ver tanta gente entrando foi empolgante. Depois chegaram as falhas e as mensagens sem resposta. Confesso que me senti responsável por termos corrido mais do que a equipe conseguia acompanhar.",
+            "adiar": "Esperar parecia prudente, mas foi desconfortável descobrir que os estudantes continuavam usando ferramentas externas sem apoio. A pausa não eliminou o problema; só o deixou menos visível para nós."
         },
-        ato2: {
-            negociar: 'A negociação foi cansativa, mas pela primeira vez senti que não estávamos apenas aceitando promessas. Havia perguntas que a fornecedora precisava responder diante da comunidade.',
-            aceitar: 'Manter o serviço trouxe alívio imediato. Quando lemos os termos com calma, esse alívio virou preocupação: continuidade também pode criar dependência.',
-            interna: 'Eu gosto da ideia de construirmos algo nosso, mas tive medo de prometer o que a equipe ainda não consegue entregar. Um plano honesto pareceu mais responsável que uma solução heroica.'
+        "ato2": {
+            "negociar": "A negociação foi cansativa, mas pela primeira vez senti que não estávamos apenas aceitando promessas. Havia perguntas que a fornecedora precisava responder diante da comunidade.",
+            "aceitar": "Preservar o apoio trouxe alívio, mas nossa recomendação tinha condições. A decisão dependeu da revisão institucional, e os custos futuros continuam exigindo atenção.",
+            "interna": "Eu gosto da ideia de construirmos algo nosso, mas tive medo de prometer o que a equipe ainda não consegue entregar. Um plano honesto pareceu mais responsável que uma solução heroica."
         }
     },
-    gestor: {
-        ato1: {
-            processo: 'Quando pude mostrar meus rascunhos, senti que meu trabalho voltou a ser meu. Não precisei esconder a ferramenta; precisei explicar minhas decisões.',
-            produto: 'No começo, a liberdade pareceu ótima. Na apresentação, ver colegas incapazes de defender textos tão bons foi constrangedor — e me fez pensar no que realmente estávamos aprendendo.',
-            restricao: 'A regra trouxe segurança para alguns, mas também medo. Colegas que usam apoio de acessibilidade ficaram sem saber se seriam tratados como desonestos.'
+    "gestor": {
+        "ato1": {
+            "processo": "Ter critérios comuns me deu segurança para conversar com os professores. Mas vi o esforço de acompanhar os registros; sem tempo para retorno, a regra perderia o sentido.",
+            "produto": "Gostei de poder experimentar. Quando comparamos as turmas, percebi que entregar mais rápido não dizia, sozinho, o que cada pessoa tinha aprendido.",
+            "restricao": "Os limites deram tempo para preparar o apoio. Ainda assim, foi difícil explicar aos colegas de fora por que precisavam esperar. Fiquei contente por terem sido ouvidos."
         },
-        ato2: {
-            verificar: 'Revisar as fontes em grupo deu vergonha no início, mas ninguém ficou sozinho com o erro. Aos poucos, a sala voltou a conversar em vez de apenas procurar culpados.',
-            prazo: 'Entregar no prazo trouxe um alívio curto. Quando as referências inventadas vieram à tona, o grupo percebeu que a pressa apenas adiou uma conversa difícil.',
-            refazer: 'Apagar tudo parecia a saída mais limpa, mas também apagava o esforço real do grupo. Refazer com acompanhamento foi mais trabalhoso e muito mais justo.'
+        "ato2": {
+            "verificar": "Ouvir quem não aparecia no painel mudou a avaliação. Agora reconheço minhas dificuldades no relatório, além dos números de acesso.",
+            "prazo": "Manter o apoio trouxe alívio. Também precisamos cobrar a data da avaliação completa: não quero que uma solução temporária vire permanente sem discussão.",
+            "refazer": "Priorizar formação e acessibilidade respondeu a problemas reais. A espera por novas funções frustra alguns colegas, por isso precisamos acompanhar se as etapas serão cumpridas."
         }
     },
-    professor: {
-        ato1: {
-            autentica: 'Eu queria uma avaliação que me permitisse confiar no que os estudantes compreendiam. Ouvi-los justificar escolhas devolveu à sala uma curiosidade que eu temia perder.',
-            presencial: 'Os encontros presenciais me tranquilizaram, mas também mostraram que presença não é sinônimo de aprendizagem. Precisei escutar mais e controlar menos.',
-            detector: 'Quando o detector acusou estudantes que conseguiam explicar o próprio trabalho, senti que havia terceirizado meu julgamento. Reconstruir a confiança da turma foi mais difícil que aplicar qualquer ferramenta.'
+    "professor": {
+        "ato1": {
+            "autentica": "Eu queria uma avaliação que me permitisse confiar no que os estudantes compreendiam. Ouvi-los justificar escolhas devolveu à sala uma curiosidade que eu temia perder.",
+            "presencial": "Os encontros presenciais me tranquilizaram, mas também mostraram que presença não é sinônimo de aprendizagem. Precisei escutar mais e controlar menos.",
+            "detector": "Quando o detector acusou estudantes que conseguiam explicar o próprio trabalho, senti que havia terceirizado meu julgamento. Reconstruir a confiança da turma foi mais difícil que aplicar qualquer ferramenta."
         },
-        ato2: {
-            conjunto: 'Assinar uma resposta conjunta foi desconfortável, mas correto. A estudante não poderia carregar sozinha uma falha que atravessou orientação, método e instituição.',
-            individual: 'A conversa individual revelou medo e confusão, não apenas descuido. Saí dela convencido de que responsabilizar também exige oferecer condições para reparar.',
-            revisao: 'Eu quis corrigir os números rapidamente. Percebi, porém, que uma correção silenciosa protegeria nossa aparência, não a integridade da pesquisa.'
+        "ato2": {
+            "conjunto": "Assinar uma resposta conjunta foi desconfortável, mas correto. A estudante não poderia carregar sozinha uma falha que atravessou orientação, método e instituição.",
+            "individual": "A conversa individual revelou medo e confusão, não apenas descuido. Saí dela convencido de que responsabilizar também exige oferecer condições para reparar.",
+            "revisao": "Eu quis corrigir os números rapidamente. Percebi, porém, que uma correção silenciosa protegeria nossa aparência, não a integridade da pesquisa."
         }
     }
 };
@@ -488,136 +488,190 @@ const reacoesConselho = {
 // o jogador vê a solução e a explicação do percurso, nunca uma classificação A/B/C.
 const criarRamo = (final, consequencia, sintese, compromisso) => ({ final, consequencia, sintese, compromisso });
 const arvoreNarrativa = {
-    estagiario: {
-        auditavel: {
-            negociar: criarRamo('C',
-                'Como o piloto já produzia registros auditáveis, a equipe levou evidências concretas à negociação e conseguiu delimitar dados, suporte e condições de saída.',
-                'Você combinou experimentação controlada com negociação verificável. O projeto avançou com rastreabilidade e espaço para correções.',
-                'Formalizar uma política de inovação responsável, com auditoria, limites contratuais e revisão pública.'),
-            aceitar: criarRamo('A',
-                'Os registros do piloto permitiram manter o serviço enquanto a equipe identificava riscos no contrato. A expansão continuou, mas cada nova etapa passou a depender de indicadores públicos.',
-                'Você preservou a continuidade e usou as evidências do piloto para corrigir a expansão sem interromper o apoio já oferecido.',
-                'Ampliar por etapas, vinculando cada avanço a suporte, indicadores e revisão dos dados utilizados.'),
-            interna: criarRamo('B',
-                'A experiência do piloto mostrou quais tarefas exigiam acompanhamento humano. A alternativa institucional foi planejada com participação das equipes que prestariam suporte.',
-                'Você articulou autonomia tecnológica e presença humana, evitando tratar o desenvolvimento interno como uma solução puramente técnica.',
-                'Investir em capacidade institucional, formação e acompanhamento antes de substituir o serviço atual.')
+    "estagiario": {
+        "auditavel": {
+            "negociar": {
+                "final": "C",
+                "consequencia": "Como o piloto já produzia registros auditáveis, a equipe levou evidências concretas à negociação e conseguiu delimitar dados, suporte e condições de saída.",
+                "sintese": "Você combinou experimentação controlada com negociação verificável. O projeto avançou com rastreabilidade e espaço para correções.",
+                "compromisso": "Formalizar uma política de inovação responsável, com auditoria, limites contratuais e revisão pública."
+            },
+            "aceitar": {
+                "final": "A",
+                "consequencia": "A recomendação de continuidade foi vinculada à suspensão da reutilização adicional de conteúdos e à análise institucional. Os registros da primeira etapa ajudam a avaliar acesso e suporte; custo futuro e saída da plataforma ainda exigem decisão do Conselho.",
+                "sintese": "Você preservou a continuidade e usou as evidências do piloto para corrigir a expansão sem interromper o apoio já oferecido.",
+                "compromisso": "Ampliar por etapas, vinculando cada avanço a suporte, indicadores e revisão dos dados utilizados."
+            },
+            "interna": {
+                "final": "B",
+                "consequencia": "A experiência do piloto mostrou quais tarefas exigiam acompanhamento humano. A alternativa institucional foi planejada com participação das equipes que prestariam suporte.",
+                "sintese": "Você articulou autonomia tecnológica e presença humana, evitando tratar o desenvolvimento interno como uma solução puramente técnica.",
+                "compromisso": "Investir em capacidade institucional, formação e acompanhamento antes de substituir o serviço atual."
+            }
         },
-        amplo: {
-            negociar: criarRamo('A',
-                'A diversidade de usos encontrada na abertura deu força à negociação: acesso e suporte entraram no contrato ao lado das regras de dados.',
-                'Você transformou uma expansão turbulenta em aprendizado coletivo e usou essa experiência para negociar condições mais inclusivas.',
-                'Consolidar a ampliação com suporte proporcional à demanda e acompanhamento público dos resultados.'),
-            aceitar: criarRamo('B',
-                'Manter a oferta evitou uma ruptura, mas a sobrecarga reapareceu. A universidade percebeu que continuidade sem equipes preparadas apenas deslocaria o problema.',
-                'Suas escolhas favoreceram disponibilidade imediata; as consequências mostraram que a tecnologia depende de mediação, orientação e capacidade de atendimento.',
-                'Priorizar formação e apoio humano antes de qualquer nova expansão do serviço.'),
-            interna: criarRamo('C',
-                'A abertura ampla revelou requisitos que não apareciam no laboratório. Eles foram convertidos em critérios técnicos, de acessibilidade e de governança para a solução institucional.',
-                'Você partiu de experiências reais para reduzir dependência externa e documentar responsabilidades que antes estavam dispersas.',
-                'Criar uma alternativa institucional transparente, auditável e construída a partir das necessidades observadas.')
+        "amplo": {
+            "negociar": {
+                "final": "A",
+                "consequencia": "A diversidade de usos encontrada na abertura deu força à negociação: acesso e suporte entraram no contrato ao lado das regras de dados.",
+                "sintese": "Você transformou uma expansão turbulenta em aprendizado coletivo e usou essa experiência para negociar condições mais inclusivas.",
+                "compromisso": "Consolidar a ampliação com suporte proporcional à demanda e acompanhamento público dos resultados."
+            },
+            "aceitar": {
+                "final": "B",
+                "consequencia": "A recomendação de continuidade foi vinculada à suspensão da reutilização adicional de conteúdos e à análise institucional. Os registros da primeira etapa ajudam a avaliar acesso e suporte; custo futuro e saída da plataforma ainda exigem decisão do Conselho.",
+                "sintese": "Suas escolhas favoreceram disponibilidade imediata; as consequências mostraram que a tecnologia depende de mediação, orientação e capacidade de atendimento.",
+                "compromisso": "Priorizar formação e apoio humano antes de qualquer nova expansão do serviço."
+            },
+            "interna": {
+                "final": "C",
+                "consequencia": "A abertura ampla revelou requisitos que não apareciam no laboratório. Eles foram convertidos em critérios técnicos, de acessibilidade e de governança para a solução institucional.",
+                "sintese": "Você partiu de experiências reais para reduzir dependência externa e documentar responsabilidades que antes estavam dispersas.",
+                "compromisso": "Criar uma alternativa institucional transparente, auditável e construída a partir das necessidades observadas."
+            }
         },
-        adiar: {
-            negociar: criarRamo('B',
-                'O tempo de preparação permitiu ouvir grupos que estavam fora do piloto. Na negociação, a universidade incluiu atendimento, acessibilidade e alternativas de uso.',
-                'Você usou a pausa para ampliar a escuta e transformou cautela em condições concretas de participação.',
-                'Adotar o serviço somente com formação, apoio humano e alternativas acessíveis garantidas.'),
-            aceitar: criarRamo('A',
-                'Depois de uma espera cuidadosa, a continuidade gratuita acelerou a entrada de novos participantes. A equipe manteve canais de escuta para corrigir desigualdades durante a expansão.',
-                'Você equilibrou preparação e oportunidade de acesso, aceitando avançar sem abandonar o acompanhamento das diferenças encontradas.',
-                'Abrir o programa gradualmente e revisar seus efeitos sobre grupos com condições distintas de acesso.'),
-            interna: criarRamo('C',
-                'A análise feita durante o adiamento ofereceu requisitos claros para uma solução própria e para uma transição que não deixasse usuários sem atendimento.',
-                'Você converteu prudência em planejamento institucional e definiu critérios verificáveis para evitar novas dependências.',
-                'Desenvolver uma alternativa pública com governança de dados, cronograma realista e transição acompanhada.')
+        "adiar": {
+            "negociar": {
+                "final": "B",
+                "consequencia": "O tempo de preparação permitiu ouvir grupos que estavam fora do piloto. Na negociação, a universidade incluiu atendimento, acessibilidade e alternativas de uso.",
+                "sintese": "Você usou a pausa para ampliar a escuta e transformou cautela em condições concretas de participação.",
+                "compromisso": "Adotar o serviço somente com formação, apoio humano e alternativas acessíveis garantidas."
+            },
+            "aceitar": {
+                "final": "A",
+                "consequencia": "A recomendação de continuidade foi vinculada à suspensão da reutilização adicional de conteúdos e à análise institucional. Os registros da primeira etapa ajudam a avaliar acesso e suporte; custo futuro e saída da plataforma ainda exigem decisão do Conselho.",
+                "sintese": "Você equilibrou preparação e oportunidade de acesso, aceitando avançar sem abandonar o acompanhamento das diferenças encontradas.",
+                "compromisso": "Abrir o programa gradualmente e revisar seus efeitos sobre grupos com condições distintas de acesso."
+            },
+            "interna": {
+                "final": "C",
+                "consequencia": "A análise feita durante o adiamento ofereceu requisitos claros para uma solução própria e para uma transição que não deixasse usuários sem atendimento.",
+                "sintese": "Você converteu prudência em planejamento institucional e definiu critérios verificáveis para evitar novas dependências.",
+                "compromisso": "Desenvolver uma alternativa pública com governança de dados, cronograma realista e transição acompanhada."
+            }
         }
     },
-    gestor: {
-        processo: {
-            verificar: criarRamo('C',
-                'Os registros de autoria facilitaram a conferência coletiva: cada pessoa mostrou como encontrou, usou ou descartou uma fonte.',
-                'Você conectou transparência do processo à verificação das evidências, criando uma prática que pode ser compreendida e contestada.',
-                'Instituir critérios de autoria, declaração de uso e verificação de fontes em todas as disciplinas.'),
-            prazo: criarRamo('B',
-                'Como o percurso estava documentado, o grupo conseguiu explicar a pressa e organizar uma correção orientada, sem transformar a falha em punição automática.',
-                'Você valorizou o processo e, diante do prazo, percebeu que a mediação é necessária para converter um erro em aprendizagem.',
-                'Criar momentos de orientação e revisão para que prazos acadêmicos não eliminem a aprendizagem reflexiva.'),
-            refazer: criarRamo('A',
-                'Os rascunhos permitiram redistribuir a revisão sem apagar o trabalho anterior. O grupo refez a seção e transformou o material em referência para outras turmas.',
-                'Você preservou evidências do percurso e reorganizou a produção coletiva, tornando o aprendizado reutilizável e acessível.',
-                'Ampliar a prática de portfólios e revisão coletiva com modelos que possam circular pela universidade.')
+    "gestor": {
+        "processo": {
+            "verificar": {
+                "final": "C",
+                "consequencia": "A orientação inicial priorizou critérios comuns e acompanhamento do processo. Ela agora precisa ser sustentada por uma avaliação participativa antes de ampliar. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou critérios comuns e acompanhamento do processo com uma avaliação participativa antes de ampliar. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Publicar critérios de uso, responsabilidades, resultados e limites da avaliação, com participação da comunidade e data de revisão."
+            },
+            "prazo": {
+                "final": "B",
+                "consequencia": "A orientação inicial priorizou critérios comuns e acompanhamento do processo. Ela agora precisa ser sustentada por continuidade temporária com avaliação ainda em aberto. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou critérios comuns e acompanhamento do processo com continuidade temporária com avaliação ainda em aberto. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Garantir formação, tempo de acompanhamento e alternativas acessíveis antes de incorporar novos usos de IA."
+            },
+            "refazer": {
+                "final": "A",
+                "consequencia": "A orientação inicial priorizou critérios comuns e acompanhamento do processo. Ela agora precisa ser sustentada por reorganização por etapas com investimento em formação e acessibilidade. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou critérios comuns e acompanhamento do processo com reorganização por etapas com investimento em formação e acessibilidade. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Ampliar o Horizonte IA por etapas, somente com acesso, equipes e evidências de aprendizagem acompanhados."
+            }
         },
-        produto: {
-            verificar: criarRamo('B',
-                'A conferência mostrou que um texto fluente escondia fontes frágeis. A gestão acrescentou encontros de defesa e revisão ao calendário.',
-                'Você começou pela qualidade do produto e encontrou na verificação a necessidade de diálogo para reconhecer compreensão real.',
-                'Priorizar acompanhamento e defesa das decisões, sem reduzir a avaliação à aparência do texto final.'),
-            prazo: criarRamo('A',
-                'A entrega preservou o trabalho visível, mas a correção posterior revelou diferentes necessidades de apoio. A experiência foi usada para redesenhar a próxima oferta.',
-                'Você privilegiou continuidade e alcance; as consequências levaram a uma expansão acompanhada por indicadores de aprendizagem.',
-                'Expandir o programa com ciclos de entrega, revisão e apoio diferenciados para estudantes e equipes.'),
-            refazer: criarRamo('C',
-                'Ao reconstruir a seção, o grupo precisou tornar visíveis fontes, decisões e responsabilidades que o produto acabado ocultava.',
-                'Você saiu do foco exclusivo no resultado e chegou a uma política de rastreabilidade capaz de orientar futuras produções.',
-                'Exigir documentação de fontes, alterações e participação humana nos trabalhos apoiados por IA.')
+        "produto": {
+            "verificar": {
+                "final": "B",
+                "consequencia": "A orientação inicial priorizou autonomia das disciplinas e condições comuns de participação. Ela agora precisa ser sustentada por uma avaliação participativa antes de ampliar. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou autonomia das disciplinas e condições comuns de participação com uma avaliação participativa antes de ampliar. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Garantir formação, tempo de acompanhamento e alternativas acessíveis antes de incorporar novos usos de IA."
+            },
+            "prazo": {
+                "final": "A",
+                "consequencia": "A orientação inicial priorizou autonomia das disciplinas e condições comuns de participação. Ela agora precisa ser sustentada por continuidade temporária com avaliação ainda em aberto. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou autonomia das disciplinas e condições comuns de participação com continuidade temporária com avaliação ainda em aberto. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Ampliar o Horizonte IA por etapas, somente com acesso, equipes e evidências de aprendizagem acompanhados."
+            },
+            "refazer": {
+                "final": "C",
+                "consequencia": "A orientação inicial priorizou autonomia das disciplinas e condições comuns de participação. Ela agora precisa ser sustentada por reorganização por etapas com investimento em formação e acessibilidade. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou autonomia das disciplinas e condições comuns de participação com reorganização por etapas com investimento em formação e acessibilidade. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Publicar critérios de uso, responsabilidades, resultados e limites da avaliação, com participação da comunidade e data de revisão."
+            }
         },
-        restricao: {
-            verificar: criarRamo('A',
-                'A referência inicial sem IA ajudou a comparar processos, e a verificação coletiva abriu caminhos para usos posteriores mais bem acompanhados.',
-                'Você combinou um limite temporário com evidências que permitiram ampliar possibilidades sem abandonar critérios claros.',
-                'Autorizar novos usos por etapas, avaliando acesso, aprendizagem e alternativas em cada disciplina.'),
-            prazo: criarRamo('C',
-                'A urgência expôs ambiguidades da restrição: o grupo não sabia quais apoios poderia usar. A correção originou regras públicas e formas de contestação.',
-                'Você percebeu que limitar sem explicar produz novas incertezas; o percurso conduziu a critérios transparentes e revisáveis.',
-                'Publicar regras de uso, exceções de acessibilidade, responsabilidades e procedimentos de revisão.'),
-            refazer: criarRamo('B',
-                'A reconstrução exigiu acompanhamento próximo para não excluir apoios legítimos. Professores e estudantes revisaram juntos o objetivo da atividade.',
-                'Você preservou uma referência inicial, mas as consequências mostraram que limites justos dependem de escuta e mediação.',
-                'Definir limites pedagógicos com participação docente, apoio humano e alternativas acessíveis.')
+        "restricao": {
+            "verificar": {
+                "final": "A",
+                "consequencia": "A orientação inicial priorizou escopo delimitado e preparação das equipes. Ela agora precisa ser sustentada por uma avaliação participativa antes de ampliar. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou escopo delimitado e preparação das equipes com uma avaliação participativa antes de ampliar. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Ampliar o Horizonte IA por etapas, somente com acesso, equipes e evidências de aprendizagem acompanhados."
+            },
+            "prazo": {
+                "final": "C",
+                "consequencia": "A orientação inicial priorizou escopo delimitado e preparação das equipes. Ela agora precisa ser sustentada por continuidade temporária com avaliação ainda em aberto. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou escopo delimitado e preparação das equipes com continuidade temporária com avaliação ainda em aberto. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Publicar critérios de uso, responsabilidades, resultados e limites da avaliação, com participação da comunidade e data de revisão."
+            },
+            "refazer": {
+                "final": "B",
+                "consequencia": "A orientação inicial priorizou escopo delimitado e preparação das equipes. Ela agora precisa ser sustentada por reorganização por etapas com investimento em formação e acessibilidade. A gestão leva essa combinação ao Conselho, com limites de orçamento e capacidade de atendimento explícitos.",
+                "sintese": "Você articulou escopo delimitado e preparação das equipes com reorganização por etapas com investimento em formação e acessibilidade. A implantação passa a ser avaliada por condições de participação e evidências de aprendizagem, além do volume de uso.",
+                "compromisso": "Garantir formação, tempo de acompanhamento e alternativas acessíveis antes de incorporar novos usos de IA."
+            }
         }
     },
-    professor: {
-        autentica: {
-            conjunto: criarRamo('C',
-                'Os registros da avaliação contextualizada ajudaram a rastrear onde dados sugeridos pela IA entraram na pesquisa. Estudante, orientador e instituição assumiram a revisão.',
-                'Você articulou avaliação autêntica e responsabilidade compartilhada, tornando método e autoria verificáveis.',
-                'Adotar uma política de integridade baseada em rastreabilidade, declaração de uso e responsabilidades compartilhadas.'),
-            individual: criarRamo('B',
-                'A defesa das decisões deu à estudante condições para explicar o percurso. A escuta individual foi incorporada a uma revisão acompanhada pelo orientador.',
-                'Você valorizou aplicação e diálogo; diante da falha, esse caminho se consolidou em mediação formativa, sem apagar responsabilidades.',
-                'Fortalecer orientação e escuta qualificada antes de decidir correções ou responsabilizações.'),
-            revisao: criarRamo('A',
-                'O problema contextualizado permitiu reconstruir parte da análise com dados reais. O caso virou material de formação para outras equipes de pesquisa.',
-                'Você transformou a revisão em oportunidade de aprendizagem institucional e de ampliação de práticas mais seguras.',
-                'Compartilhar protocolos e experiências revisadas, ampliando gradualmente práticas de pesquisa assistida por IA.')
+    "professor": {
+        "autentica": {
+            "conjunto": {
+                "final": "C",
+                "consequencia": "Os registros da avaliação contextualizada ajudaram a rastrear onde dados sugeridos pela IA entraram na pesquisa. Estudante, orientador e instituição assumiram a revisão.",
+                "sintese": "Você articulou avaliação autêntica e responsabilidade compartilhada, tornando método e autoria verificáveis.",
+                "compromisso": "Adotar uma política de integridade baseada em rastreabilidade, declaração de uso e responsabilidades compartilhadas."
+            },
+            "individual": {
+                "final": "B",
+                "consequencia": "A defesa das decisões deu à estudante condições para explicar o percurso. A escuta individual foi incorporada a uma revisão acompanhada pelo orientador.",
+                "sintese": "Você valorizou aplicação e diálogo; diante da falha, esse caminho se consolidou em mediação formativa, sem apagar responsabilidades.",
+                "compromisso": "Fortalecer orientação e escuta qualificada antes de decidir correções ou responsabilizações."
+            },
+            "revisao": {
+                "final": "A",
+                "consequencia": "O problema contextualizado permitiu reconstruir parte da análise com dados reais. O caso virou material de formação para outras equipes de pesquisa.",
+                "sintese": "Você transformou a revisão em oportunidade de aprendizagem institucional e de ampliação de práticas mais seguras.",
+                "compromisso": "Compartilhar protocolos e experiências revisadas, ampliando gradualmente práticas de pesquisa assistida por IA."
+            }
         },
-        presencial: {
-            conjunto: criarRamo('B',
-                'Os encontros presenciais facilitaram uma conversa franca sobre a origem dos dados. A resposta conjunta preservou escuta e responsabilidade.',
-                'Você construiu evidências pelo diálogo e manteve essa presença humana ao enfrentar uma falha de pesquisa.',
-                'Garantir tempo de orientação, formação e decisões compartilhadas em todas as pesquisas com IA.'),
-            individual: criarRamo('A',
-                'A conversa individual revelou lacunas que também apareciam em outros trabalhos. A universidade ampliou os encontros de orientação e criou apoio para mais turmas.',
-                'Você partiu da observação direta e transformou um caso particular em oportunidade de ampliar suporte institucional.',
-                'Expandir o acompanhamento em etapas, monitorando carga docente, participação e aprendizagem.'),
-            revisao: criarRamo('C',
-                'A revisão técnica precisou ser acompanhada por uma explicação oral das decisões. O novo protocolo passou a reunir registros, dados e defesa do método.',
-                'Você uniu evidência presencial e rastreabilidade documental para tornar a correção compreensível e verificável.',
-                'Formalizar revisões com registro do método, diálogo com autores e comunicação transparente às revistas.')
+        "presencial": {
+            "conjunto": {
+                "final": "B",
+                "consequencia": "Os encontros presenciais facilitaram uma conversa franca sobre a origem dos dados. A resposta conjunta preservou escuta e responsabilidade.",
+                "sintese": "Você construiu evidências pelo diálogo e manteve essa presença humana ao enfrentar uma falha de pesquisa.",
+                "compromisso": "Garantir tempo de orientação, formação e decisões compartilhadas em todas as pesquisas com IA."
+            },
+            "individual": {
+                "final": "A",
+                "consequencia": "A conversa individual revelou lacunas que também apareciam em outros trabalhos. A universidade ampliou os encontros de orientação e criou apoio para mais turmas.",
+                "sintese": "Você partiu da observação direta e transformou um caso particular em oportunidade de ampliar suporte institucional.",
+                "compromisso": "Expandir o acompanhamento em etapas, monitorando carga docente, participação e aprendizagem."
+            },
+            "revisao": {
+                "final": "C",
+                "consequencia": "A revisão técnica precisou ser acompanhada por uma explicação oral das decisões. O novo protocolo passou a reunir registros, dados e defesa do método.",
+                "sintese": "Você uniu evidência presencial e rastreabilidade documental para tornar a correção compreensível e verificável.",
+                "compromisso": "Formalizar revisões com registro do método, diálogo com autores e comunicação transparente às revistas."
+            }
         },
-        detector: {
-            conjunto: criarRamo('A',
-                'A experiência com falsos sinais tornou a equipe mais cautelosa. Na pesquisa, a análise conjunta substituiu suspeitas automáticas e gerou formação para toda a comunidade.',
-                'Você converteu uma crise de confiança em aprendizagem coletiva e em condições melhores para ampliar o uso responsável.',
-                'Ampliar formação e acesso a protocolos de análise, sem automatizar julgamentos sobre autoria.'),
-            individual: criarRamo('C',
-                'Depois do conflito com o detector, a escuta da estudante foi registrada e confrontada com dados e versões do artigo, evitando um novo julgamento automático.',
-                'Você aprendeu a não confundir indício com prova e levou essa cautela a um processo transparente de apuração.',
-                'Criar procedimentos verificáveis de escuta, contestação e revisão antes de qualquer responsabilização.'),
-            revisao: criarRamo('B',
-                'A tentativa de corrigir rapidamente repetiu a lógica do detector: buscar uma resposta simples para um problema complexo. A equipe interrompeu o envio e retomou a orientação.',
-                'As duas etapas mostraram os limites de soluções automáticas e conduziram a uma escolha pela presença humana e pelo tempo de análise.',
-                'Priorizar orientação, revisão colegiada e formação antes de adotar respostas automatizadas para integridade.')
+        "detector": {
+            "conjunto": {
+                "final": "A",
+                "consequencia": "A experiência com falsos sinais tornou a equipe mais cautelosa. Na pesquisa, a análise conjunta substituiu suspeitas automáticas e gerou formação para toda a comunidade.",
+                "sintese": "Você converteu uma crise de confiança em aprendizagem coletiva e em condições melhores para ampliar o uso responsável.",
+                "compromisso": "Ampliar formação e acesso a protocolos de análise, sem automatizar julgamentos sobre autoria."
+            },
+            "individual": {
+                "final": "C",
+                "consequencia": "Depois do conflito com o detector, a escuta da estudante foi registrada e confrontada com dados e versões do artigo, evitando um novo julgamento automático.",
+                "sintese": "Você aprendeu a não confundir indício com prova e levou essa cautela a um processo transparente de apuração.",
+                "compromisso": "Criar procedimentos verificáveis de escuta, contestação e revisão antes de qualquer responsabilização."
+            },
+            "revisao": {
+                "final": "B",
+                "consequencia": "A tentativa de corrigir rapidamente repetiu a lógica do detector: buscar uma resposta simples para um problema complexo. A equipe interrompeu o envio e retomou a orientação.",
+                "sintese": "As duas etapas mostraram os limites de soluções automáticas e conduziram a uma escolha pela presença humana e pelo tempo de análise.",
+                "compromisso": "Priorizar orientação, revisão colegiada e formação antes de adotar respostas automatizadas para integridade."
+            }
         }
     }
 };
@@ -651,8 +705,8 @@ function iniciarConselhoAtos() {
         professor: 'Esta experiência mexeu com certezas que eu levava para a sala de aula. Isso é desconfortável — e necessário.'
     };
     linhasConselho = [
-        { nome: '', texto: 'Sala do Conselho da Universidade Horizonte. Três meses de decisões e correções estão reunidos nesta mesa.' },
-        { nome: 'REITORA HELENA', texto: 'Antes dos relatórios, quero ouvir as pessoas. Houve pressão, erros e mudanças de rumo. O que cada etapa fez vocês perceberem?' },
+        { nome: '', texto: 'Sala do Conselho da Universidade Horizonte. A revisão dos três meses do Programa Horizonte IA reúne nesta mesa evidências sobre acesso, aprendizagem, trabalho das equipes e condições de continuidade.' },
+        { nome: 'REITORA HELENA', texto: 'Precisamos decidir as condições de continuidade da implantação da IA. Antes de deliberar, quero ouvir como as decisões afetaram as pessoas e o que as evidências permitem concluir.' },
         { nome: roteiroJornada.companheiro, texto: reacoes.ato1[jogador.escolhas.ato1] },
         { nome: roteiroJornada.companheiro, texto: reacoes.ato2[jogador.escolhas.ato2] },
         { nome: '{nome}', texto: `Não foi uma escolha simples. ${ramo.sintese}` },
@@ -722,8 +776,8 @@ function montarFeedbackFinal() {
     const rotulosEscolhas = {
         auditavel: 'Piloto acompanhado', amplo: 'Abertura ampla', adiar: 'Preparar antes',
         negociar: 'Negociar condições', aceitar: 'Manter e revisar', interna: 'Alternativa institucional',
-        processo: 'Mostrar o processo', produto: 'Liberdade de ferramentas', restricao: 'Referência inicial',
-        verificar: 'Verificar em grupo', prazo: 'Entregar e corrigir', refazer: 'Reconstruir a seção',
+        processo: 'Critérios institucionais', produto: 'Autonomia das disciplinas', restricao: 'Escopo delimitado',
+        verificar: 'Avaliação participativa', prazo: 'Relatório preliminar', refazer: 'Implantação por etapas',
         autentica: 'Avaliação contextualizada', presencial: 'Etapas presenciais', detector: 'Análise automatizada',
         conjunto: 'Responsabilidade compartilhada', individual: 'Escuta individual', revisao: 'Revisão técnica'
     };

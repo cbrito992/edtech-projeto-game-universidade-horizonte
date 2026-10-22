@@ -99,328 +99,718 @@ const nivelamentoPorEscolha = {
 };
 
 const roteirosAtos = {
-    estagiario: {
-        nivel: 'Fácil',
-        companheiro: 'NICODEMOS',
-        avatar: 'assets/images/npc_nicodemos.png',
-        fundo1: 'assets/images/background_sala de informatica.webp',
-        fundo2: 'assets/images/background_hall.webp',
-        ato1: {
-            antes: [
-                { nome: '', texto: 'Laboratório do Comitê Horizonte IA. O assistente acadêmico já funciona nos testes; ainda não existe uma regra para oferecê-lo ao campus.' },
-                { nome: 'NICODEMOS', texto: 'Giovana me pediu um plano de lançamento. É tentador pensar apenas em quantas contas conseguiremos criar, mas também teremos de atender quem encontrar dificuldades.' },
-                { nome: '{nome}', texto: 'Vou comparar acesso, suporte e riscos antes de indicar o tamanho do piloto.' },
-                { recurso: 'governanca' },
-                { nome: 'NICODEMOS', texto: 'Agora temos um ponto de partida. Qual seria a primeira ação do comitê?' }
+    "estagiario": {
+        "nivel": "Fácil",
+        "companheiro": "NICODEMOS",
+        "avatar": "assets/images/npc_nicodemos.png",
+        "fundo1": "assets/images/background_sala de informatica.webp",
+        "fundo2": "assets/images/background_hall.webp",
+        "ato1": {
+            "antes": [
+                {
+                    "nome": "",
+                    "texto": "Primeira semana do Programa Horizonte IA. A universidade vai testar um assistente para explicar conteúdos, organizar estudos e orientar a busca de informações acadêmicas. A equipe de TI precisa preparar o acesso antes da primeira atividade."
+                },
+                {
+                    "nome": "NICODEMOS",
+                    "texto": "Giovana me colocou como seu supervisor no estágio. Precisamos levantar as condições do laboratório e ouvir os estudantes. A autorização do piloto será da coordenação; nosso trabalho é apresentar evidências e uma recomendação."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "O que já sabemos sobre quem vai usar o assistente?"
+                },
+                {
+                    "nome": "NICODEMOS",
+                    "texto": "Lívia estuda à noite e pediu ajuda fora do horário da monitoria. Outros colegas só têm internet no campus. O laboratório fecha antes de parte dessa turma chegar, e ainda estamos testando o leitor de tela."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Então criar uma conta não garante participação. Vou registrar horários, equipamentos, barreiras de acessibilidade e a capacidade de atendimento da equipe."
+                },
+                {
+                    "nome": "NICODEMOS",
+                    "texto": "A licença de teste dura três meses. Se as disciplinas passarem a depender dela, precisaremos planejar o que acontece quando acabar. Vamos consultar os critérios de implantação antes de recomendar a abertura."
+                },
+                {
+                    "recurso": "governanca"
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Com esses critérios, precisamos escolher como investigar usos reais sem prometer um suporte que ainda não temos."
+                }
             ],
-            pergunta: 'Como iniciar o projeto-piloto?',
-            opcoes: [
+            "pergunta": "Que plano de acesso você recomenda à supervisão do estágio?",
+            "opcoes": [
                 {
-                    id: 'auditavel',
-                    texto: 'Começar em um ambiente limitado, com suporte e critérios públicos de avaliação antes de ampliar o acesso.',
-                    passos: [
-                        { nome: 'NICODEMOS', texto: 'Conseguimos acompanhar erros e ouvir os primeiros participantes. O limite inicial também significa que teremos de explicar quem entra no piloto e quando outras pessoas poderão participar.' },
-                        { nome: '', texto: 'A equipe registra falhas, testa acessibilidade e cria um canal de ajuda. O piloto segue estável e suas condições ficam documentadas.' }
+                    "id": "auditavel",
+                    "texto": "Recomendar um piloto com participantes de diferentes turnos e necessidades, suporte reservado e critérios públicos de ampliação.",
+                    "passos": [
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "Sua proposta inclui quem enfrenta barreiras, em vez de chamar só quem já domina a ferramenta. Vou levá-la à Giovana. Mas quem ficar fora desta etapa precisará de uma alternativa."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Incluí monitoria e materiais equivalentes no relatório. Também proponho testar o acesso noturno e ouvir quem usa leitor de tela."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "A coordenação autoriza a primeira turma. Os registros mostram dúvidas resolvidas fora da aula e falhas de acessibilidade que precisam ser corrigidas antes de expandir."
+                        }
                     ]
                 },
                 {
-                    id: 'amplo',
-                    texto: 'Abrir o acesso para toda a comunidade e aprender com uma variedade maior de situações reais desde o início.',
-                    passos: [
-                        { nome: 'NICODEMOS', texto: 'A abertura revelou demandas que os testes não mostraram. A equipe, porém, recebeu solicitações demais e precisa conter uma falha na gestão de dados.' },
-                        { nome: '', texto: 'Dois dias depois, o serviço fica lento e a ouvidoria pede esclarecimentos sobre registros de uso. A prioridade agora é reduzir a exposição e recuperar o suporte.' },
-                        { recurso: 'privacidade' },
-                        { atividade: { pergunta: 'Qual ação ajuda a conter o problema sem abandonar quem já depende do serviço?', opcoes: [
-                            { texto: 'Suspender temporariamente as funções afetadas, informar a comunidade e revisar os registros com a equipe responsável.', adequada: true, retorno: 'A contenção cria espaço para investigar e comunicar o ocorrido.' },
-                            { texto: 'Manter tudo aberto e esperar que o aumento de capacidade resolva também a dúvida sobre os dados.', retorno: 'Mais capacidade pode reduzir a lentidão, mas não esclarece o tratamento dos dados. Examine essa parte também.' },
-                            { texto: 'Desligar o sistema sem aviso e considerar o incidente encerrado.', retorno: 'Interromper o acesso pode ser necessário, mas as pessoas afetadas ainda precisam de informação e suporte.' }
-                        ] } },
-                        { nome: 'NICODEMOS', texto: 'Reduzimos a escala, comunicamos as medidas e reconstruímos o piloto com acompanhamento. A abertura nos ensinou a planejar suporte antes da próxima expansão.' }
+                    "id": "amplo",
+                    "texto": "Abrir o acesso para toda a comunidade e aprender com uma variedade maior de situações reais desde o início.",
+                    "passos": [
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "A coordenação aprovou nossa recomendação de abertura ampla. Recebemos relatos de usos importantes fora do horário da monitoria, mas os pedidos de ajuda ultrapassaram a capacidade da equipe. Um teste mostrou que o painel de suporte dava acesso a históricos além do necessário."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "Giovana limita o painel e pede um levantamento do ocorrido. Você registra a falha, preserva as informações para análise da equipe responsável e prepara um aviso aos participantes. A abertura trouxe acesso, mas também responsabilidades que o plano não previa."
+                        },
+                        {
+                            "recurso": "privacidade"
+                        },
+                        {
+                            "atividade": {
+                                "pergunta": "Qual ação ajuda a conter o problema sem abandonar quem já depende do serviço?",
+                                "opcoes": [
+                                    {
+                                        "texto": "Suspender temporariamente as funções afetadas, informar a comunidade e revisar os registros com a equipe responsável.",
+                                        "adequada": true,
+                                        "retorno": "A contenção cria espaço para investigar e comunicar o ocorrido."
+                                    },
+                                    {
+                                        "texto": "Manter tudo aberto e esperar que o aumento de capacidade resolva também a dúvida sobre os dados.",
+                                        "retorno": "Mais capacidade pode reduzir a lentidão, mas não esclarece o tratamento dos dados. Examine essa parte também."
+                                    },
+                                    {
+                                        "texto": "Desligar o sistema sem aviso e considerar o incidente encerrado.",
+                                        "retorno": "Interromper o acesso pode ser necessário, mas as pessoas afetadas ainda precisam de informação e suporte."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "A equipe responsável restringiu o painel e revisou as permissões. Seu relatório recomenda suporte proporcional à demanda e revisão de acesso aos históricos antes de uma nova expansão."
+                        }
                     ]
                 },
                 {
-                    id: 'adiar',
-                    texto: 'Aguardar garantias mais sólidas de acesso e privacidade antes de disponibilizar a ferramenta na rede universitária.',
-                    passos: [
-                        { nome: 'NICODEMOS', texto: 'Ganhamos tempo para elaborar critérios. Só que estudantes continuam usando plataformas externas, sem orientação da universidade.' },
-                        { nome: '', texto: 'O comitê encontra uma diferença crescente entre quem pode pagar por serviços avançados e quem depende das opções gratuitas.' },
-                        { recurso: 'equidade' },
-                        { atividade: { pergunta: 'Que medida responde à desigualdade encontrada?', opcoes: [
-                            { texto: 'Criar um piloto supervisionado com acesso gratuito e uma alternativa para quem não pode usar a plataforma.', adequada: true, retorno: 'Essa medida permite oferecer apoio e aprender com condições de acesso diversas.' },
-                            { texto: 'Manter o bloqueio apenas no Wi-Fi institucional e considerar que ninguém mais usará IA.', retorno: 'Redes móveis e plataformas externas continuam disponíveis de forma desigual.' },
-                            { texto: 'Oferecer acesso somente a quem já possui conta paga.', retorno: 'Isso aumenta justamente a diferença que o comitê identificou.' }
-                        ] } },
-                        { nome: 'NICODEMOS', texto: 'Abrimos um piloto acompanhado e com alternativas. Demorou mais, mas agora sabemos quem precisamos incluir desde o começo.' }
+                    "id": "adiar",
+                    "texto": "Aguardar garantias mais sólidas de acesso e privacidade antes de disponibilizar a ferramenta na rede universitária.",
+                    "passos": [
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "Giovana aceitou nossa recomendação de aguardar os testes. Só que Lívia contou que parte da turma já está usando contas pessoais. Quem paga uma assinatura recebe recursos que os demais não têm."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "O comitê encontra uma diferença crescente entre quem pode pagar por serviços avançados e quem depende das opções gratuitas."
+                        },
+                        {
+                            "recurso": "equidade"
+                        },
+                        {
+                            "atividade": {
+                                "pergunta": "Que medida responde à desigualdade encontrada?",
+                                "opcoes": [
+                                    {
+                                        "texto": "Criar um piloto supervisionado com acesso gratuito e uma alternativa para quem não pode usar a plataforma.",
+                                        "adequada": true,
+                                        "retorno": "Essa medida permite oferecer apoio e aprender com condições de acesso diversas."
+                                    },
+                                    {
+                                        "texto": "Manter o bloqueio apenas no Wi-Fi institucional e considerar que ninguém mais usará IA.",
+                                        "retorno": "Redes móveis e plataformas externas continuam disponíveis de forma desigual."
+                                    },
+                                    {
+                                        "texto": "Oferecer acesso somente a quem já possui conta paga.",
+                                        "retorno": "Isso aumenta justamente a diferença que o comitê identificou."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "Levamos os relatos à coordenação, que autorizou um piloto supervisionado com alternativas. A espera permitiu preparar o serviço, mas mostrou que adiar a oferta institucional não interrompe o uso externo."
+                        }
                     ]
                 }
             ]
         },
-        ato2: {
-            retorno: {
-                auditavel: 'O laboratório auditável que você organizou permitiu conhecer os limites do sistema. Agora há pressão para ampliar o acesso.',
-                amplo: 'Após a abertura ampla e a revisão dos registros, o comitê recuperou o controle do piloto. A comunidade ainda espera respostas sobre a expansão.',
-                adiar: 'O piloto supervisionado começou depois de um período de preparação. A diferença de acesso que vocês observaram segue no centro do debate.'
+        "ato2": {
+            "retorno": {
+                "auditavel": "Os registros do piloto limitado mostram benefícios no estudo noturno e barreiras ainda abertas. Eles serão a base do relatório sobre continuidade e expansão.",
+                "amplo": "A abertura ampla revelou demanda e uma falha de permissões. O relatório da revisão precisa demonstrar como a continuidade evitará repetir a sobrecarga e a exposição.",
+                "adiar": "A escuta durante a espera mostrou diferenças entre contas pessoais pagas e gratuitas. O novo relatório deve considerar essas pessoas ao avaliar a continuidade institucional."
             },
-            antes: [
-                { nome: '', texto: 'Três meses depois. O prazo da licença de teste está terminando.' },
-                { nome: 'NICODEMOS', texto: 'A fornecedora oferece mais seis meses sem cobrança. Em troca, quer usar comandos e dados de uso da comunidade para aprimorar o próprio sistema.' },
-                { nome: '{nome}', texto: 'O preço da proposta não aparece apenas na fatura. Precisamos entender o destino desses dados, as alternativas e o custo de sair da plataforma.' },
-                { recurso: 'privacidade' }
+            "antes": [
+                {
+                    "nome": "",
+                    "texto": "Três meses depois, o piloto chega à revisão prevista. Faltam dez dias para a licença expirar e uma atividade de estudo já utiliza o assistente como apoio opcional."
+                },
+                {
+                    "nome": "NICODEMOS",
+                    "texto": "A mesma fornecedora que cedeu a licença oferece seis meses sem cobrança. O novo termo permite reutilizar comandos e respostas para aprimorar o sistema. Depois disso, a universidade terá de pagar por usuário ou reduzir as contas."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Os registros mostram que há estudantes usando o apoio à noite. Interromper sem alternativa os prejudica; continuar sem examinar os termos também pode expor o que escrevem."
+                },
+                {
+                    "nome": "NICODEMOS",
+                    "texto": "Uma estudante inseriu um relato pessoal ao pedir uma explicação. Não sabemos se esses conteúdos entram na reutilização. Giovana pediu que levantássemos essa dúvida, os custos futuros e as condições para sair do serviço."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Vou comparar o termo com as necessidades que observamos. Nosso parecer será técnico e preliminar; contratação e tratamento de dados precisam das equipes responsáveis e da decisão institucional."
+                },
+                {
+                    "recurso": "privacidade"
+                },
+                {
+                    "nome": "NICODEMOS",
+                    "texto": "Depois da leitura, quais condições você colocaria no relatório? Precisamos explicar tanto o risco dos dados quanto o efeito de uma interrupção."
+                }
             ],
-            pergunta: 'Que recomendação o comitê deve apresentar sobre a proposta?',
-            opcoes: [
+            "pergunta": "Que encaminhamento você recomenda à Giovana para a revisão da licença?",
+            "opcoes": [
                 {
-                    id: 'negociar',
-                    texto: 'Negociar finalidade, proteção dos dados, alternativas de acesso e condições de saída antes de ampliar o contrato.',
-                    passos: [
-                        { nome: 'NICODEMOS', texto: 'A negociação atrasa o anúncio, mas deixa a comunidade informada e dá à universidade condições para avaliar o acordo.' },
-                        { nome: '', texto: 'A expansão acontece por etapas, com dados necessários delimitados e revisão periódica do contrato.' }
+                    "id": "negociar",
+                    "texto": "Recomendar negociação de limites para dados, custo futuro e saída, com apoio alternativo durante a análise institucional.",
+                    "passos": [
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "Seu relatório relaciona cada cláusula a um uso observado. Giovana encaminha a proposta às equipes de contratação e proteção de dados; a fornecedora terá de responder por escrito."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Enquanto aguardamos, proponho manter monitoria e materiais acessíveis. A atividade não pode exigir que estudantes aceitem condições ainda em análise."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "A universidade negocia uma transição limitada, sem reutilização adicional de conteúdos. A ampliação fica condicionada à análise do contrato, do orçamento e das barreiras encontradas."
+                        }
                     ]
                 },
                 {
-                    id: 'aceitar',
-                    texto: 'Aceitar a extensão gratuita para não interromper o serviço e revisar os termos durante os primeiros meses.',
-                    passos: [
-                        { nome: 'NICODEMOS', texto: 'A continuidade ajudou quem já usa o assistente. Ao examinar os termos, porém, estudantes perceberam que seus comandos poderiam ter outra finalidade.' },
-                        { recurso: 'privacidade' },
-                        { atividade: { pergunta: 'O contrato ainda pode ser revisto. Qual informação precisa constar na proposta de negociação?', opcoes: [
-                            { texto: 'Quais dados serão usados, para quê, por quanto tempo e como a comunidade poderá contestar esse uso.', adequada: true, retorno: 'Com esses pontos explícitos, a universidade consegue negociar limites verificáveis.' },
-                            { texto: 'Somente a quantidade de novos usuários cadastrados.', retorno: 'O número de contas não esclarece o tratamento dos comandos e dados de uso.' },
-                            { texto: 'A promessa informal de que os dados estarão seguros.', retorno: 'Uma promessa sem critérios não permite verificar as condições do serviço.' }
-                        ] } },
-                        { nome: 'NICODEMOS', texto: 'Suspendemos o compartilhamento adicional e renegociamos os termos. O serviço continua, mas agora a revisão é pública.' }
+                    "id": "aceitar",
+                    "texto": "Recomendar continuidade temporária, condicionada à suspensão da reutilização de conteúdos e à revisão institucional em prazo definido.",
+                    "passos": [
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "A continuidade protege o apoio noturno, mas só pode ocorrer se a fornecedora aceitar a condição e a equipe responsável validar o termo. Quem acompanha esse prazo?"
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Proponho que Giovana designe responsáveis pela revisão e publique um calendário. Se a condição não for aceita, ativamos a monitoria e os materiais de apoio."
+                        },
+                        {
+                            "recurso": "privacidade"
+                        },
+                        {
+                            "nome": "",
+                            "texto": "A equipe responsável aprova uma extensão transitória com a reutilização adicional suspensa. O serviço permanece disponível, mas o custo por usuário e a saída continuam pendentes para o Conselho."
+                        }
                     ]
                 },
                 {
-                    id: 'interna',
-                    texto: 'Preparar uma alternativa sob controle da universidade e reduzir a dependência da fornecedora.',
-                    passos: [
-                        { nome: 'NICODEMOS', texto: 'Ter uma alternativa própria pode ser importante. O prazo da licença, porém, é curto para desenvolver, testar e manter um serviço para todo o campus.' },
-                        { recurso: 'governanca' },
-                        { atividade: { pergunta: 'Como planejar uma alternativa sem interromper o apoio atual?', opcoes: [
-                            { texto: 'Definir custos e etapas de desenvolvimento enquanto negocia um serviço provisório limitado.', adequada: true, retorno: 'O plano reduz dependência sem prometer uma solução imediata que a equipe não pode entregar.' },
-                            { texto: 'Anunciar que a equipe criará uma plataforma completa em duas semanas.', retorno: 'A equipe precisa de tempo e recursos para testar, manter e oferecer suporte à plataforma.' },
-                            { texto: 'Encerrar o serviço hoje e deixar a comunidade encontrar substitutos sozinha.', retorno: 'A interrupção repentina transfere o problema às pessoas que mais dependem do apoio.' }
-                        ] } },
-                        { nome: 'NICODEMOS', texto: 'Fechamos uma continuidade provisória e apresentamos um estudo de viabilidade para a solução institucional.' }
+                    "id": "interna",
+                    "texto": "Recomendar estudo de uma alternativa institucional, comparando manutenção, acessibilidade e uma transição com apoio humano.",
+                    "passos": [
+                        {
+                            "nome": "NICODEMOS",
+                            "texto": "Você pode levantar requisitos e testar opções comigo. Desenvolver ou hospedar uma alternativa exige orçamento, equipe e prazo; não podemos prometer uma plataforma pronta para a próxima semana."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou usar os relatos do piloto para comparar opções: horários de acesso, leitor de tela, proteção de conteúdos e capacidade de suporte. Controle institucional também exige manutenção."
+                        },
+                        {
+                            "recurso": "governanca"
+                        },
+                        {
+                            "nome": "",
+                            "texto": "Giovana recebe o estudo preliminar e leva custos e etapas ao Conselho. Durante a avaliação, a universidade negocia acesso transitório limitado e mantém alternativas de estudo; a migração ainda depende de viabilidade."
+                        }
                     ]
                 }
             ]
         }
     },
-
-    gestor: {
-        nivel: 'Intermediário',
-        companheiro: 'LÍVIA',
-        avatar: 'assets/images/npc_livia_stand.png',
-        fundo1: 'assets/images/background_biblioteca.webp',
-        fundo2: 'assets/images/background_sala de aula.webp',
-        ato1: {
-            antes: [
-                { nome: '', texto: 'Como gestor educacional do Programa Horizonte IA, você recebe relatos de turmas com práticas muito diferentes de uso da ferramenta.' },
-                { nome: 'LÍVIA', texto: 'Na disciplina do Augusto, a IA produz textos bem escritos em segundos. Alguns colegas usam para organizar perguntas; outros entregam o texto inteiro. Ninguém sabe qual processo será avaliado.' },
-                { nome: '{nome}', texto: 'Preciso propor uma orientação que ajude estudantes e docentes a reconhecer aprendizagem, autoria e condições de acesso.' },
-                { recurso: 'autoria' },
-                { nome: 'LÍVIA', texto: 'Se a universidade puder definir uma regra para este primeiro trabalho, o que ela deve pedir aos participantes?' }
+    "gestor": {
+        "nivel": "Intermediário",
+        "companheiro": "LÍVIA",
+        "avatar": "assets/images/npc_livia_stand.png",
+        "fundo1": "assets/images/background_biblioteca.webp",
+        "fundo2": "assets/images/background_sala de aula.webp",
+        "ato1": {
+            "antes": [
+                {
+                    "nome": "",
+                    "texto": "Primeiro mês do Horizonte IA. Duas disciplinas e o laboratório de apoio participam do piloto. Como gestor educacional, você deve articular estudantes, docentes e TI para levar uma proposta de implantação ao Conselho."
+                },
+                {
+                    "nome": "LÍVIA",
+                    "texto": "Na minha turma, uma professora permite organizar ideias com IA. Em outra disciplina, ninguém explicou a regra. Tenho medo de usar até para entender uma pergunta e depois ser acusada de fraude."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Precisamos de uma orientação institucional comum, preservando a decisão pedagógica de cada disciplina. O que mais está dificultando a participação?"
+                },
+                {
+                    "nome": "LÍVIA",
+                    "texto": "A monitoria fecha cedo. Alguns colegas pagam ferramentas melhores. E pedir rascunhos toda semana pode ajudar, mas precisamos saber quem vai ler e dar retorno."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Vou reunir essas demandas com a carga de trabalho docente e os dados de suporte da TI. Uma política só funciona se houver tempo, pessoas e alternativas para cumpri-la."
+                },
+                {
+                    "recurso": "autoria"
+                },
+                {
+                    "nome": "LÍVIA",
+                    "texto": "Então o Conselho vai discutir condições de participação e acompanhamento, além de dizer se podemos usar IA?"
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Sim. Vou apresentar uma prioridade para esta etapa, com limites, recursos necessários e data de revisão."
+                }
             ],
-            pergunta: 'Que orientação você levará à turma e ao professor?',
-            opcoes: [
+            "pergunta": "Que orientação institucional você propõe para esta fase do Horizonte IA?",
+            "opcoes": [
                 {
-                    id: 'processo',
-                    texto: 'Permitir a IA para organizar ideias; pedir fontes conferidas, texto próprio e explicação das decisões tomadas.',
-                    passos: [
-                        { nome: 'LÍVIA', texto: 'Posso usar a ferramenta para explorar caminhos sem esconder que a utilizei. A conversa com o professor continua importante.' },
-                        { nome: '', texto: 'O professor recolhe esboços e promove uma defesa breve. A maioria consegue explicar o que fez, e surgem dúvidas que orientam a próxima aula.' }
+                    "id": "processo",
+                    "texto": "Construir critérios comuns de declaração de uso e evidências de aprendizagem, com formação e tempo de acompanhamento.",
+                    "passos": [
+                        {
+                            "nome": "LÍVIA",
+                            "texto": "Saber o que declarar me dá segurança. Só espero que isso não vire um formulário que ninguém discute."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou reservar encontros de formação e negociar com as coordenações um registro breve. Cada docente explicará como esse registro se relaciona ao objetivo da atividade."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "O Conselho aprova a orientação para o piloto. As turmas ganham critérios comuns, mas a gestão precisa redistribuir horas de acompanhamento para não sobrecarregar os professores."
+                        }
                     ]
                 },
                 {
-                    id: 'produto',
-                    texto: 'Dar liberdade de ferramentas e avaliar primeiro a qualidade dos textos entregues, para não restringir estratégias de estudo.',
-                    passos: [
-                        { nome: 'LÍVIA', texto: 'Ganhei liberdade para experimentar. Mas dois textos muito bons não corresponderam ao que seus autores conseguiram explicar depois.' },
-                        { nome: '', texto: 'Na apresentação, parte da turma reconhece que passou a confiar na fluência do texto sem investigar as afirmações.' },
-                        { recurso: 'videoEstudo' },
-                        { atividade: { pergunta: 'Que evidência ajudaria a avaliar a aprendizagem além do texto final?', opcoes: [
-                            { texto: 'Pedir que cada estudante explique uma escolha, apresente uma fonte e mostre o que revisou.', adequada: true, retorno: 'A defesa revela o percurso sem impedir formas diferentes de produzir.' },
-                            { texto: 'Considerar o texto suficiente porque sua redação parece madura.', retorno: 'A qualidade da redação não revela sozinha como o estudante construiu o entendimento.' },
-                            { texto: 'Exigir apenas uma declaração genérica: “usei IA”.', retorno: 'A declaração ajuda, mas faltam a finalidade, as fontes e as decisões do estudante.' }
-                        ] } },
-                        { nome: '{nome}', texto: 'Acrescentamos uma defesa do processo e orientação sobre fontes. A liberdade de ferramentas agora vem acompanhada de evidências de aprendizagem.' }
+                    "id": "produto",
+                    "texto": "Ampliar a autonomia das disciplinas com uma base comum de acesso, apoio e avaliação dos resultados do piloto.",
+                    "passos": [
+                        {
+                            "nome": "LÍVIA",
+                            "texto": "Podemos experimentar formas diferentes de estudar. Como vamos saber se uma turma está aprendendo mais ou só produzindo mais rápido?"
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "As coordenações vão comparar relatos, amostras comentadas e barreiras de participação. O docente continua responsável pela avaliação; a gestão reúne evidências para rever a implantação."
+                        },
+                        {
+                            "recurso": "nivelamentoMediacao"
+                        },
+                        {
+                            "nome": "",
+                            "texto": "O Conselho mantém a experimentação em diferentes disciplinas. Os resultados variados ampliam o aprendizado institucional, mas dificultam comparar experiências sem ouvir estudantes e professores."
+                        }
                     ]
                 },
                 {
-                    id: 'restricao',
-                    texto: 'Restringir a ferramenta nesta primeira entrega para preservar uma referência inicial do trabalho dos estudantes.',
-                    passos: [
-                        { nome: 'LÍVIA', texto: 'Uma referência inicial pode ajudar. Alguns colegas, porém, não sabem se até um apoio de acessibilidade conta como uso proibido.' },
-                        { nome: '', texto: 'As restrições diferentes entre disciplinas deixam estudantes inseguros. A gestão precisa distinguir apoio formativo, acessibilidade e produção substitutiva.' },
-                        { recurso: 'equidade' },
-                        { atividade: { pergunta: 'Como tornar o limite inicial mais claro e acessível?', opcoes: [
-                            { texto: 'Descrever o que a atividade avalia, quais apoios são permitidos e como declarar cada uso.', adequada: true, retorno: 'Critérios claros ajudam docentes e estudantes a entender o objetivo da restrição.' },
-                            { texto: 'Manter a regra vaga e decidir caso a caso depois da entrega.', retorno: 'A incerteza pode penalizar usos de apoio que não substituem a aprendizagem.' },
-                            { texto: 'Impedir também recursos de acessibilidade para tratar todos de forma idêntica.', retorno: 'Condições idênticas podem criar barreiras distintas para estudantes com necessidades diferentes.' }
-                        ] } },
-                        { nome: '{nome}', texto: 'Publicamos critérios de uso e alternativas acessíveis. A turma agora sabe o que pode usar e o que precisa demonstrar.' }
+                    "id": "restricao",
+                    "texto": "Delimitar usos e turmas nesta etapa, garantindo alternativas acessíveis enquanto a universidade prepara equipes e infraestrutura.",
+                    "passos": [
+                        {
+                            "nome": "LÍVIA",
+                            "texto": "Entendo começar com limites. Mas quem ficar fora vai continuar usando ferramentas particulares, e alguns dependem de recursos de acessibilidade."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Os limites serão por finalidade e capacidade de suporte. Vou consultar os setores de acessibilidade e garantir uma rota equivalente para quem não participar."
+                        },
+                        {
+                            "recurso": "equidade"
+                        },
+                        {
+                            "nome": "",
+                            "texto": "O Conselho delimita o piloto e publica critérios de participação. A preparação reduz a pressão sobre as equipes; permanece a necessidade de ouvir quem não recebeu acesso institucional."
+                        }
                     ]
                 }
             ]
         },
-        ato2: {
-            retorno: {
-                processo: 'A orientação sobre rascunhos, fontes e defesa do processo deu aos professores mais evidências de aprendizagem. Um novo caso exige atenção à pesquisa em grupo.',
-                produto: 'Após incluir a defesa do processo, as turmas passaram a distinguir melhor um texto fluente de uma compreensão demonstrada.',
-                restricao: 'Os critérios publicados reduziram dúvidas sobre apoios permitidos. Agora a equipe precisa lidar com referências produzidas pela IA.'
+        "ato2": {
+            "retorno": {
+                "processo": "Os critérios comuns tornaram o processo mais visível, mas aumentaram a demanda por orientação. Agora você precisa avaliar se há equipe e orçamento para sustentá-los.",
+                "produto": "A autonomia revelou usos e resultados variados. A revisão precisa reunir evidências comparáveis sem transformar quantidade de entregas em prova de aprendizagem.",
+                "restricao": "O escopo limitado permitiu preparar equipes, mas os relatos de quem ficou de fora precisam entrar na decisão sobre a próxima etapa."
             },
-            antes: [
-                { nome: '', texto: 'Três meses depois. Faltam duas horas para o envio de um artigo coletivo.' },
-                { nome: 'LÍVIA', texto: 'Pedi à IA referências para nosso grupo. Ela devolveu autores conhecidos, títulos convincentes e números de identificação. Já inserimos tudo no texto.' },
-                { nome: 'GIOVANA', texto: 'O grupo pediu orientação à gestão porque não conseguiu localizar dois desses artigos. O prazo é real, mas uma fonte inventada também tem consequências.' },
-                { recurso: 'referencias' }
+            "antes": [
+                {
+                    "nome": "",
+                    "texto": "Fim dos três meses do piloto. O Conselho precisa decidir sobre a próxima etapa antes do vencimento da licença. O relatório deve reunir acesso, aprendizagem, carga de trabalho e condições do serviço."
+                },
+                {
+                    "nome": "LÍVIA",
+                    "texto": "O painel destaca mais acessos e entregas mais rápidas. Mas colegas dizem que não conseguem explicar alguns textos. Outros nem entraram na plataforma porque o laboratório fecha cedo."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "O número de acessos mostra uso, mas não basta para demonstrar aprendizagem ou inclusão. Vou confrontar o painel com relatos e amostras analisadas pelos professores."
+                },
+                {
+                    "nome": "LÍVIA",
+                    "texto": "Augusto encontrou referências inexistentes em trabalhos. A ferramenta respondeu com segurança, e os grupos acharam que uma referência bem formatada já era confiável."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "A revisão das fontes pertence às atividades e à orientação docente. À gestão cabe garantir formação, tempo de verificação e um procedimento de atendimento para que cada turma não tenha de resolver tudo sozinha."
+                },
+                {
+                    "recurso": "referencias"
+                },
+                {
+                    "nome": "LÍVIA",
+                    "texto": "E como responder ao prazo do Conselho sem anunciar que o piloto foi um sucesso só porque teve muitos acessos?"
+                }
             ],
-            pergunta: 'Como você orienta o grupo a concluir o trabalho?',
-            opcoes: [
+            "pergunta": "Como você encaminha a avaliação institucional e a continuidade do programa?",
+            "opcoes": [
                 {
-                    id: 'verificar',
-                    texto: 'Conferir os originais com o grupo, retirar referências inexistentes e negociar uma entrega transparente do que foi validado.',
-                    passos: [
-                        { nome: 'LÍVIA', texto: 'O identificador também era inventado. Refizemos a seção com fontes reais e explicamos ao professor onde a IA participou.' },
-                        { nome: '{nome}', texto: 'A verificação consumiu tempo, mas permitiu avaliar a contribuição de cada pessoa sem esconder o problema.' }
+                    "id": "verificar",
+                    "texto": "Validar o relatório com representantes das turmas, docentes e TI, e condicionar a expansão a evidências e recursos de suporte.",
+                    "passos": [
+                        {
+                            "nome": "LÍVIA",
+                            "texto": "Quero que os relatos de quem não conseguiu participar também apareçam. Isso muda a leitura dos números."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "A proposta reunirá participação, evidências de aprendizagem, barreiras e carga das equipes. Vou negociar prazo para a escuta e apresentar o que já sabemos sem ocultar as lacunas."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "O Conselho recebe uma avaliação participativa. A decisão de ampliar fica vinculada à formação, a horários de acesso e à revisão das condições da licença. A consulta exige tempo e o atendimento atual permanece delimitado."
+                        }
                     ]
                 },
                 {
-                    id: 'prazo',
-                    texto: 'Entregar no horário para preservar o esforço coletivo e pedir uma conferência formal das referências logo depois.',
-                    passos: [
-                        { nome: 'LÍVIA', texto: 'Com a pressa, o grupo enviou referências que não conseguiu localizar. O professor suspendeu a avaliação enquanto investiga as fontes.' },
-                        { recurso: 'referencias' },
-                        { atividade: { pergunta: 'Como responder ao professor e organizar a correção?', opcoes: [
-                            { texto: 'Informar quais referências não foram verificadas, localizar os originais e substituir o que não puder ser comprovado.', adequada: true, retorno: 'A revisão permite reparar o texto e documentar a responsabilidade coletiva.' },
-                            { texto: 'Dizer que a IA garantiu que as referências existiam.', retorno: 'A resposta da ferramenta não substitui a consulta às publicações originais.' },
-                            { texto: 'Alterar apenas os números de identificação para que pareçam válidos.', retorno: 'Uma referência precisa apontar para um trabalho real, não apenas seguir uma forma correta.' }
-                        ] } },
-                        { nome: 'LÍVIA', texto: 'Assumimos a falha e solicitamos prazo para uma versão corrigida. O professor aceita revisar o percurso do grupo.' }
+                    "id": "prazo",
+                    "texto": "Apresentar no prazo um relatório preliminar, manter o escopo atual e fixar responsáveis e data para completar a avaliação.",
+                    "passos": [
+                        {
+                            "nome": "LÍVIA",
+                            "texto": "O prazo será cumprido. Mas a palavra preliminar precisa aparecer no comunicado, senão vão entender que o programa já foi validado."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou separar resultados observados de perguntas em aberto. A continuidade será temporária e dependerá da análise da licença; não será autorização para ampliar as turmas."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "O Conselho mantém o atendimento atual sob condições transitórias e cobra a avaliação completa na data definida. A continuidade evita uma ruptura, mas adia a entrada de novas turmas e mantém pressão sobre as equipes."
+                        }
                     ]
                 },
                 {
-                    id: 'refazer',
-                    texto: 'Retirar a seção inteira e encarregar uma pessoa da reescrita para evitar que o grupo publique referências duvidosas.',
-                    passos: [
-                        { nome: 'LÍVIA', texto: 'Entendo o cuidado, mas tomar a tarefa de todos sem conversar comigo enfraqueceu a colaboração. O novo texto também ficou superficial.' },
-                        { recurso: 'autoria' },
-                        { atividade: { pergunta: 'Que proposta recupera a qualidade do texto e a colaboração?', opcoes: [
-                            { texto: 'Dividir a busca de fontes originais, comparar as evidências em grupo e revisar a seção juntos.', adequada: true, retorno: 'A tarefa volta a ser coletiva e cada afirmação pode ser examinada.' },
-                            { texto: 'Pedir a uma pessoa que termine tudo sozinha e não consulte o restante do grupo.', retorno: 'Isso preserva a pressa que produziu o conflito e reduz a chance de revisão.' },
-                            { texto: 'Restaurar as citações inventadas apenas para preencher a seção.', retorno: 'A forma completa do texto não compensa a ausência de fontes verificáveis.' }
-                        ] } },
-                        { nome: '{nome}', texto: 'Organizamos a revisão conjunta e pedimos um prazo justificado. Lívia participa da verificação e o grupo recupera seu trabalho.' }
+                    "id": "refazer",
+                    "texto": "Reorganizar a implantação por etapas, priorizando formação, acessibilidade e apoio humano antes de acrescentar novos usos.",
+                    "passos": [
+                        {
+                            "nome": "LÍVIA",
+                            "texto": "Isso responde a problemas que vivemos. Como garantir que a reorganização não tire apoio de quem já usa o assistente à noite?"
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou preservar alternativas de estudo e pactuar a transição com as coordenações. Cada etapa terá responsáveis, orçamento estimado e critérios para avançar; as turmas participarão da revisão."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "O Conselho aprova a reorganização, sem expansão imediata. O investimento em equipes e acessibilidade ganha prioridade, enquanto a universidade explica à comunidade por que algumas funcionalidades terão de esperar."
+                        }
                     ]
                 }
             ]
         }
     },
-
-    professor: {
-        nivel: 'Difícil',
-        companheiro: 'PROFESSOR AUGUSTO',
-        avatar: 'assets/images/npc_professor_augusto_tela1.png',
-        fundo1: 'assets/images/background_sala de aula.webp',
-        fundo2: 'assets/images/background_sala de informatica.webp',
-        ato1: {
-            antes: [
-                { nome: '', texto: 'Sala 12. Na mesa de Augusto há vinte trabalhos com estrutura semelhante. A disciplina pede que os estudantes expliquem conceitos de cultura digital.' },
-                { nome: 'PROFESSOR AUGUSTO', texto: 'Não consigo concluir quem usou IA apenas olhando o estilo dos textos. O problema maior é não saber quem consegue aplicar as ideias fora dessas páginas.' },
-                { nome: '{nome}', texto: 'Como professor visitante, preciso redesenhar a avaliação para produzir evidências de aprendizagem e ainda tornar os critérios viáveis para a turma.' },
-                { recurso: 'videoEnsino' },
-                { recurso: 'docencia' }
+    "professor": {
+        "nivel": "Difícil",
+        "companheiro": "PROFESSOR AUGUSTO",
+        "avatar": "assets/images/npc_professor_augusto_tela1.png",
+        "fundo1": "assets/images/background_sala de aula.webp",
+        "fundo2": "assets/images/background_sala de informatica.webp",
+        "ato1": {
+            "antes": [
+                {
+                    "nome": "",
+                    "texto": "Sala 12, primeiro mês do Horizonte IA. Você participa como professor visitante da disciplina de Cultura Digital, ao lado de Augusto. A turma foi convidada a testar o assistente institucional para discutir um problema do campus."
+                },
+                {
+                    "nome": "PROFESSOR AUGUSTO",
+                    "texto": "Pedi uma análise sobre inclusão digital. Recebi vinte textos bem organizados, mas, quando perguntei como as propostas atenderiam o turno noturno, vários estudantes não conseguiram explicar."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "O objetivo era analisar condições reais e justificar uma intervenção. Precisamos descobrir como a ferramenta entrou no processo e o que a atividade permitiu aprender."
+                },
+                {
+                    "nome": "PROFESSOR AUGUSTO",
+                    "texto": "Lívia disse que a IA ajudou a formular perguntas. Outro grupo aceitou uma proposta pronta sem verificar os horários do laboratório. Eu anunciei o recurso, mas não expliquei como avaliaríamos seu uso."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Vamos ouvir a turma e redesenhar a próxima etapa. A implantação precisa mostrar onde a IA apoia a investigação e onde o estudante deve confrontar a resposta com o contexto."
+                },
+                {
+                    "recurso": "videoEnsino"
+                },
+                {
+                    "recurso": "docencia"
+                },
+                {
+                    "nome": "PROFESSOR AUGUSTO",
+                    "texto": "Depois desses materiais, que evidências vamos pedir para avaliar o objetivo da disciplina sem transformar a aula numa investigação de suspeitos?"
+                }
             ],
-            pergunta: 'Como redesenhar a avaliação desta disciplina?',
-            opcoes: [
+            "pergunta": "Como redesenhar a avaliação desta disciplina?",
+            "opcoes": [
                 {
-                    id: 'autentica',
-                    texto: 'Propor um problema contextualizado, registrar as fontes e pedir uma defesa das decisões, com ou sem apoio de IA declarado.',
-                    passos: [
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'Agora posso discutir por que cada solução foi escolhida. Teremos de definir critérios claros e tempo de acompanhamento, mas a autoria ficou mais visível.' },
-                        { nome: '', texto: 'Os estudantes investigam um problema real e justificam caminhos diferentes. As dúvidas encontradas alimentam a aula seguinte.' }
+                    "id": "autentica",
+                    "texto": "Propor um problema contextualizado, registrar as fontes e pedir uma defesa das decisões, com ou sem apoio de IA declarado.",
+                    "passos": [
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "Agora posso discutir por que cada solução foi escolhida. Teremos de definir critérios claros e tempo de acompanhamento, mas a autoria ficou mais visível."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "Os estudantes investigam um problema real e justificam caminhos diferentes. As dúvidas encontradas alimentam a aula seguinte."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou levar à gestão as horas de orientação e as barreiras de acesso observadas. Essa experiência precisa orientar a próxima etapa do Horizonte IA."
+                        }
                     ]
                 },
                 {
-                    id: 'presencial',
-                    texto: 'Priorizar etapas presenciais de escrita e diálogo para observar diretamente o raciocínio de cada estudante.',
-                    passos: [
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'As conversas revelaram muito, mas a carga de trabalho aumentou e parte da turma sente que a pesquisa digital desapareceu da disciplina.' },
-                        { recurso: 'docencia' },
-                        { atividade: { pergunta: 'Como aproveitar a evidência presencial sem perder investigação e flexibilidade?', opcoes: [
-                            { texto: 'Combinar uma etapa acompanhada com pesquisa contextualizada e defesa posterior das decisões.', adequada: true, retorno: 'As duas etapas mostram o processo e mantêm competências digitais relevantes.' },
-                            { texto: 'Eliminar toda pesquisa e avaliar somente velocidade de escrita.', retorno: 'A rapidez de produção não demonstra necessariamente investigação ou aplicação.' },
-                            { texto: 'Usar a conversa apenas para confirmar suspeitas sobre uso de IA.', retorno: 'A conversa pode revelar aprendizagem quando suas perguntas são abertas e ligadas aos objetivos.' }
-                        ] } },
-                        { nome: '{nome}', texto: 'Reformulamos o plano: há observação direta e investigação orientada. A turma sabe o que cada etapa procura demonstrar.' }
+                    "id": "presencial",
+                    "texto": "Priorizar etapas presenciais de escrita e diálogo para observar diretamente o raciocínio de cada estudante.",
+                    "passos": [
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "As conversas revelaram muito, mas a carga de trabalho aumentou e parte da turma sente que a pesquisa digital desapareceu da disciplina."
+                        },
+                        {
+                            "recurso": "docencia"
+                        },
+                        {
+                            "atividade": {
+                                "pergunta": "Como aproveitar a evidência presencial sem perder investigação e flexibilidade?",
+                                "opcoes": [
+                                    {
+                                        "texto": "Combinar uma etapa acompanhada com pesquisa contextualizada e defesa posterior das decisões.",
+                                        "adequada": true,
+                                        "retorno": "As duas etapas mostram o processo e mantêm competências digitais relevantes."
+                                    },
+                                    {
+                                        "texto": "Eliminar toda pesquisa e avaliar somente velocidade de escrita.",
+                                        "retorno": "A rapidez de produção não demonstra necessariamente investigação ou aplicação."
+                                    },
+                                    {
+                                        "texto": "Usar a conversa apenas para confirmar suspeitas sobre uso de IA.",
+                                        "retorno": "A conversa pode revelar aprendizagem quando suas perguntas são abertas e ligadas aos objetivos."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Reformulamos o plano: há observação direta e investigação orientada. A turma sabe o que cada etapa procura demonstrar."
+                        }
                     ]
                 },
                 {
-                    id: 'detector',
-                    texto: 'Manter os trabalhos atuais por enquanto e usar um detector como sinal para selecionar entregas que merecem diálogo.',
-                    passos: [
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'O detector destacou textos de estudantes que registraram rascunhos próprios. A suspeita, mesmo provisória, começou a afetar a confiança da turma.' },
-                        { recurso: 'integridade' },
-                        { atividade: { pergunta: 'Como revisar a avaliação diante de um resultado que pode estar errado?', opcoes: [
-                            { texto: 'Não tratar a detecção como prova; ouvir a turma, examinar o processo e oferecer critérios claros para todos.', adequada: true, retorno: 'A decisão volta a se apoiar em evidências de aprendizagem e em uma escuta justa.' },
-                            { texto: 'Reprovar automaticamente todos os trabalhos sinalizados.', retorno: 'Um sinal não confirma autoria nem explica a aprendizagem de cada estudante.' },
-                            { texto: 'Esconder o uso do detector e manter as suspeitas sem possibilidade de diálogo.', retorno: 'Sem transparência, a turma não consegue compreender ou contestar o critério.' }
-                        ] } },
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'Pedimos desculpas pela forma como levantamos suspeitas e passamos a avaliar processo, fontes e defesa das escolhas.' }
+                    "id": "detector",
+                    "texto": "Manter os trabalhos atuais por enquanto e usar um detector como sinal para selecionar entregas que merecem diálogo.",
+                    "passos": [
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "O detector destacou textos de estudantes que registraram rascunhos próprios. A suspeita, mesmo provisória, começou a afetar a confiança da turma."
+                        },
+                        {
+                            "recurso": "integridade"
+                        },
+                        {
+                            "atividade": {
+                                "pergunta": "Como revisar a avaliação diante de um resultado que pode estar errado?",
+                                "opcoes": [
+                                    {
+                                        "texto": "Não tratar a detecção como prova; ouvir a turma, examinar o processo e oferecer critérios claros para todos.",
+                                        "adequada": true,
+                                        "retorno": "A decisão volta a se apoiar em evidências de aprendizagem e em uma escuta justa."
+                                    },
+                                    {
+                                        "texto": "Reprovar automaticamente todos os trabalhos sinalizados.",
+                                        "retorno": "Um sinal não confirma autoria nem explica a aprendizagem de cada estudante."
+                                    },
+                                    {
+                                        "texto": "Esconder o uso do detector e manter as suspeitas sem possibilidade de diálogo.",
+                                        "retorno": "Sem transparência, a turma não consegue compreender ou contestar o critério."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "Pedimos desculpas pela forma como levantamos suspeitas e passamos a avaliar processo, fontes e defesa das escolhas."
+                        }
                     ]
                 }
             ]
         },
-        ato2: {
-            retorno: {
-                autentica: 'As avaliações contextualizadas trouxeram bons resultados. Agora um trabalho de pesquisa mostra que bons critérios em sala precisam chegar também à orientação científica.',
-                presencial: 'A combinação entre diálogo e pesquisa devolveu flexibilidade à disciplina. Um caso de pesquisa exige aplicar esse mesmo cuidado à orientação.',
-                detector: 'Depois da crise causada pelo detector, a turma passou a exigir processos transparentes. Essa confiança será testada em uma publicação científica.'
+        "ato2": {
+            "retorno": {
+                "autentica": "As avaliações contextualizadas trouxeram bons resultados. Agora um trabalho de pesquisa mostra que bons critérios em sala precisam chegar também à orientação científica.",
+                "presencial": "A combinação entre diálogo e pesquisa devolveu flexibilidade à disciplina. Um caso de pesquisa exige aplicar esse mesmo cuidado à orientação.",
+                "detector": "Depois da crise causada pelo detector, a turma passou a exigir processos transparentes. Essa confiança será testada em uma publicação científica."
             },
-            antes: [
-                { nome: '', texto: 'Três meses depois. Uma revista científica pede explicações sobre um trabalho de conclusão orientado por Augusto.' },
-                { nome: 'PROFESSOR AUGUSTO', texto: 'Dados centrais do artigo não aparecem nos registros da pesquisa. A estudante disse que a IA sugeriu números plausíveis e ela os aceitou sem conferir. Eu também não identifiquei o problema na revisão.' },
-                { nome: '{nome}', texto: 'Há uma publicação em avaliação, uma estudante que precisa ser ouvida e leitores que dependem da integridade dos resultados. Nossa resposta terá consequências para todos.' },
-                { recurso: 'integridade' }
+            "antes": [
+                {
+                    "nome": "",
+                    "texto": "Três meses depois, a mesma turma transforma a investigação sobre inclusão digital em um artigo para uma revista de práticas universitárias. Você e Augusto acompanham a pesquisa como docentes; o uso de IA foi declarado."
+                },
+                {
+                    "nome": "PROFESSOR AUGUSTO",
+                    "texto": "A revista perguntou de onde vieram os números sobre estudantes sem internet. Conferi com a turma: a IA sugeriu valores para exemplificar uma tabela, e eles entraram na análise como se fossem dados coletados. Eu revisei a redação e não rastreei a origem."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "Então o problema de verificar respostas voltou em outra etapa. Precisamos ouvir os autores, distinguir registros reais de exemplos gerados e avisar à revista o que ainda não podemos sustentar."
+                },
+                {
+                    "nome": "PROFESSOR AUGUSTO",
+                    "texto": "A estudante que montou a tabela está com medo de perder o trabalho inteiro. E a gestão esperava usar o artigo como evidência de sucesso do Horizonte IA."
+                },
+                {
+                    "nome": "{nome}",
+                    "texto": "O caso precisa informar a revisão do programa, sem expor a estudante como símbolo de fracasso. O artigo só pode sustentar conclusões compatíveis com dados verificados."
+                },
+                {
+                    "recurso": "integridade"
+                },
+                {
+                    "nome": "PROFESSOR AUGUSTO",
+                    "texto": "Que encaminhamento você propõe? Temos responsabilidade com a formação da turma, com os leitores e com o que a universidade vai aprender com esse piloto."
+                }
             ],
-            pergunta: 'Qual encaminhamento você propõe para o artigo e para a orientação?',
-            opcoes: [
+            "pergunta": "Qual encaminhamento você propõe para o artigo e para a orientação?",
+            "opcoes": [
                 {
-                    id: 'conjunto',
-                    texto: 'Informar a revista, suspender o envio, revisar os dados com a estudante e assumir responsabilidades de orientação e autoria.',
-                    passos: [
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'É uma decisão difícil. Precisamos reconhecer o erro sem reduzir a estudante ao erro, e revisar o método antes de qualquer novo envio.' },
-                        { nome: '', texto: 'A revista recebe uma explicação formal. A universidade organiza formação para verificar dados e declarar o uso de ferramentas em pesquisa.' }
+                    "id": "conjunto",
+                    "texto": "Informar a revista, suspender o envio, revisar os dados com a estudante e assumir responsabilidades de orientação e autoria.",
+                    "passos": [
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "É uma decisão difícil. Precisamos reconhecer o erro sem reduzir a estudante ao erro, e revisar o método antes de qualquer novo envio."
+                        },
+                        {
+                            "nome": "",
+                            "texto": "A revista recebe uma explicação formal. A universidade organiza formação para verificar dados e declarar o uso de ferramentas em pesquisa."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou encaminhar à gestão as necessidades de formação e acompanhamento identificadas, preservando as pessoas envolvidas. A avaliação do piloto precisa registrar essa limitação antes de recomendar novos usos."
+                        }
                     ]
                 },
                 {
-                    id: 'individual',
-                    texto: 'Pedir que a estudante explique o caso primeiro, enquanto a universidade protege o calendário e adia sua resposta institucional.',
-                    passos: [
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'Ouvir a estudante é necessário. Ao deixar a resposta apenas com ela, porém, parecemos ignorar que a orientação também validou o trabalho.' },
-                        { recurso: 'integridade' },
-                        { atividade: { pergunta: 'Que resposta reconhece o papel das pessoas envolvidas?', opcoes: [
-                            { texto: 'Ouvir a estudante, informar a revista e registrar como orientador e instituição irão revisar o processo.', adequada: true, retorno: 'A resposta combina escuta, prestação de contas e revisão das condições de orientação.' },
-                            { texto: 'Declarar que toda a responsabilidade é da ferramenta.', retorno: 'A ferramenta não assina o artigo nem substitui a verificação humana.' },
-                            { texto: 'Punir a estudante antes de ouvi-la para proteger a imagem institucional.', retorno: 'Uma decisão sem escuta não examina o processo nem a responsabilidade da orientação.' }
-                        ] } },
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'Enviamos uma resposta conjunta e abrimos uma revisão orientada, com direito de manifestação da estudante.' }
+                    "id": "individual",
+                    "texto": "Pedir que a estudante explique o caso primeiro, enquanto a universidade protege o calendário e adia sua resposta institucional.",
+                    "passos": [
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "Ouvir a estudante é necessário. Ao deixar a resposta apenas com ela, porém, parecemos ignorar que a orientação também validou o trabalho."
+                        },
+                        {
+                            "recurso": "integridade"
+                        },
+                        {
+                            "atividade": {
+                                "pergunta": "Que resposta reconhece o papel das pessoas envolvidas?",
+                                "opcoes": [
+                                    {
+                                        "texto": "Ouvir a estudante, informar a revista e registrar como orientador e instituição irão revisar o processo.",
+                                        "adequada": true,
+                                        "retorno": "A resposta combina escuta, prestação de contas e revisão das condições de orientação."
+                                    },
+                                    {
+                                        "texto": "Declarar que toda a responsabilidade é da ferramenta.",
+                                        "retorno": "A ferramenta não assina o artigo nem substitui a verificação humana."
+                                    },
+                                    {
+                                        "texto": "Punir a estudante antes de ouvi-la para proteger a imagem institucional.",
+                                        "retorno": "Uma decisão sem escuta não examina o processo nem a responsabilidade da orientação."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "Enviamos uma resposta conjunta e abrimos uma revisão orientada, com direito de manifestação da estudante."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou encaminhar à gestão as necessidades de formação e acompanhamento identificadas, preservando as pessoas envolvidas. A avaliação do piloto precisa registrar essa limitação antes de recomendar novos usos."
+                        }
                     ]
                 },
                 {
-                    id: 'revisao',
-                    texto: 'Retirar os números contestados e tentar reconstruir rapidamente a análise antes de divulgar o ocorrido.',
-                    passos: [
-                        { nome: 'PROFESSOR AUGUSTO', texto: 'Ao tentar corrigir apenas a tabela, percebemos que parte da interpretação dependia dos dados inexistentes. A revista ainda espera uma resposta.' },
-                        { recurso: 'docencia' },
-                        { atividade: { pergunta: 'O que uma revisão completa deve incluir antes de qualquer reenvio?', opcoes: [
-                            { texto: 'Rastrear dados e método, avisar a revista, consultar a estudante e documentar alterações e uso da IA.', adequada: true, retorno: 'A rastreabilidade permite avaliar a extensão do problema e justificar o próximo passo.' },
-                            { texto: 'Substituir os valores até a conclusão parecer semelhante à original.', retorno: 'Uma conclusão desejada não determina quais dados são válidos.' },
-                            { texto: 'Reenviar sem explicar as alterações porque a primeira versão ainda não foi publicada.', retorno: 'A revista já questionou a integridade dos dados e precisa conhecer a revisão.' }
-                        ] } },
-                        { nome: '{nome}', texto: 'Interrompemos o envio, comunicamos o alcance da falha e propomos uma política de verificação para próximas orientações.' }
+                    "id": "revisao",
+                    "texto": "Retirar os números contestados e tentar reconstruir rapidamente a análise antes de divulgar o ocorrido.",
+                    "passos": [
+                        {
+                            "nome": "PROFESSOR AUGUSTO",
+                            "texto": "Ao tentar corrigir apenas a tabela, percebemos que parte da interpretação dependia dos dados inexistentes. A revista ainda espera uma resposta."
+                        },
+                        {
+                            "recurso": "docencia"
+                        },
+                        {
+                            "atividade": {
+                                "pergunta": "O que uma revisão completa deve incluir antes de qualquer reenvio?",
+                                "opcoes": [
+                                    {
+                                        "texto": "Rastrear dados e método, avisar a revista, consultar a estudante e documentar alterações e uso da IA.",
+                                        "adequada": true,
+                                        "retorno": "A rastreabilidade permite avaliar a extensão do problema e justificar o próximo passo."
+                                    },
+                                    {
+                                        "texto": "Substituir os valores até a conclusão parecer semelhante à original.",
+                                        "retorno": "Uma conclusão desejada não determina quais dados são válidos."
+                                    },
+                                    {
+                                        "texto": "Reenviar sem explicar as alterações porque a primeira versão ainda não foi publicada.",
+                                        "retorno": "A revista já questionou a integridade dos dados e precisa conhecer a revisão."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Interrompemos o envio, comunicamos o alcance da falha e propomos uma política de verificação para próximas orientações."
+                        },
+                        {
+                            "nome": "{nome}",
+                            "texto": "Vou encaminhar à gestão as necessidades de formação e acompanhamento identificadas, preservando as pessoas envolvidas. A avaliação do piloto precisa registrar essa limitação antes de recomendar novos usos."
+                        }
                     ]
                 }
             ]

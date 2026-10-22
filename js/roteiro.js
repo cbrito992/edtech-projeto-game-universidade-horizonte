@@ -12,7 +12,7 @@ const bancoDeDialogos = {
 
         {
             nome: "NOTIFICAÇÃO",
-            texto: "COMUNICADO INSTITUCIONAL<br>A Universidade Horizonte iniciará neste semestre o Programa Horizonte IA.<br>Algumas disciplinas participarão de um projeto-piloto de integração entre Inteligência Artificial e aprendizagem.",
+            texto: "COMUNICADO INSTITUCIONAL<br>A Universidade Horizonte iniciará neste semestre o Programa Horizonte IA.<br>Durante três meses, disciplinas e equipes de apoio testarão um assistente de IA para estudo e investigação acadêmica. A continuidade dependerá da avaliação de aprendizagem, acesso e condições do serviço.",
             livia: false,
             augusto: false,
             bg: "url('assets/images/background_tela_introducao.webp')",
@@ -36,7 +36,7 @@ const bancoDeDialogos = {
 
     tela2: {
         fala1: "Olá! Sou Giovana, gerente de TI da Universidade Horizonte. Antes de começarmos, me diga um pouco sobre você...",
-        fala2: "Muito bem, {nome}. Você participará do Programa Horizonte IA como {classe}.<br><br>Sua perspectiva vai ajudar a universidade a entender os efeitos de cada decisão.<br><br>Vamos começar!"
+        fala2: "Muito bem, {nome}. Você participará do Programa Horizonte IA como {classe}.<br><br>Vamos investigar a implantação da IA nos processos de ensino, estudo e apoio acadêmico. Você atuará dentro das responsabilidades da sua função e levará evidências ao Conselho.<br><br>O piloto dura três meses. A licença tem prazo, as equipes têm limites e a comunidade precisa participar da decisão sobre a continuidade."
     },
 
     trilhaAluno: [
