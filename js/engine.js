@@ -17,13 +17,14 @@ function caminhoAvatarJogador(genero = jogador.genero, variacao = jogador.avatar
     const sufixos = { estagiario: 'ES', professor: 'PV', gestor: 'GE' };
     const aparencia = aparencias.includes(variacao) ? variacao : '';
 
-    // Antes de escolher a função, mantém os avatares originais de aparência.
-    if (!classe || !sufixos[classe]) {
+    // O avatar padrão não possui uniformes próprios e mantém a aparência original.
+    // As demais aparências só usam uniforme após escolher uma função válida.
+    if (!aparencia || !classe || !sufixos[classe]) {
         return `assets/images/${aparencia ? `player_${genero}_${aparencia}.png` : `player_${genero}2.png`}`;
     }
 
     // Depois da escolha da função, carrega a roupa correspondente.
-    return `assets/images/player_${genero}_${aparencia || 'white'}_${sufixos[classe]}.webp`;
+    return `assets/images/player_${genero}_${aparencia}_${sufixos[classe]}.webp`;
 }
 
 function registrarTendenciaFinal(interacao, finalEscolhido) {
