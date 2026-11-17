@@ -28,7 +28,7 @@ body {
 .tela {
     width: 100%;
     height: 100%;
-    background-image: url('../assets/images/background_menu_inicial.webp');
+    background-image: url('../assets/images/background_menu_inicial2.webp');
     background-size: cover;
     background-position: center;
     display: none;
@@ -125,11 +125,11 @@ body {
 
 /* Telas Específicas */
 #tela1 {
-    background-image: url('../assets/images/background_tela_introducao.webp');
+    background-image: url('../assets/images/background_tela_introducao2.webp');
 }
 
 #tela2 {
-    background-image: url('../assets/images/background_hall.webp');
+    background-image: url('../assets/images/background_hall2.webp');
     background-color: #000;
     z-index: 10;
 }
@@ -291,7 +291,7 @@ body {
 }
 
 #tela3-aluno, #tela4-aluno, #tela-caminho-adicional {
-    background-image: url('../assets/images/background_biblioteca.webp');
+    background-image: url('../assets/images/background_biblioteca2.webp');
     background-color: #000;
     z-index: 10;
 }
@@ -1306,7 +1306,7 @@ body.alto-contraste .caixa-dialogo-jornada, body.alto-contraste .painel-jornada 
        permanece a composição horizontal original com os três personagens. */
     #tela-menu {
         --foco-mobile: center;
-        background-image: linear-gradient(to bottom, rgba(4,9,22,.05), rgba(4,9,22,.46)), url('../assets/images/background_menu_inicial.webp');
+        background-image: linear-gradient(to bottom, rgba(4,9,22,.05), rgba(4,9,22,.46)), url('../assets/images/background_menu_inicial2.webp');
         justify-content: center;
         padding: 0 0 4%;
     }

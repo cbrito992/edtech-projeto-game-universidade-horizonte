@@ -73,7 +73,7 @@ function mostrarTransicaoAto(titulo, subtitulo, callback) {
     const fundosTransicao = {
         'Ato I': 'assets/images/background_transicao_ato1.webp',
         'Ato II': 'assets/images/background_transicao_ato2.webp',
-        'Conselho': 'assets/images/background_transicao_ato3.webp'
+        'Conselho': 'assets/images/background_transicao_ato3_2.webp'
     };
     const fundoTransicao = fundosTransicao[titulo] || fundosTransicao['Ato I'];
     tela.style.backgroundImage = `url("${fundoTransicao}")`;

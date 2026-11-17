@@ -103,8 +103,8 @@ const roteirosAtos = {
         "nivel": "Fácil",
         "companheiro": "NICODEMOS",
         "avatar": "assets/images/npc_nicodemos.png",
-        "fundo1": "assets/images/background_sala de informatica.webp",
-        "fundo2": "assets/images/background_hall.webp",
+        "fundo1": "assets/images/background_sala de informatica2.webp",
+        "fundo2": "assets/images/background_hall2.webp",
         "ato1": {
             "antes": [
                 {
@@ -347,8 +347,8 @@ const roteirosAtos = {
         "nivel": "Intermediário",
         "companheiro": "LÍVIA",
         "avatar": "assets/images/npc_livia_stand.png",
-        "fundo1": "assets/images/background_biblioteca.webp",
-        "fundo2": "assets/images/background_sala de aula.webp",
+        "fundo1": "assets/images/background_biblioteca2.webp",
+        "fundo2": "assets/images/background_sala de aula2.webp",
         "ato1": {
             "antes": [
                 {
@@ -545,8 +545,8 @@ const roteirosAtos = {
         "nivel": "Difícil",
         "companheiro": "PROFESSOR AUGUSTO",
         "avatar": "assets/images/npc_professor_augusto_tela1.png",
-        "fundo1": "assets/images/background_sala de aula.webp",
-        "fundo2": "assets/images/background_sala de informatica.webp",
+        "fundo1": "assets/images/background_sala de aula2.webp",
+        "fundo2": "assets/images/background_sala de informatica2.webp",
         "ato1": {
             "antes": [
                 {
